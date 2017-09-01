@@ -1,0 +1,22 @@
+# We're using Java. Since Travis does not support multiple languages in a same config file, we'll have to find a
+# workaround to test our javascript code (should mostly be node.js / angular). One way would be to install what we need
+# (node, angular, selenium, etc.) in the before_script and then run tests - we'll try that once needed.
+language: java
+
+# Test against the most popular jdk. We limit ourselves to jdk8 for now (especially since the latest version of
+# Elasticsearch requires jdk8). We don't have any legacy stuff to work with anyways, so there is no reason to test
+# against older stuff.
+env:
+  - JDK=oraclejdk8
+  - JDK=openjdk8
+
+# Using Ubuntu trusty. Note that as of Friday, September 1 2017, trusty become the default value of dist, meaning that
+# is not necessary here. It gives a better idea of what's going on thought, no reason to remove it.
+dist: trusty
+
+# Will probably need more work here, e.g installing wildfly before running the script or displaying the logs. Will do it
+# when the necessity arises.
+
+# Tests both JDK.
+before_script:
+  - jdk_switcher use $JDK
