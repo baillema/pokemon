@@ -1,0 +1,12 @@
+# IntelliJ related
+
+.idea/
+*/target/*
+*.iml
+*.iws
+
+# Eclipse related
+
+.classpath
+.project
+.settings/
