@@ -12,6 +12,5 @@
 
     <modules>
         <module>ecom</module>
-        <module>ecom</module>
     </modules>
 </project>
