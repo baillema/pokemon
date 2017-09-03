@@ -15,8 +15,6 @@
     <modules>
         <module>web</module>
         <module>ejbs</module>
-        <module>web</module>
-        <module>ejbs</module>
     </modules>
 
     <properties>
