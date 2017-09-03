@@ -11,7 +11,7 @@ env:
   - JDK=openjdk8
 
 # Using Ubuntu trusty. Note that as of Friday, September 1 2017, trusty became the default value of dist, meaning that
-# is not necessary here. It gives a better idea of what's going on thought, no reason to remove it.
+# it is not necessary here. It gives a better idea of what's going on thought, no reason to remove it.
 dist: trusty
 
 # Will probably need more work here, e.g installing wildfly before running the script or displaying the logs. Will do it
