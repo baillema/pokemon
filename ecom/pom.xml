@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ecom-root</artifactId>
+        <groupId>fr.ujf.m2pgi</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>ecom</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>web</module>
+        <module>ejbs</module>
+    </modules>
+
+    <properties>
+        <!-- Encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Java related properties -->
+        <version.maven.compiler.plugin>3.6.2</version.maven.compiler.plugin>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- Wildfly related properties -->
+        <version.wildfly.bom>10.1.1.Final</version.wildfly.bom>
+        <version.jboss.hibernate>9.0.2.Final</version.jboss.hibernate>
+        <version.wildfly.plugin>1.2.0.Final</version.wildfly.plugin>
+    </properties>
+
+    <!-- The bom bundles several dependencies. With the BOM in place, all we need to do is to include the dependencies.
+   We don't need to specify the version anymore as it will be retrieved from the BOM. All we have to do is to
+   provide the scope, i.e <scope>provided</scope>. -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- https://mvnrepository.com/artifact/org.wildfly.bom/wildfly-javaee7-with-tools -->
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-javaee7-with-tools</artifactId>
+                <version>${version.wildfly.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <!-- https://mvnrepository.com/artifact/org.wildfly.plugins/wildfly-maven-plugin -->
+            <groupId>org.wildfly.plugins</groupId>
+            <artifactId>wildfly-maven-plugin</artifactId>
+            <version>${version.wildfly.plugin}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${version.maven.compiler.plugin}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <!-- https://mvnrepository.com/artifact/org.wildfly.plugins/wildfly-maven-plugin -->
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.plugin}</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
