@@ -283,6 +283,14 @@ CREATE TABLE pokemons_references
   pokemon_reference_shininess BOOLEAN
 );
 
+-- Link with articles
+CREATE TABLE pokemons_references_articles
+(
+  pokemon_reference_article_article_id INT REFERENCES articles (article_id),
+  pokemon_reference_article_pokemon_reference_id INT REFERENCES pokemons_references (pokemon_reference_id),
+  PRIMARY KEY (pokemon_reference_article_article_id, pokemon_reference_article_pokemon_reference_id)
+);
+
 ------------------------------------------------------------------------------------------------------------------------
 --- ITEMS RELATED
 ------------------------------------------------------------------------------------------------------------------------
@@ -332,6 +340,14 @@ CREATE TABLE items_references
   item_name_id INT REFERENCES items_names (item_name_id),
   item_category_id INT REFERENCES item_categories (item_category_id),
   item_description_id INT REFERENCES items_descriptions (item_description_id)
+);
+
+-- Link with articles
+CREATE TABLE item_references_articles
+(
+  item_reference_article_article_id INT REFERENCES articles (article_id),
+  item_reference_article_item_reference_id INT REFERENCES items_references (item_reference_id),
+  PRIMARY KEY (item_reference_article_article_id, item_reference_article_item_reference_id)
 );
 
 CREATE TABLE items
