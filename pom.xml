@@ -5,7 +5,7 @@
     <!-- This pom is here for Travis CI -->
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>fr.ujf.m2pgi</groupId>
+    <groupId>fr.uga.m2pgi</groupId>
     <artifactId>ecom-root</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
