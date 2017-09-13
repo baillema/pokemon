@@ -1,8 +1,8 @@
-import java.io.IOException;
+package elasticsearch;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeRequest;
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeResponse;
@@ -18,47 +18,31 @@ import org.elasticsearch.search.suggest.SuggestBuilders;
 import org.elasticsearch.search.suggest.completion.CompletionSuggestionBuilder;
 import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
 
-import javax.ejb.Stateless;
-
-public class ElasticSearch {
+class ElasticSearch {
 
     //Generic param to know the type of search
-    public static final int SEARCH = 1;
-    public static final int FUZZY = 2;
-    public static final int WILDCARD = 3;
-    public static final int EXACT = 4;
+    private static final int SEARCH = 1;
+    private static final int FUZZY = 2;
+    private static final int WILDCARD = 3;
+    private static final int EXACT = 4;
 
     //Max number of element displayed
-    int size = 10;
+    private int size = 10;
 
-    TransportClient client;
+    private TransportClient client;
 
-    /**
-     * Constructor for the Search class
-     */
-    public ElasticSearch()
+    ElasticSearch(String index)
     {
         Settings settings = Settings.builder()
-                .put("cluster.name", "pokemons")
+                .put("cluster.name", index)
                 .build();
         client = new PreBuiltXPackTransportClient(settings);
         try {
-            client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
+            client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("152.77.78.29"), 9300));
         } catch (UnknownHostException e) {e.printStackTrace();}
     }
 
-    public ElasticSearch(String index)
-    {
-        Settings settings = Settings.builder()
-                                    .put("cluster.name", index)
-                                    .build();
-        client = new PreBuiltXPackTransportClient(settings);
-        try {
-            client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
-        } catch (UnknownHostException e) {e.printStackTrace();}
-    }
-
-    /**
+    /*
      * Functions with different types of search
      */
 
@@ -67,12 +51,12 @@ public class ElasticSearch {
      * @param indices is the index where we search
      * @return response of the search request in json
      */
-    public String matchAll(String indices)
+    String matchAll(String indices)
     {
         SearchResponse response = client.prepareSearch(indices)
-                                        .setQuery(QueryBuilders.matchAllQuery())
-                                        .setSize(size)
-                                        .get();
+                .setQuery(QueryBuilders.matchAllQuery())
+                .setSize(size)
+                .get();
         return response.toString();
     }
 
@@ -83,7 +67,7 @@ public class ElasticSearch {
      * @param wordsearched is the word/phrase searched
      * @return response of the search request in json
      */
-    public String simpleSearch(String indices, String name, String wordsearched)
+    String simpleSearch(String indices, String name, String wordsearched)
     {
         SearchResponse response = client.prepareSearch(indices)
                 .setQuery(QueryBuilders.matchQuery(name, wordsearched))
@@ -100,7 +84,7 @@ public class ElasticSearch {
      * @param wordsearched is the word/phrase searched
      * @return response of the search request in json
      */
-    public String multiSearch(String indices, String name, String wordsearched, int typeRequest, String facetName[], String facetValue[], int nbFacets)
+    String multiSearch(String indices, String name, String wordsearched, int typeRequest, String facetName[], String facetValue[], int nbFacets)
     {
         SearchRequestBuilder builder = client.prepareSearch(indices).setSize(size);
         BoolQueryBuilder query;
@@ -166,7 +150,7 @@ public class ElasticSearch {
      * @param wordsearched is the word/phrase searched
      * @return response of the search request in json
      */
-    public String exactSearch(String indices, String name, String wordsearched)
+    String exactSearch(String indices, String name, String wordsearched)
     {
         SearchResponse response = client.prepareSearch(indices)
                 .setQuery(QueryBuilders.matchPhraseQuery(name, wordsearched))
@@ -182,7 +166,7 @@ public class ElasticSearch {
      * @param wordsearched is the word/phrase searched
      * @return response of the search request in json
      */
-    public String wildcardSearch(String indices, String name, String wordsearched)
+    String wildcardSearch(String indices, String name, String wordsearched)
     {
         SearchResponse response = client.prepareSearch(indices)
                 .setQuery(QueryBuilders.wildcardQuery(name, wordsearched))
@@ -198,7 +182,7 @@ public class ElasticSearch {
      * @param wordsearched is the word/phrase searched
      * @return response of the search request in json (parse with ParsingSearch class)
      */
-    public String fuzzySearch(String indices, String name, String wordsearched)
+    String fuzzySearch(String indices, String name, String wordsearched)
     {
         SearchResponse response = client.prepareSearch(indices)
                 .setQuery(QueryBuilders.fuzzyQuery(name, wordsearched))
@@ -215,7 +199,7 @@ public class ElasticSearch {
      * @param wordsearched is the word/phrase searched
      * @return response of the search request in json
      */
-    public String autocomplete(String indices, String name, String wordsearched)
+    String autocomplete(String indices, String name, String wordsearched)
     {
         CompletionSuggestionBuilder csb = SuggestBuilders.completionSuggestion(name).prefix(wordsearched);
 
@@ -226,7 +210,7 @@ public class ElasticSearch {
         return reponse.toString();
     }
 
-    /**
+    /*
      * Functions to do pretreatment
      */
 
@@ -237,13 +221,13 @@ public class ElasticSearch {
      * @param language is the language of the stopword (french, english only actually)
      * @return wordsearched without stopword
      */
-    public String stopword(String wordsearched, String language)
+    String stopword(String wordsearched, String language)
     {
         String response = "";
 
         AnalyzeRequest req = (new AnalyzeRequest("stopwords")).analyzer(language+"_stopwords").text(wordsearched);
         List<AnalyzeResponse.AnalyzeToken> tokens = client.admin().indices().analyze(req).actionGet().getTokens();
-        for (AnalyzeResponse.AnalyzeToken token : tokens)  response +=token.getTerm()+" ";
+        for (AnalyzeResponse.AnalyzeToken token : tokens) response = response.concat(token.getTerm() + " ");
 
         return response;
     }
@@ -254,13 +238,13 @@ public class ElasticSearch {
      * @param wordsearched is the word/phrase searched
      * @return wordsearched root form
      */
-    public String lemmatisation(String wordsearched, String language)
+    String lemmatisation(String wordsearched, String language)
     {
         String response = "";
 
         AnalyzeRequest req = (new AnalyzeRequest("lemmatisation")).analyzer(language+"_lemma").text(wordsearched);
         List<AnalyzeResponse.AnalyzeToken> tokens = client.admin().indices().analyze(req).actionGet().getTokens();
-        for (AnalyzeResponse.AnalyzeToken token : tokens)  response +=token.getTerm()+" ";
+        for (AnalyzeResponse.AnalyzeToken token : tokens) response = response.concat(token.getTerm() + " ");
 
         return response;
     }
