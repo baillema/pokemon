@@ -38,7 +38,7 @@ CREATE TABLE roles
 CREATE TABLE roles_translations
 (
   role_id INT NOT NULL REFERENCES roles (id),
-  language_id INT NOT NULL REFERENCES languages (language_id),
+  language_id INT NOT NULL REFERENCES languages (id),
   translation VARCHAR(50),
   PRIMARY KEY (role_id, language_id)
 );
@@ -68,14 +68,6 @@ CREATE TABLE roles_permissions
   PRIMARY KEY (role_id, permission_id)
 );
 
-CREATE TABLE feedback 
-(
-  id SERIAL PRIMARY KEY,
-  text TEXT,
-  mark INT CHECK (mark >= 1 AND mark <= 10),
-  user_id INT NOT NULL REFERENCES users (id)
-);
-
 ------------------------------------------------------------------------------------------------------------------------
 --- ITEMS RELATED
 ------------------------------------------------------------------------------------------------------------------------
@@ -86,14 +78,22 @@ CREATE TABLE articles
   name VARCHAR(20),
   price REAL,
   description TEXT,
-  user_id INT NOT NULL REFERENCES users (id),
-  feedback_id INT NOT NULL REFERENCES feedback (id)
+  user_id INT NOT NULL REFERENCES users (id)
+);
+
+CREATE TABLE feedback
+(
+  id SERIAL PRIMARY KEY,
+  text TEXT,
+  mark INT CHECK (mark >= 1 AND mark <= 10),
+  user_id INT REFERENCES users (id),
+  article_id INT REFERENCES articles (id)
 );
 
 CREATE TABLE lots
 (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(20),
+  name VARCHAR(25),
   description TEXT,
   prix REAL
 );
