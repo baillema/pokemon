@@ -1,10 +1,4 @@
 ------------------------------------------------------------------------------------------------------------------------
---- LANGUAGES RELATED
-------------------------------------------------------------------------------------------------------------------------
-
-INSERT INTO LANGUAGES (name) VALUES ('French');
-
-------------------------------------------------------------------------------------------------------------------------
 --- USERS RELATED
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -13,10 +7,10 @@ INSERT INTO ROLES (name) VALUES ('Admin');
 INSERT INTO ROLES (name) VALUES ('Buyer');
 INSERT INTO ROLES (name) VALUES ('Trader');
 
-INSERT INTO ROLES_TRANSLATIONS (role_id, language_id, translation) VALUES (1, 1, 'Fournisseur');
-INSERT INTO ROLES_TRANSLATIONS (role_id, language_id, translation) VALUES (2, 1, 'Administrateur');
-INSERT INTO ROLES_TRANSLATIONS (role_id, language_id, translation) VALUES (3, 1, 'Acheteur');
-INSERT INTO ROLES_TRANSLATIONS (role_id, language_id, translation) VALUES (4, 1, 'Négociant');
+INSERT INTO ROLES_TRANSLATIONS (role_id, language_id, translation) VALUES (1, 4, 'Fournisseur');
+INSERT INTO ROLES_TRANSLATIONS (role_id, language_id, translation) VALUES (2, 4, 'Administrateur');
+INSERT INTO ROLES_TRANSLATIONS (role_id, language_id, translation) VALUES (3, 4, 'Acheteur');
+INSERT INTO ROLES_TRANSLATIONS (role_id, language_id, translation) VALUES (4, 4, 'Négociant');
 
 INSERT INTO USERS (firstname, birthday, gender, email, password, lastname) VALUES ('1', '2001-10-05', 'Male', 'user1@gmail.com', 'User@MDP' , '1_last');
 INSERT INTO USERS (firstname, birthday, gender, email, password, lastname) VALUES ('2', '2003-08-05', 'Male', 'user2@gmail.com', 'User@MDP', '2_last');

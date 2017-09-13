@@ -1,9 +1,12 @@
 ------------------------------------------------------------------------------------------------------------------------
---- DROP TABLES
+--- DROP TABLES AND CONFIG ROLES
 ------------------------------------------------------------------------------------------------------------------------
-drop schema public cascade;
-create schema public;
-
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO pokemonuser;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO pokemonuser;
+GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO elasticuser;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO elasticuser;
 ------------------------------------------------------------------------------------------------------------------------
 --- EXTENSION
 ------------------------------------------------------------------------------------------------------------------------
@@ -162,10 +165,10 @@ CREATE TABLE pokemons_genders
 
 CREATE TABLE pokemons_genders_translations
 (
-  gender_id INT NOT NULL REFERENCES pokemons_genders (id),
-  language_id INT NOT NULL REFERENCES languages (id),
+  gender_id INT  REFERENCES pokemons_genders (id),
+  language_id INT  REFERENCES languages (id),
   translation VARCHAR(50),
-  PRIMARY KEY (gender_id, language_id)
+  PRIMARY KEY (gender_id, language_id, translation)
 );
 
 CREATE TABLE pokemons_species
@@ -178,7 +181,7 @@ CREATE TABLE pokemons_species_translations
   pokemon_specie_id INT REFERENCES pokemons_species (id),
   language_id INT REFERENCES languages (id),
   translation VARCHAR(50),
-  PRIMARY KEY (pokemon_specie_id, language_id)
+  PRIMARY KEY (pokemon_specie_id, language_id, translation)
 );
 
 CREATE TABLE pokemons_colors
@@ -188,10 +191,10 @@ CREATE TABLE pokemons_colors
 
 CREATE TABLE pokemons_colors_translations
 (
-  pokemon_color_id INT NOT NULL REFERENCES pokemons_colors (id),
-  language_id INT NOT NULL REFERENCES languages (id),
+  pokemon_color_id INT  REFERENCES pokemons_colors (id),
+  language_id INT  REFERENCES languages (id),
   translation VARCHAR(50),
-  PRIMARY KEY (pokemon_color_id, language_id)
+  PRIMARY KEY (pokemon_color_id, language_id, translation)
 );
 
 CREATE TABLE pokemons_shapes
@@ -201,10 +204,10 @@ CREATE TABLE pokemons_shapes
 
 CREATE TABLE pokemons_shapes_translations
 (
-  pokemon_shape_id INT NOT NULL REFERENCES pokemons_shapes (id),
+  pokemon_shape_id INT  REFERENCES pokemons_shapes (id),
   language_id INT REFERENCES languages (id),
   translation VARCHAR(50),
-  PRIMARY KEY (pokemon_shape_id, language_id)
+  PRIMARY KEY (pokemon_shape_id, language_id, translation)
 );
 
 CREATE TABLE pokemons_habitats
@@ -214,10 +217,10 @@ CREATE TABLE pokemons_habitats
 
 CREATE TABLE pokemons_habitats_translations
 (
-  pokemon_habitat_id INT NOT NULL REFERENCES pokemons_habitats (id),
-  language_id INT NOT NULL REFERENCES languages (id),
+  pokemon_habitat_id INT  REFERENCES pokemons_habitats (id),
+  language_id INT  REFERENCES languages (id),
   translation VARCHAR(50),
-  PRIMARY KEY (pokemon_habitat_id, language_id)
+  PRIMARY KEY (pokemon_habitat_id, language_id, translation)
 );
 
 CREATE TABLE pokemons_descriptions
@@ -227,25 +230,25 @@ CREATE TABLE pokemons_descriptions
 
 CREATE TABLE pokemons_descriptions_translations
 (
-  pokemon_description_id INT NOT NULL REFERENCES pokemons_descriptions (id),
-  language_id INT NOT NULL REFERENCES languages (id),
+  pokemon_description_id INT  REFERENCES pokemons_descriptions (id),
+  language_id INT  REFERENCES languages (id),
   translation TEXT,
-  PRIMARY KEY (pokemon_description_id, language_id)
+  PRIMARY KEY (pokemon_description_id, language_id, translation)
 );
 
 CREATE TABLE pokemons
 (
   id INT PRIMARY KEY,
-  species_id INT NOT NULL REFERENCES pokemons_species (id),
-  habitat_id INT NOT NULL REFERENCES pokemons_habitats (id),
-  color_id INT NOT NULL REFERENCES pokemons_colors (id),
-  shape_id INT NOT NULL REFERENCES pokemons_shapes (id),
-  description INT NOT NULL REFERENCES pokemons_descriptions (id)
+  species_id INT  REFERENCES pokemons_species (id),
+  habitat_id INT  REFERENCES pokemons_habitats (id),
+  color_id INT  REFERENCES pokemons_colors (id),
+  shape_id INT  REFERENCES pokemons_shapes (id),
+  description INT  REFERENCES pokemons_descriptions (id)
 );
 
 CREATE TABLE pokemons_accepted_genders
 (
-  pokemon_id INT NOT NULL REFERENCES pokemons (id),
+  pokemon_id INT  REFERENCES pokemons (id),
   pokemon_gender_id INT REFERENCES pokemons_genders (id),
   PRIMARY KEY (pokemon_id, pokemon_gender_id)
 );
@@ -259,10 +262,10 @@ CREATE TABLE pokemons_accepted_genders
 CREATE TABLE pokemons_references
 (
   id INT PRIMARY KEY,
-  pokemon_id INT NOT NULL REFERENCES pokemons (id),
+  pokemon_id INT  REFERENCES pokemons (id),
   name VARCHAR(50),
   level INT CHECK (level <= 100 AND level >= 1),
-  description TEXT,
+  description VARCHAR(50),
   shininess BOOLEAN
 );
 
@@ -277,10 +280,10 @@ CREATE TABLE items_names
 
 CREATE TABLE items_names_translations
 (
-  item_name_id INT NOT NULL REFERENCES items_names (id),
-  language_id INT NOT NULL REFERENCES languages (id),
+  item_name_id INT  REFERENCES items_names (id),
+  language_id INT  REFERENCES languages (id),
   translation VARCHAR(50),
-  PRIMARY KEY (item_name_id, language_id)
+  PRIMARY KEY (item_name_id, language_id, translation)
 );
 
 CREATE TABLE items_descriptions
@@ -290,10 +293,10 @@ CREATE TABLE items_descriptions
 
 CREATE TABLE items_descriptions_translations
 (
-  item_description_id INT NOT NULL REFERENCES items_descriptions (id),
-  language_id INT NOT NULL REFERENCES languages (id),
-  translation TEXT,
-  PRIMARY KEY (item_description_id, language_id)
+  item_description_id INT  REFERENCES items_descriptions (id),
+  language_id INT  REFERENCES languages (id),
+  translation VARCHAR(50),
+  PRIMARY KEY (item_description_id, language_id, translation)
 );
 
 CREATE TABLE item_categories
@@ -303,10 +306,10 @@ CREATE TABLE item_categories
 
 CREATE TABLE items_categories_translations
 (
-  item_category_id INT NOT NULL REFERENCES item_categories (id),
-  language_id INT NOT NULL REFERENCES languages (id),
+  item_category_id INT  REFERENCES item_categories (id),
+  language_id INT  REFERENCES languages (id),
   translation VARCHAR(50),
-  PRIMARY KEY (item_category_id, language_id)
+  PRIMARY KEY (item_category_id, language_id, translation)
 );
 
 CREATE TABLE items_references
@@ -321,40 +324,34 @@ CREATE TABLE items
 (
   id INT PRIMARY KEY,
   quantity INT CHECK (quantity >= 0),
-  item_reference_id INT NOT NULL REFERENCES items_references (id)
+  item_reference_id INT  REFERENCES items_references (id)
 );
 
 ------------------------------------------------------------------------------------------------------------------------
 --- ARTICLES RELATED
 ------------------------------------------------------------------------------------------------------------------------
 
-CREATE TABLE articles_categories
-(
-  id INT PRIMARY KEY,
-  name varchar(50) UNIQUE
-);
-
 CREATE TABLE articles_references_translations
 (
-  translation_id INT NOT NULL REFERENCES articles_categories (id),
-  language_id INT NOT NULL REFERENCES languages (id),
+  translation_id INT  REFERENCES articles (id),
+  language_id INT  REFERENCES languages (id),
   translation VARCHAR(50),
-  PRIMARY KEY (translation_id, language_id)
+  PRIMARY KEY (translation_id, language_id, translation)
 );
 
--- Link with categrories_articles
+-- Link articles and items
 CREATE TABLE item_references_articles
 (
-  item_reference_article_article_id INT REFERENCES articles (id),
-  item_reference_article_item_reference_id INT REFERENCES items_references (id),
-  PRIMARY KEY (item_reference_article_article_id, item_reference_article_item_reference_id)
+  article_id INT REFERENCES articles (id),
+  item_reference_id INT REFERENCES items_references (id),
+  PRIMARY KEY (article_id, item_reference_id)
 );
 
--- Link with articles
+-- Link articles and pokemons
 CREATE TABLE pokemons_references_articles
 (
-  article_id INT NOT NULL REFERENCES articles (id),
-  pokemon_reference_id INT NOT NULL REFERENCES pokemons_references (id),
+  article_id INT  REFERENCES articles (id),
+  pokemon_reference_id INT  REFERENCES pokemons_references (id),
   PRIMARY KEY (article_id, pokemon_reference_id)
 );
 
