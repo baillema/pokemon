@@ -11,4 +11,11 @@ Site cours : http://air.imag.fr/index.php/ECOM
 
 Modèle Ecom : https://github.com/JulienArmand/ProjetECOMM2GIEbooks
 
+Liens utiles IHM :
+==================
 
+Design mobile : https://tympanus.net/codrops/2011/01/20/design-concepts-for-mobile-websites/
+
+Erreurs courantes : https://www.nngroup.com/articles/top-10-mistakes-web-design/
+
+Heuristiques pour interface utilisateur : https://www.nngroup.com/articles/ten-usability-heuristics/
