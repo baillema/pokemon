@@ -72,13 +72,22 @@ CREATE TABLE roles_permissions
 --- ITEMS RELATED
 ------------------------------------------------------------------------------------------------------------------------
 
+CREATE TABLE lots
+(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(25),
+  description TEXT,
+  prix REAL
+);
+
 CREATE TABLE articles 
 (
   id SERIAL PRIMARY KEY,
   name VARCHAR(20),
   price REAL,
   description TEXT,
-  user_id INT NOT NULL REFERENCES users (id)
+  user_id INT NOT NULL REFERENCES users (id),
+  lot_id INT NOT NULL REFERENCES lots (id)
 );
 
 CREATE TABLE feedback
@@ -88,14 +97,6 @@ CREATE TABLE feedback
   mark INT CHECK (mark >= 1 AND mark <= 10),
   user_id INT REFERENCES users (id),
   article_id INT REFERENCES articles (id)
-);
-
-CREATE TABLE lots
-(
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(25),
-  description TEXT,
-  prix REAL
 );
 
 CREATE TABLE lots_articles
@@ -143,12 +144,12 @@ CREATE TABLE orders
 CREATE TABLE trades
 (
   first_user_id INT NOT NULL REFERENCES users (id),
-  first_article_id INT NOT NULL REFERENCES articles (id),
+  first_lot_id INT NOT NULL REFERENCES lots (id),
   second_user_id INT NOT NULL REFERENCES users (id),
-  second_article_id INT NOT NULL REFERENCES articles (id),
+  second_lot_id INT NOT NULL REFERENCES lots (id),
   CONSTRAINT valid_user_coupled CHECK (first_user_id != second_user_id),
-  CONSTRAINT valid_article_exchange CHECK (first_article_id != second_article_id),
-  PRIMARY KEY (first_user_id, first_article_id, second_user_id, second_article_id)
+  CONSTRAINT valid_lot_exchange CHECK (first_lot_id != second_lot_id),
+  PRIMARY KEY (first_user_id, first_lot_id, second_user_id, second_lot_id)
 );
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -345,9 +346,9 @@ CREATE TABLE articles_references_translations
 -- Link with categrories_articles
 CREATE TABLE item_references_articles
 (
-  item_reference_article_article_id INT REFERENCES articles (id),
-  item_reference_article_item_reference_id INT REFERENCES items_references (id),
-  PRIMARY KEY (item_reference_article_article_id, item_reference_article_item_reference_id)
+  article_id INT REFERENCES articles (id),
+  item_reference_id INT REFERENCES items_references (id),
+  PRIMARY KEY (article_id, item_reference_id)
 );
 
 -- Link with articles
