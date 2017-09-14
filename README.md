@@ -19,3 +19,5 @@ Design mobile : https://tympanus.net/codrops/2011/01/20/design-concepts-for-mobi
 Erreurs courantes : https://www.nngroup.com/articles/top-10-mistakes-web-design/
 
 Heuristiques pour interface utilisateur : https://www.nngroup.com/articles/ten-usability-heuristics/
+
+Critère de Bastien/Scapin : http://ergoweb.ca/criteres/
