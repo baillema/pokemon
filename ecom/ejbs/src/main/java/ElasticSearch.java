@@ -1,7 +1,12 @@
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
 
 public class ElasticSearch {
     //Max number of element displayed
