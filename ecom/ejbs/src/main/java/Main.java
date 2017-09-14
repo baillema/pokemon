@@ -1,7 +1,12 @@
+<<<<<<< e501b043ba773901567e3af43305cba7fe6767ad
+=======
+
+>>>>>>> Update mvn + add java for elasticsearch
 import java.lang.String;
 
 public class Main {
     public static void main (String[] args){
+<<<<<<< e501b043ba773901567e3af43305cba7fe6767ad
         ElasticSearch es = new ElasticSearch("pokelastic");
         //System.out.println(es.matchAll("pokemons"));
         //System.out.println(es.simpleSearch("pokemons", "name", "golbat"));
@@ -17,5 +22,9 @@ public class Main {
         String[] facetValue = {"poison"};
 
         System.out.println(es.multiSearch("pokemons","name", "golbat", es.SEARCH, facetName, facetValue, 1));
+=======
+        ElasticSearch es = new ElasticSearch();
+        es.matchAll();
+>>>>>>> Update mvn + add java for elasticsearch
     }
 }
