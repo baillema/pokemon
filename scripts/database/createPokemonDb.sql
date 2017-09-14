@@ -1,12 +1,49 @@
 ------------------------------------------------------------------------------------------------------------------------
---- DROP TABLES AND CONFIG ROLES
+--- DROP TABLES
 ------------------------------------------------------------------------------------------------------------------------
-DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
-GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO pokemonuser;
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO pokemonuser;
-GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO elasticuser;
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO elasticuser;
+DROP TABLE languages CASCADE;
+DROP TABLE permissions CASCADE;
+DROP TABLE roles CASCADE;
+DROP TABLE roles_translations CASCADE;
+DROP TABLE users CASCADE;
+DROP TABLE users_roles CASCADE;
+DROP TABLE roles_permissions CASCADE;
+DROP TABLE articles CASCADE;
+DROP TABLE feedback CASCADE;
+DROP TABLE lots CASCADE;
+DROP TABLE lots_articles CASCADE;
+DROP TABLE tags CASCADE;
+DROP TABLE baskets CASCADE;
+DROP TABLE baskets_lots CASCADE;
+DROP TABLE orders CASCADE;
+DROP TABLE trades CASCADE;
+DROP TABLE pokemons_genders CASCADE;
+DROP TABLE pokemons_genders_translations CASCADE;
+DROP TABLE pokemons_species CASCADE;
+DROP TABLE pokemons_species_translations CASCADE;
+DROP TABLE pokemons_colors CASCADE;
+DROP TABLE pokemons_colors_translations CASCADE;
+DROP TABLE pokemons_shapes CASCADE;
+DROP TABLE pokemons_shapes_translations CASCADE;
+DROP TABLE pokemons_habitats CASCADE;
+DROP TABLE pokemons_habitats_translations CASCADE;
+DROP TABLE pokemons_descriptions CASCADE;
+DROP TABLE pokemons_descriptions_translations CASCADE;
+DROP TABLE pokemons CASCADE;
+DROP TABLE pokemons_accepted_genders CASCADE;
+DROP TABLE pokemons_references CASCADE;
+DROP TABLE items_names CASCADE;
+DROP TABLE items_names_translations CASCADE;
+DROP TABLE items_descriptions CASCADE;
+DROP TABLE items_descriptions_translations CASCADE;
+DROP TABLE item_categories CASCADE;
+DROP TABLE items_categories_translations CASCADE;
+DROP TABLE items_references CASCADE;
+DROP TABLE items CASCADE;
+DROP TABLE articles_references_translations CASCADE;
+DROP TABLE item_references_articles CASCADE;
+DROP TABLE pokemons_references_articles CASCADE;
+
 ------------------------------------------------------------------------------------------------------------------------
 --- EXTENSION
 ------------------------------------------------------------------------------------------------------------------------
@@ -261,11 +298,9 @@ CREATE TABLE pokemons_accepted_genders
 -- (pokemons_reference_id, pokemon_reference_gender) must be in pokemons_accepted_genders.
 CREATE TABLE pokemons_references
 (
-  id INT PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   pokemon_id INT  REFERENCES pokemons (id),
-  name VARCHAR(50),
   level INT CHECK (level <= 100 AND level >= 1),
-  description VARCHAR(50),
   shininess BOOLEAN
 );
 
@@ -314,7 +349,7 @@ CREATE TABLE items_categories_translations
 
 CREATE TABLE items_references
 (
-  id INT PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   item_name_id INT REFERENCES items_names (id),
   item_category_id INT REFERENCES item_categories (id),
   item_description_id INT REFERENCES items_descriptions (id)
