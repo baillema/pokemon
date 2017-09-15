@@ -2,20 +2,15 @@
 --- DROP TABLES
 ------------------------------------------------------------------------------------------------------------------------
 DROP TABLE languages CASCADE;
-DROP TABLE permissions CASCADE;
 DROP TABLE roles CASCADE;
 DROP TABLE roles_translations CASCADE;
 DROP TABLE users CASCADE;
 DROP TABLE users_roles CASCADE;
-DROP TABLE roles_permissions CASCADE;
-DROP TABLE articles CASCADE;
 DROP TABLE feedback CASCADE;
 DROP TABLE lots CASCADE;
 DROP TABLE lots_articles CASCADE;
-DROP TABLE tags CASCADE;
-DROP TABLE baskets CASCADE;
-DROP TABLE baskets_lots CASCADE;
-DROP TABLE orders CASCADE;
+DROP TABLE suggestions CASCADE;
+DROP TABLE carts CASCADE;
 DROP TABLE trades CASCADE;
 DROP TABLE pokemons_genders CASCADE;
 DROP TABLE pokemons_genders_translations CASCADE;
@@ -31,23 +26,21 @@ DROP TABLE pokemons_descriptions CASCADE;
 DROP TABLE pokemons_descriptions_translations CASCADE;
 DROP TABLE pokemons CASCADE;
 DROP TABLE pokemons_accepted_genders CASCADE;
-DROP TABLE pokemons_references CASCADE;
+DROP TABLE pokemons_articles CASCADE;
 DROP TABLE items_names CASCADE;
 DROP TABLE items_names_translations CASCADE;
 DROP TABLE items_descriptions CASCADE;
 DROP TABLE items_descriptions_translations CASCADE;
 DROP TABLE item_categories CASCADE;
 DROP TABLE items_categories_translations CASCADE;
-DROP TABLE items_references CASCADE;
+DROP TABLE items_articles CASCADE;
 DROP TABLE items CASCADE;
-DROP TABLE articles_references_translations CASCADE;
-DROP TABLE item_references_articles CASCADE;
-DROP TABLE pokemons_references_articles CASCADE;
-
+DROP TABLE items_articles CASCADE;
+DROP TABLE pokemons_articles CASCADE;
+DROP TABLE articles_states CASCADE;
 ------------------------------------------------------------------------------------------------------------------------
 --- EXTENSION
 ------------------------------------------------------------------------------------------------------------------------
-
 CREATE EXTENSION chkpass;
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -58,147 +51,6 @@ CREATE TABLE languages
 (
   id SERIAL PRIMARY KEY,
   name VARCHAR(20)
-);
-
-------------------------------------------------------------------------------------------------------------------------
---- USERS RELATED
-------------------------------------------------------------------------------------------------------------------------
-
-CREATE TABLE permissions (
-  id SERIAL PRIMARY KEY,
-  permission VARCHAR(10)
-);
-
-CREATE TABLE roles 
-(
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(20)
-);
-
-CREATE TABLE roles_translations
-(
-  role_id INT NOT NULL REFERENCES roles (id),
-  language_id INT NOT NULL REFERENCES languages (id),
-  translation VARCHAR(50),
-  PRIMARY KEY (role_id, language_id)
-);
-
-CREATE TABLE users 
-(
-  id SERIAL PRIMARY KEY,
-  firstname VARCHAR(20),
-  birthday date,
-  gender VARCHAR(6) CHECK (gender = 'Male' OR gender = 'Female'),
-  email VARCHAR(20),
-  password chkpass,
-  lastname VARCHAR(30)
-);
-
-CREATE TABLE users_roles 
-(
-  user_id INT NOT NULL REFERENCES users (id),
-  role_id INT NOT NULL REFERENCES roles (id),
-  PRIMARY KEY (user_id, role_id)
-);
-
-CREATE TABLE roles_permissions 
-(
-  role_id INT NOT NULL REFERENCES roles (id),
-  permission_id INT NOT NULL REFERENCES permissions (id),
-  PRIMARY KEY (role_id, permission_id)
-);
-
-------------------------------------------------------------------------------------------------------------------------
---- ITEMS RELATED
-------------------------------------------------------------------------------------------------------------------------
-
-CREATE TABLE lots
-(
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(25),
-  description TEXT,
-  prix REAL
-);
-
--- Singleton
-CREATE TABLE states
-(
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(12) CHECK ( name = "Saleable" OR name = "Exchangeable" OR name = "Blank")
-);
-
--- Abstract
-CREATE TABLE articles 
-(
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(20),
-  price REAL,
-  description TEXT,
-  type INT NOT NULL REFERENCES states (id)
-  user_id INT NOT NULL REFERENCES users (id),
-  lot_id INT NOT NULL REFERENCES lots (id)
-);
-
-CREATE TABLE feedback
-(
-  id SERIAL PRIMARY KEY,
-  text TEXT,
-  mark INT CHECK (mark >= 1 AND mark <= 10),
-  user_id INT REFERENCES users (id),
-  article_id INT REFERENCES articles (id)
-);
-
-CREATE TABLE lots_articles
-(
-  lot_id INT NOT NULL REFERENCES lots (id),
-  article_id INT NOT NULL REFERENCES articles (id),
-  PRIMARY KEY (lot_id, article_id)
-);
-
-CREATE TABLE tags 
-(
-  article_id INT NOT NULL REFERENCES articles (id),
-  article_coupled_id INT NOT NULL REFERENCES articles (id),
-  CONSTRAINT valid_tag CHECK (article_id != article_coupled_id),
-  PRIMARY KEY (article_id, article_coupled_id)
-);
-
-------------------------------------------------------------------------------------------------------------------------
---- BASKETS RELATED
-------------------------------------------------------------------------------------------------------------------------
-
-CREATE TABLE baskets 
-(
-  id SERIAL PRIMARY KEY
-);
-
-CREATE TABLE baskets_lots
-(
-  basket_id INT NOT NULL REFERENCES baskets (id),
-  lot_id INT NOT NULL REFERENCES lots (id),
-  PRIMARY KEY (basket_id, lot_id)
-);
-
-------------------------------------------------------------------------------------------------------------------------
---- TRANSACTION RELATED
-------------------------------------------------------------------------------------------------------------------------
-
-CREATE TABLE orders
-(
-  user_id INT NOT NULL REFERENCES users (id),
-  basket_id INT NOT NULL REFERENCES baskets (id),
-  PRIMARY KEY (user_id, basket_id)
-);
-
-CREATE TABLE trades
-(
-  first_user_id INT NOT NULL REFERENCES users (id),
-  first_lot_id INT NOT NULL REFERENCES lots (id),
-  second_user_id INT NOT NULL REFERENCES users (id),
-  second_lot_id INT NOT NULL REFERENCES lots (id),
-  CONSTRAINT valid_user_coupled CHECK (first_user_id != second_user_id),
-  CONSTRAINT valid_lot_exchange CHECK (first_lot_id != second_lot_id),
-  PRIMARY KEY (first_user_id, first_lot_id, second_user_id, second_lot_id)
 );
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -300,24 +152,6 @@ CREATE TABLE pokemons_accepted_genders
   PRIMARY KEY (pokemon_id, pokemon_gender_id)
 );
 
-------------------------------------------------------------------------------------------------------------------------
---- OWNED POKEMONS RELATED
-------------------------------------------------------------------------------------------------------------------------
-
--- Note: we need some kind of trigger on the gender: we need to check in pokemons_accepted_genders if the couple
--- (pokemons_reference_id, pokemon_reference_gender) must be in pokemons_accepted_genders.
-CREATE TABLE pokemons_references
-(
-  id SERIAL PRIMARY KEY,
-  pokemon_id INT  REFERENCES pokemons (id),
-  level INT CHECK (level <= 100 AND level >= 1),
-  shininess BOOLEAN
-);
-
-------------------------------------------------------------------------------------------------------------------------
---- ITEMS RELATED
-------------------------------------------------------------------------------------------------------------------------
-
 CREATE TABLE items_names
 (
   id INT PRIMARY KEY
@@ -357,35 +191,137 @@ CREATE TABLE items_categories_translations
   PRIMARY KEY (item_category_id, language_id, translation)
 );
 
-CREATE TABLE items_references
+------------------------------------------------------------------------------------------------------------------------
+--- USERS RELATED
+------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE roles
 (
   id SERIAL PRIMARY KEY,
+  name VARCHAR(20)
+);
+
+CREATE TABLE roles_translations
+(
+  role_id INT NOT NULL REFERENCES roles (id),
+  language_id INT NOT NULL REFERENCES languages (id),
+  translation VARCHAR(50),
+  PRIMARY KEY (role_id, language_id)
+);
+
+CREATE TABLE users
+(
+  id SERIAL PRIMARY KEY,
+  firstname VARCHAR(20),
+  birthday date,
+  gender VARCHAR(6) CHECK (gender = 'Male' OR gender = 'Female'),
+  email VARCHAR(20),
+  password chkpass,
+  lastname VARCHAR(30)
+);
+
+CREATE TABLE users_roles
+(
+  user_id INT NOT NULL REFERENCES users (id),
+  role_id INT NOT NULL REFERENCES roles (id),
+  PRIMARY KEY (user_id, role_id)
+);
+
+------------------------------------------------------------------------------------------------------------------------
+--- ITEMS RELATED
+------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE carts
+(
+  id SERIAL PRIMARY KEY
+);
+
+CREATE TABLE lots
+(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(25),
+  description TEXT,
+  prix REAL,
+  cart_id INT NOT NULL REFERENCES carts (id)
+);
+
+-- Enum
+CREATE TABLE articles_states
+(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(12) CHECK (name = 'Saleable' OR name = 'Exchangeable' OR name = 'Blank')
+);
+
+CREATE TABLE pokemons_articles
+(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(20),
+  price REAL,
+  description TEXT,
+  shininess BOOLEAN,
+  level INT CHECK (level <= 100 AND level >= 1),
+  pokemon_id INT NOT NULL REFERENCES pokemons (id),
+  state INT NOT NULL REFERENCES articles_states (id),
+  user_id INT NOT NULL REFERENCES users (id),
+  lot_id INT NOT NULL REFERENCES lots (id)
+);
+
+CREATE TABLE items_articles
+(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(20),
+  price REAL,
+  description TEXT,
+  state INT NOT NULL REFERENCES articles_states (id),
+  user_id INT NOT NULL REFERENCES users (id),
+  lot_id INT NOT NULL REFERENCES lots (id),
   item_name_id INT REFERENCES items_names (id),
   item_category_id INT REFERENCES item_categories (id),
   item_description_id INT REFERENCES items_descriptions (id)
 );
 
-CREATE TABLE items
+CREATE TABLE feedback
 (
-  id INT PRIMARY KEY,
-  quantity INT CHECK (quantity >= 0),
-  item_reference_id INT  REFERENCES items_references (id)
+  id SERIAL PRIMARY KEY,
+  text TEXT,
+  mark INT CHECK (mark >= 1 AND mark <= 10),
+  author_id INT REFERENCES users (id),
+  pokemon_id INT REFERENCES pokemons_articles (id),
+  item_id INT REFERENCES items_articles (id),
+  user_id INT REFERENCES users (id)
+);
+
+CREATE TABLE lots_articles
+(
+  lot_id INT NOT NULL REFERENCES lots (id),
+  item_article_id INT REFERENCES items_articles (id),
+  pokemon_article_id INT REFERENCES pokemons_articles (id),
+  -- CONSTRAINT CHECK (item_article_id = NULL AND pokemon_article_id = NOT NULL) OR (item_article_id = NOT NULL AND pokemon_article_id = NULL)
+  PRIMARY KEY (lot_id, item_article_id, pokemon_article_id)
+);
+
+CREATE TABLE suggestions
+(
+  pokemon_article_id INT REFERENCES pokemons_articles (id),
+  item_article_id INT REFERENCES items_articles (id),
+  pokemon_article_coupled_id INT REFERENCES pokemons_articles (id),
+  item_article_coupled_id INT NOT NULL REFERENCES items_articles (id),
+  CONSTRAINT valid_suggestions_pokemon CHECK (pokemon_article_id != pokemon_article_coupled_id),
+  CONSTRAINT valid_suggestions_item CHECK (item_article_id != item_article_coupled_id),
+  PRIMARY KEY (pokemon_article_id, item_article_id, pokemon_article_coupled_id, item_article_coupled_id)
 );
 
 ------------------------------------------------------------------------------------------------------------------------
---- ARTICLES RELATED
+--- TRANSACTION RELATED
 ------------------------------------------------------------------------------------------------------------------------
 
-CREATE TABLE articles_references_translations
+CREATE TABLE trades
 (
-  translation_id INT  REFERENCES articles (id),
-  language_id INT  REFERENCES languages (id),
-  translation VARCHAR(50),
-  PRIMARY KEY (translation_id, language_id, translation)
-);
-
-CREATE TABLE articles_references
-(
-  id INT REFERENCES articles (id),
-  references_id INT,
+  first_user_id INT NOT NULL REFERENCES users (id),
+  first_lot_id INT NOT NULL REFERENCES lots (id),
+  second_user_id INT NOT NULL REFERENCES users (id),
+  second_lot_id INT NOT NULL REFERENCES lots (id),
+  CONSTRAINT valid_user_coupled CHECK (first_user_id != second_user_id),
+  CONSTRAINT valid_lot_exchange CHECK (first_lot_id != second_lot_id),
+  PRIMARY KEY (first_user_id, first_lot_id, second_user_id, second_lot_id)
 );
