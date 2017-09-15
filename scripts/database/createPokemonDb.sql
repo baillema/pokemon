@@ -120,12 +120,21 @@ CREATE TABLE lots
   prix REAL
 );
 
+-- Singleton
+CREATE TABLE states
+(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(12) CHECK ( name = "Saleable" OR name = "Exchangeable" OR name = "Blank")
+);
+
+-- Abstract
 CREATE TABLE articles 
 (
   id SERIAL PRIMARY KEY,
   name VARCHAR(20),
   price REAL,
   description TEXT,
+  type INT NOT NULL REFERENCES states (id)
   user_id INT NOT NULL REFERENCES users (id),
   lot_id INT NOT NULL REFERENCES lots (id)
 );
@@ -375,19 +384,8 @@ CREATE TABLE articles_references_translations
   PRIMARY KEY (translation_id, language_id, translation)
 );
 
--- Link articles and items
-CREATE TABLE item_references_articles
+CREATE TABLE articles_references
 (
-  article_id INT REFERENCES articles (id),
-  item_reference_id INT REFERENCES items_references (id),
-  PRIMARY KEY (article_id, item_reference_id)
+  id INT REFERENCES articles (id),
+  references_id INT,
 );
-
--- Link articles and pokemons
-CREATE TABLE pokemons_references_articles
-(
-  article_id INT  REFERENCES articles (id),
-  pokemon_reference_id INT  REFERENCES pokemons_references (id),
-  PRIMARY KEY (article_id, pokemon_reference_id)
-);
-
