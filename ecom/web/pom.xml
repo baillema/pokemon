@@ -20,7 +20,7 @@
         <dependency>
             <groupId>fr.uga.m2pgi</groupId>
             <artifactId>ejbs</artifactId>
-            <scope>provided</scope>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.spec.javax.ws.rs</groupId>
