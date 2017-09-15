@@ -16,6 +16,24 @@
         <version.maven.war.plugin>3.0.0</version.maven.war.plugin>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>fr.uga.m2pgi</groupId>
+            <artifactId>ejbs</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.ws.rs</groupId>
+            <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.ws.rs</groupId>
+            <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
