@@ -17,6 +17,23 @@ dist: trusty
 # Will probably need more work here, e.g installing wildfly before running the script or displaying the logs. Will do it
 # when the necessity arises.
 
+# Sonar configuration
+addons:
+  sonarcloud:
+    organization: "ecom-pokemon"
+    token:
+      secure: "0bb9c811f2362ff8163101bf4650ab9676aea9a9"
+
+sudo:
+  required
+
+script:
+  - sonar-scanner
+
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
+
 # Tests both JDK.
 before_script:
   - jdk_switcher use $JDK
