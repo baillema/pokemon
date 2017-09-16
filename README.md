@@ -11,6 +11,8 @@ Site cours : http://air.imag.fr/index.php/ECOM
 
 Modèle Ecom : https://github.com/JulienArmand/ProjetECOMM2GIEbooks
 
+SonarQube : https://sonarcloud.io/dashboard?id=fr.uga.m2pgi%3Aecom-pokemon
+
 Liens utiles IHM :
 ==================
 
