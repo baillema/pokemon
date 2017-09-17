@@ -31,7 +31,7 @@ tar -zxvf $WILDFLY_ARCHIVE
 mv wildfly-10.1.0.Final $WILDFLY_HOME
 
 # Deployment
-cp DEPLOY_FILE $WILDFLY_HOME/standalone/deployments/web.war
+cp $DEPLOY_FILE $WILDFLY_HOME/standalone/deployments/web.war
 
 # Add an admin user
 ~/add-admin.sh
