@@ -1,4 +1,5 @@
-import javax.ejb.EJB;
+package elasticsearch;
+
 import javax.ejb.Stateless;
 
 @Stateless
