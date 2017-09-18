@@ -1,4 +1,5 @@
-@import "base/_color";
+@import "base/_colors";
+@import "base/_fonts";
 @import "_bootstrap";
 
 body{
@@ -40,5 +41,22 @@ a{
 	.container{
 		background: transparent;
 
+	}
+}
+
+.carousel{
+	padding: 50px 0;
+	.row{
+		margin-bottom: 25px;
+	}
+}
+
+.slogan{
+	font-family: "Arial Black";
+}
+.fullType{
+	margin-bottom: 35px;
+	.items{
+		margin-bottom: 25px;
 	}
 }
