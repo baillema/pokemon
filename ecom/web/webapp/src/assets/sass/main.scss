@@ -1,0 +1,44 @@
+@import "base/_color";
+@import "_bootstrap";
+
+body{
+	background: $whiteLigth;
+}
+.container{
+	background : #fff;
+}
+.center{
+	width: 100%;
+	text-align: center;
+}
+.button{
+	cursor : pointer;
+}
+.pt25{
+	padding-top: 25px;
+}
+.unstyled{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.w100{
+	width: 100%;
+}
+a{
+  color : $blue;
+}
+
+.footer{
+	width: 100%;
+	background: #000;
+	padding-bottom: 50px;
+	color : #fff;
+	a{
+		color : #fff;
+	}
+	.container{
+		background: transparent;
+
+	}
+}
