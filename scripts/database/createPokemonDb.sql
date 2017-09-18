@@ -7,8 +7,6 @@ DROP TABLE roles_translations CASCADE;
 DROP TABLE users CASCADE;
 DROP TABLE users_roles CASCADE;
 DROP TABLE feedback CASCADE;
-DROP TABLE lots CASCADE;
-DROP TABLE lots_articles CASCADE;
 DROP TABLE suggestions CASCADE;
 DROP TABLE carts CASCADE;
 DROP TABLE trades CASCADE;
@@ -38,6 +36,7 @@ DROP TABLE items CASCADE;
 DROP TABLE items_articles CASCADE;
 DROP TABLE pokemons_articles CASCADE;
 DROP TABLE articles_states CASCADE;
+DROP TABLE items_articles_carts CASCADE;
 ------------------------------------------------------------------------------------------------------------------------
 --- EXTENSION
 ------------------------------------------------------------------------------------------------------------------------
@@ -236,15 +235,6 @@ CREATE TABLE carts
   id SERIAL PRIMARY KEY
 );
 
-CREATE TABLE lots
-(
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(25),
-  description TEXT,
-  prix REAL,
-  cart_id INT NOT NULL REFERENCES carts (id)
-);
-
 -- Enum
 CREATE TABLE articles_states
 (
@@ -263,7 +253,7 @@ CREATE TABLE pokemons_articles
   pokemon_id INT NOT NULL REFERENCES pokemons (id),
   state INT NOT NULL REFERENCES articles_states (id),
   user_id INT NOT NULL REFERENCES users (id),
-  lot_id INT NOT NULL REFERENCES lots (id)
+  cart_id INT REFERENCES carts (id)
 );
 
 CREATE TABLE items_articles
@@ -272,12 +262,20 @@ CREATE TABLE items_articles
   name VARCHAR(20),
   price REAL,
   description TEXT,
+  quantity INT,
   state INT NOT NULL REFERENCES articles_states (id),
   user_id INT NOT NULL REFERENCES users (id),
-  lot_id INT NOT NULL REFERENCES lots (id),
   item_name_id INT REFERENCES items_names (id),
   item_category_id INT REFERENCES item_categories (id),
   item_description_id INT REFERENCES items_descriptions (id)
+);
+
+CREATE TABLE items_articles_carts
+(
+  id SERIAL PRIMARY KEY,
+  quantity INT CHECK (quantity >= 1),
+  id_items_articles INT NOT NULL REFERENCES items_articles (id),
+  id_cart INT NOT NULL REFERENCES carts (id)
 );
 
 CREATE TABLE feedback
@@ -289,15 +287,6 @@ CREATE TABLE feedback
   pokemon_id INT REFERENCES pokemons_articles (id),
   item_id INT REFERENCES items_articles (id),
   user_id INT REFERENCES users (id)
-);
-
-CREATE TABLE lots_articles
-(
-  lot_id INT NOT NULL REFERENCES lots (id),
-  item_article_id INT REFERENCES items_articles (id),
-  pokemon_article_id INT REFERENCES pokemons_articles (id),
-  -- CONSTRAINT CHECK (item_article_id = NULL AND pokemon_article_id = NOT NULL) OR (item_article_id = NOT NULL AND pokemon_article_id = NULL)
-  PRIMARY KEY (lot_id, item_article_id, pokemon_article_id)
 );
 
 CREATE TABLE suggestions
@@ -318,10 +307,10 @@ CREATE TABLE suggestions
 CREATE TABLE trades
 (
   first_user_id INT NOT NULL REFERENCES users (id),
-  first_lot_id INT NOT NULL REFERENCES lots (id),
+  first_article_id INT NOT NULL REFERENCES articles (id),
   second_user_id INT NOT NULL REFERENCES users (id),
-  second_lot_id INT NOT NULL REFERENCES lots (id),
+  second_article_id INT NOT NULL REFERENCES articles (id),
   CONSTRAINT valid_user_coupled CHECK (first_user_id != second_user_id),
-  CONSTRAINT valid_lot_exchange CHECK (first_lot_id != second_lot_id),
-  PRIMARY KEY (first_user_id, first_lot_id, second_user_id, second_lot_id)
+  CONSTRAINT valid_article_exchange CHECK (first_article_id != second_article_id),
+  PRIMARY KEY (first_user_id, first_article_id, second_user_id, second_article_id)
 );
