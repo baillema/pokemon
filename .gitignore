@@ -16,3 +16,5 @@ node_modules/
 
 # Sass related in proto
 proto/.sass-cache/*
+# Node
+node_modules/
