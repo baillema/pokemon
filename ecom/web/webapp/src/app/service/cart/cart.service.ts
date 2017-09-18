@@ -53,6 +53,11 @@ export class CartService {
   public addArticleFromCart(article: Article, cart: Cart): Promise<Cart> {
     cart.articles.push(article);
 
+<<<<<<< HEAD
+=======
+    this.updatingCartLifeCycle();
+
+>>>>>>> XAdd cart
     return Promise.resolve(cart);
   }
 
@@ -66,7 +71,11 @@ export class CartService {
     return Promise.resolve(newCart);
   }
 
+<<<<<<< HEAD
   public deleteArticlesFromCart(cart: Cart) {
+=======
+  public updatingCartLifeCycle(): void {
+>>>>>>> XAdd cart
 
   }
 }

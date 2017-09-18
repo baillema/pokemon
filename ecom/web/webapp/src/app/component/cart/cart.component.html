@@ -1,14 +1,24 @@
 <div *ngIf="cart">
   <div class="container">
     <div class="row">
+<<<<<<< HEAD
       <div name="cartTotal" class="col-md-12">
         <div class="row">
           <div name="numberArticles" class="col-md-9 text-primary">
+=======
+      <div id="cartTotal" class="col-md-12">
+        <div class="row">
+          <div id="numberArticles" class="col-md-9 text-primary">
+>>>>>>> XAdd cart
             <h2>TOTAL
               {{cart.articles.length}}
               item(s):
               <img class="pokedollar" src="../../../assets/img/pokedollar.png" height="35em" width="35em"/>
+<<<<<<< HEAD
               <strong name="total" class="text-danger">{{cart.total}}</strong></h2>
+=======
+              <strong id="total" class="text-danger">{{cart.total}}</strong></h2>
+>>>>>>> XAdd cart
           </div>
           <div class="col-md-3 text-center fixed">
             <h2>
@@ -22,7 +32,11 @@
     <ul class="list-group">
       <li *ngFor="let article of cart.articles" class="list-group-item">
         <div class="row">
+<<<<<<< HEAD
           <div name="articleCaracPreview" class="col-md-2 text-center img-thumbnail list-group-item-warning">
+=======
+          <div id="articleCaracPreview" class="col-md-2 text-center img-thumbnail list-group-item-warning">
+>>>>>>> XAdd cart
             <div class="row">
               <a class="col-md-12" href="#">
                 <div class="text-md-center">
@@ -39,7 +53,11 @@
               </div>
             </div>
           </div>
+<<<<<<< HEAD
           <div name="articlePreview" class="col-md-5 text-left">
+=======
+          <div id="articlePreview" class="col-md-5 text-left">
+>>>>>>> XAdd cart
             <a href="#">
               <h4>
                 <strong>{{article.name}}</strong>
@@ -50,13 +68,21 @@
               <Strong>Supplier mark </Strong>{{article.user}}
             </p>
           </div>
+<<<<<<< HEAD
           <div class="col-md-2" name="articlePrice">
+=======
+          <div class="col-md-2" id="articlePrice">
+>>>>>>> XAdd cart
             <h3 class="col text-danger">
               <img class="pokedolar" src="../../../assets/img/pokedollar.png" height="30em" width="30em"/>
               {{article.price}}
             </h3>
           </div>
+<<<<<<< HEAD
           <div class="col-md-3 text-right" name="Removearticle">
+=======
+          <div class="col-md-3 text-right" id="Removearticle">
+>>>>>>> XAdd cart
             <button (click)="deleteArticle(article, cart)">
               <i style="font-size:30px;" class="fa fa-trash-o"></i>
             </button>

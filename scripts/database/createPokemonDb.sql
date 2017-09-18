@@ -37,7 +37,10 @@ DROP TABLE items_articles CASCADE;
 DROP TABLE pokemons_articles CASCADE;
 DROP TABLE articles_states CASCADE;
 DROP TABLE items_articles_carts CASCADE;
+<<<<<<< HEAD
 DROP TABLE lots CASCADE;
+=======
+>>>>>>> XAdd cart
 ------------------------------------------------------------------------------------------------------------------------
 --- EXTENSION
 ------------------------------------------------------------------------------------------------------------------------
@@ -308,12 +311,21 @@ CREATE TABLE suggestions
 CREATE TABLE trades
 (
   first_user_id INT NOT NULL REFERENCES users (id),
+<<<<<<< HEAD
   first_pokemon_id INT NOT NULL REFERENCES pokemons_articles (id),
   second_user_id INT NOT NULL REFERENCES users (id),
   second_pokemon_id INT NOT NULL REFERENCES pokemons_articles (id),
   CONSTRAINT valid_user_coupled CHECK (first_user_id != second_user_id),
   CONSTRAINT valid_pokemon_exchange CHECK (first_pokemon_id != second_pokemon_id),
   PRIMARY KEY (first_pokemon_id, second_pokemon_id, first_user_id, second_user_id)
+=======
+  first_article_id INT NOT NULL REFERENCES articles (id),
+  second_user_id INT NOT NULL REFERENCES users (id),
+  second_article_id INT NOT NULL REFERENCES articles (id),
+  CONSTRAINT valid_user_coupled CHECK (first_user_id != second_user_id),
+  CONSTRAINT valid_article_exchange CHECK (first_article_id != second_article_id),
+  PRIMARY KEY (first_user_id, first_article_id, second_user_id, second_article_id)
+>>>>>>> XAdd cart
 );
 
 -- Grant Roles
