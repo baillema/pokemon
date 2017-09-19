@@ -8756,14 +8756,26 @@ a {
 
 /* line 54, ../sass/main.scss */
 .slogan {
-  font-family: "Arial Black";
+  font-family: Arial;
 }
 
 /* line 57, ../sass/main.scss */
-.fullType {
+.full-type {
   margin-bottom: 35px;
 }
 /* line 59, ../sass/main.scss */
-.fullType .items {
+.full-type .items {
   margin-bottom: 25px;
+}
+
+/* line 63, ../sass/main.scss */
+.toggle-block {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* line 67, ../sass/main.scss */
+.toggle-block.closed {
+  height: 0;
+  display: none;
 }

@@ -2,7 +2,7 @@
     <div class="center slogan">
         <h1>Trouverai vous celui que vous cherchez ?</h1>
     </div>
-    <div class="carousel" id="sumUp">
+    <div class="carousel toggle-block " id="sumUp">
         <div class="row">
             <div class="col-md-12">
                 <div class="center">
@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-    <div id="fullType" class="fullType">
+    <div id="fullType" class="full-type toggle-block closed">
         <div class="row">
             <div class="col-md-3">
                 <div class="center items">
@@ -153,8 +153,12 @@
                     </a>
                 </div>
             </div>
-            
+
 
         </div>
     </div>
+
+    <button class="btn btn-large btn-warning pull-right" (click)="toggleBlock()">
+        Voir tous les spheres
+    </button>
 </div>
