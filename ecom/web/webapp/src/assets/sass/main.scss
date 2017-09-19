@@ -89,3 +89,12 @@ a{
     border-color  : $red;
   }
 }
+
+.cart-btn{
+  position: relative;
+  .cart-count{
+    position: absolute;
+    top: 40%;
+    left: 6%;
+  }
+}
