@@ -1,3 +1,4 @@
+
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
@@ -12,7 +13,6 @@ import {EchangeComponent} from './component/echange/echange.component';
 import {CartComponent} from './component/cart/cart.component';
 import {CartService} from './service/cart/cart.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome/angular-font-awesome';
-
 
 @NgModule({
   declarations: [
