@@ -5,6 +5,9 @@
 body{
 	background: $whiteLigth;
 }
+a{
+  cursor: pointer;
+}
 .container{
 	background : #fff;
 }
@@ -61,11 +64,15 @@ a{
 	}
 }
 .toggle-block{
+  margin-top: 35px;
 	display: block;
 	width: 100%;
 	height: 100%;
+  -webkit-transition: height 2s; /* Safari */
+  transition: height 2s;
 	&.closed{
 		height: 0;
 		display: none;
 	}
 }
+
