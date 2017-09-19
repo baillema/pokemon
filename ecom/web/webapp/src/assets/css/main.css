@@ -8803,3 +8803,14 @@ a {
 .form-group.error input {
   border-color: red;
 }
+
+/* line 93, ../sass/main.scss */
+.cart-btn {
+  position: relative;
+}
+/* line 95, ../sass/main.scss */
+.cart-btn .cart-count {
+  position: absolute;
+  top: 40%;
+  left: 6%;
+}
