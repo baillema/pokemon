@@ -37,6 +37,7 @@ DROP TABLE items_articles CASCADE;
 DROP TABLE pokemons_articles CASCADE;
 DROP TABLE articles_states CASCADE;
 DROP TABLE items_articles_carts CASCADE;
+DROP TABLE lots CASCADE;
 ------------------------------------------------------------------------------------------------------------------------
 --- EXTENSION
 ------------------------------------------------------------------------------------------------------------------------
@@ -141,7 +142,7 @@ CREATE TABLE pokemons
   habitat_id INT  REFERENCES pokemons_habitats (id),
   color_id INT  REFERENCES pokemons_colors (id),
   shape_id INT  REFERENCES pokemons_shapes (id),
-  description INT  REFERENCES pokemons_descriptions (id)
+  description_id INT  REFERENCES pokemons_descriptions (id)
 );
 
 CREATE TABLE pokemons_accepted_genders
@@ -307,12 +308,12 @@ CREATE TABLE suggestions
 CREATE TABLE trades
 (
   first_user_id INT NOT NULL REFERENCES users (id),
-  first_pokemons_id INT NOT NULL REFERENCES pokemons_articles (id),
+  first_pokemon_id INT NOT NULL REFERENCES pokemons_articles (id),
   second_user_id INT NOT NULL REFERENCES users (id),
-  second_pokemons_id INT NOT NULL REFERENCES pokemons_articles (id),
+  second_pokemon_id INT NOT NULL REFERENCES pokemons_articles (id),
   CONSTRAINT valid_user_coupled CHECK (first_user_id != second_user_id),
-  CONSTRAINT valid_pokemon_exchange CHECK (first_pokemons_id != second_pokemons_id),
-  PRIMARY KEY (first_pokemons_id, second_pokemons_id, first_user_id, second_user_id)
+  CONSTRAINT valid_pokemon_exchange CHECK (first_pokemon_id != second_pokemon_id),
+  PRIMARY KEY (first_pokemon_id, second_pokemon_id, first_user_id, second_user_id)
 );
 
 -- Grant Roles
