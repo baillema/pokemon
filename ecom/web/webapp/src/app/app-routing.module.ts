@@ -7,19 +7,19 @@ import {AjoutComponent} from './component/ajout/ajout.component';
 import {ItemComponent} from './component/item/item.component';
 import {ProfilsComponent} from './component/profils/profils.component';
 import {EchangeComponent} from './component/echange/echange.component';
-import {CartComponent} from "./component/cart/cart.component";
+import {CartComponent} from './component/cart/cart.component';
 
 // Routes
 const appRoutes: Routes = [
-  {path: 'accueil', component: HomeComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'items', component: ItemsComponent},
   {path: 'item', component: ItemComponent},
   {path: 'profil', component: ProfilsComponent},
-  {path: 'echange', component: EchangeComponent},
-  {path: 'connexion', component: UsersComponent},
-  {path: 'ajout', component: AjoutComponent},
+  {path: 'change', component: EchangeComponent},
+  {path: 'login', component: UsersComponent},
+  {path: 'add', component: AjoutComponent},
   {path: 'cart', component: CartComponent},
-  {path: '', redirectTo: 'accueil', pathMatch: 'full'}
+  {path: '', redirectTo: 'home', pathMatch: 'full'}
 
 ];
 

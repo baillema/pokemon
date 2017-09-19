@@ -4,13 +4,13 @@
   <header class="header">
     <div class="row">
       <div class="col-md-3">
-        <h1><a href="#">
+        <h1><a routerLink="/home">
           <img src="../assets/img/logo.png" alt="">
         </a></h1>
       </div>
       <div class="col-md-6">
         <div class="input-group center pt25">
-          <input type="text" class="form-control" placeholder="Recherche rapide" aria-describedby="basic-addon2" tabindex="1">
+          <input type="text" class="form-control" placeholder="Quick search" aria-describedby="basic-addon2" tabindex="1">
           <span class="input-group-addon button" id="basic-addon2">
                     <i class="glyphicon glyphicon-search"></i>
                     Rechercher
@@ -19,9 +19,13 @@
       </div>
       <div class="col-md-3">
         <div class="pt25">
-          <a routerLink="/connexion" class="btn btn-primary">Se connecter</a>
-          <a href="#" class="btn btn-success">S'inscrire</a>
-          <a class="nav-link"  routerLink="/cart">Cart</a>
+          <a routerLink="/login" class="btn btn-primary">Login</a>
+          <a routerLink="/login" class="btn btn-success">Sign in</a>
+          <a routerLink="/cart" class="btn btn-outline-primary">
+            <span class="label label-info">0</span>
+              <i class="fa fa-shopping-cart fa-2x"></i>
+
+          </a>
         </div>
       </div>
     </div>
@@ -32,7 +36,7 @@
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" routerLink="/accueil">Accueil</a>
+      <a class="nav-link active" routerLink="/home"> <i class="fa fa-home"></i> Home</a>
     </li>
 
     <li class="nav-item">
@@ -42,16 +46,16 @@
       <a class="nav-link" routerLink="/item">Pokemon</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/connexion">Connexion / inscription</a>
+      <a class="nav-link" routerLink="/login">Login/sign in</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/profil">Mon profil</a>
+      <a class="nav-link" routerLink="/profil">My profil</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/ajout">Ajouter</a>
+      <a class="nav-link" routerLink="/add">Add</a>
     </li>
     <li class="nav-item">
-      <a routerLink="/echange" class="nav-link">Echange</a>
+      <a routerLink="/change" class="nav-link">Change</a>
     </li>
 
 
@@ -64,31 +68,8 @@
 <!-- FOOTER START -->
 <footer class="footer">
   <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="center">
-          <h3>Mais aussi</h3>
-          <ul class="unstyled">
-            <li><a href="">Liens utils</a></li>
-            <li><a href="">Liens utils</a></li>
-            <li><a href="">Liens utils</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="center">
-          <h3>Qui sommes nous</h3>
-          <address>
-            mon adress <br>
-            cp City
-          </address>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="center">
-          <h3>Newsletter</h3>
-        </div>
-      </div>
+    <div class="center">
+      Ecomm - immag - 2017
     </div>
   </div>
 </footer>
