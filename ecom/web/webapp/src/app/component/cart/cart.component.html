@@ -4,13 +4,13 @@
       <div id="cartTotal" class="col-md-12">
         <div class="row">
           <div id="numberArticles" class="col-md-9 text-primary">
-            <h2>TOTAL {{cart.articles.length}} item(s):
+            <h2>TOTAL: {{cart.articles.length}} item(s)
               <img class="pokedollar" src="../../../assets/img/pokedollar.png" height="35em" width="35em" />
               <strong id="total" class="text-danger">{{cart.total}}</strong></h2>
           </div>
           <div class="col-md-3 text-center fixed">
             <h2>
-              <button (click)="placeOrder(cart)" class="btn btn-success" type="button">Place the order</button>
+              <button (click)="placeOrder(cart)" class="btn btn-success" type="button">Proceed to checkout</button>
             </h2>
           </div>
         </div>
@@ -30,10 +30,10 @@
             </div>
             <div class="row">
               <div class="col-md-6">
-                LVL : {{article.level}}
+                Level: {{article.level}}
               </div>
               <div class="col-md-6 text-left" *ngIf="article.shininess == true">
-                Shininess
+                Shiny
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@
             </a>
             <p>{{article.description}}</p>
             <p>
-              <Strong>Supplier mark </Strong>{{article.user}}
+              <Strong>Brand</Strong>{{article.user}}
             </p>
           </div>
           <div class="col-md-2" id="articlePrice">
