@@ -4,4 +4,3 @@ interface Cart {
   articles: Article[];
   total: number;
 }
-
