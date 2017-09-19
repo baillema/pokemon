@@ -13,15 +13,18 @@ WILDFLY_CONFIG=standalone.xml
 # Clean up
 pgrep -d " " -f "wildfly" | xargs kill;
 
-# Pull the project
+# Clone the project if needed
 if [ ! -d $PROJECT_HOME ]; then
   git clone $PROJECT_URL $PROJECT_HOME
-else
-   cd $PROJECT_HOME
-  git pull
 fi
 
-# Build the project
+# Pull modifications and build the project
+cd $PROJECT_HOME
+git pull
+
+# Uncomment and update the next line if you want to build a specific branch
+# git checkout backend
+
 mvn install
 cd
 
