@@ -1,26 +1,53 @@
 <div class="container">
-  <h1>Page de connexion</h1>
+  <h1>Login</h1>
 
   <div class="row">
-    <div class="col-md-6"></div>
     <div class="col-md-6">
-      <h2>Connexion</h2>
+      <h2>Sign in</h2>
       <div class="login-form">
         <form action="#">
-          <div class="form-control">
-            <label for="" class="label-form">Username or email</label>
-            <input type="text" class="input-control">
+          <div class="form-group">
+            <label for="userEmailNew">Email address</label>
+            <input type="email" class="form-control" id="userEmailNew">
           </div>
-          <div class="form-control">
-            <label for="" class="label-form">Password</label>
-            <input type="text" class="input-control">
+          <div class="form-group">
+            <label for="userPasswordNew">Password</label>
+            <input type="password" class="form-control" id="userPasswordNew">
           </div>
+          <div class="form-group error">
+            <label for="userPasswordNewConfirm">Confirm your password</label>
+            <input type="password" class="form-control" id="userPasswordNewConfirm">
+            <p class="error-message">Wrong password</p>
+          </div>
+
           <div class="form-action">
-            <a class="btn btn-primary">Se connecter</a>
+            <a class="btn btn-success">Sign in</a>
           </div>
         </form>
       </div>
     </div>
-  </div>
+    <div class="col-md-6">
+      <h2>Login</h2>
+      <div class="login-form">
+        <form action="#">
+          <div class="form-group">
+            <label for="userEmail">Email address</label>
+            <input type="email" class="form-control" id="userEmail">
+          </div>
+          <div class="form-group">
+            <label for="userPassword">Password</label>
+            <input type="password" class="form-control" id="userPassword">
+          </div>
 
-</div>
+          <div class="form-action">
+           <p> <a>Password forget ? </a></p>
+          </div>
+          <div class="form-action">
+            <a class="btn btn-primary">Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+  </div>
