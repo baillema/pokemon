@@ -1,6 +1,6 @@
 @import "base/_colors";
 @import "base/_fonts";
-@import "_bootstrap";
+@import "bootstrap";
 
 body{
 	background: $whiteLigth;
@@ -10,6 +10,7 @@ a{
 }
 .container{
 	background : #fff;
+  padding-bottom: 25px;
 }
 .center{
 	width: 100%;
@@ -36,6 +37,7 @@ a{
 .footer{
 	width: 100%;
 	background: #000;
+  margin-top: 40px;
 	padding-bottom: 50px;
 	color : #fff;
 	a{
@@ -76,3 +78,14 @@ a{
 	}
 }
 
+.form-group.error {
+  label,.error-message,input {
+    color: $red;
+  }
+  .error-message{
+    font-style: italic;
+  }
+  input{
+    border-color  : $red;
+  }
+}
