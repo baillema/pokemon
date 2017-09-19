@@ -8814,3 +8814,8 @@ a {
   top: 40%;
   left: 6%;
 }
+
+/* line 104, ../sass/main.scss */
+.carousel-item img {
+  width: 100%;
+}
