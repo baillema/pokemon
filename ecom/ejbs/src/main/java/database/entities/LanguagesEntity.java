@@ -7,16 +7,16 @@ import javax.persistence.*;
 @Entity
 @Table(name = "languages", schema = "public", catalog = "pokemondb")
 @NamedQueries({
-    @NamedQuery(name = Requests.LANGUAGES_ALL,
+        @NamedQuery(name = Requests.LANGUAGES_ALL,
                 query = "SELECT l " +
                         "FROM LanguagesEntity l"),
 
-    @NamedQuery(name = Requests.LANGUAGES_FROM_ID,
+        @NamedQuery(name = Requests.LANGUAGES_FROM_ID,
                 query = "SELECT l " +
                         "FROM LanguagesEntity l " +
                         "WHERE l.id = :id"),
 
-    @NamedQuery(name = Requests.LANGUAGES_FROM_LANG,
+        @NamedQuery(name = Requests.LANGUAGES_FROM_LANG,
                 query = "SELECT l " +
                         "FROM LanguagesEntity l " +
                         "WHERE l.name = :str")
