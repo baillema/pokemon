@@ -10,6 +10,8 @@ import { ItemComponent } from './component/item/item.component';
 import { ProfilsComponent } from './component/profils/profils.component';
 import { AjoutComponent } from './component/ajout/ajout.component';
 import { EchangeComponent } from './component/echange/echange.component';
+import {CartComponent} from "./component/cart/cart.component";
+import {CartService} from "./service/cart/cart.service";
 
 @NgModule({
   declarations: [
@@ -20,14 +22,17 @@ import { EchangeComponent } from './component/echange/echange.component';
     ItemComponent,
     ProfilsComponent,
     AjoutComponent,
-    EchangeComponent
+    EchangeComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    CartService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
