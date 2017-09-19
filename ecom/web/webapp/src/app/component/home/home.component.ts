@@ -11,9 +11,9 @@ export class HomeComponent {
 
   constructor() { }
 
-  toggleBlock(){
+  toggleBlock() {
     const toggleBlock = document.getElementsByClassName('toggle-block');
-    for (let i = 0 ; i < toggleBlock.length; i ++){
+    for (let i = 0; i < toggleBlock.length; i++) {
       toggleBlock[i].classList.toggle('closed');
     }
 
