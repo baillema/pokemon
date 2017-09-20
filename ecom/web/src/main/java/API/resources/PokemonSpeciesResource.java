@@ -21,7 +21,7 @@ public class PokemonSpeciesResource extends Application {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPokemonSpecies() {
-        return null;
+        return Response.status(Response.Status.OK).entity(em.createQuery("SELECT p FROM PokemonsSpeciesEntity p").getResultList()).build();
     }
 
     @GET
