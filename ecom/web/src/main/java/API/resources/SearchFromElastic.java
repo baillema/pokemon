@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path(value = "pokelastic")
+@Path("pokelastic")
 public class SearchFromElastic extends javax.ws.rs.core.Application {
 
     Search elasticSearch = new Search();
