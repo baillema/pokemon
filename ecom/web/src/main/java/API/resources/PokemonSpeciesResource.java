@@ -37,9 +37,8 @@ public class PokemonSpeciesResource extends Application {
     public Response getPokemonSpeciesFrench() {
         Query query = em.createQuery("SELECT p " +
                                         "FROM PokemonsSpeciesTranslationsEntity p " +
-                                        "JOIN p.languageId " +
-                                        "WHERE p.languageId = :language")
-                        .setParameter("language", 1);
+                                        "JOIN p.languagesByLanguageId " +
+                                        "WHERE p.languageId = 4");
 
         return Response.status(Response.Status.OK).entity(query.getResultList()).build();
     }
