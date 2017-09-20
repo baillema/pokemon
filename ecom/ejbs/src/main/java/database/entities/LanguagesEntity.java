@@ -8,7 +8,7 @@ import java.util.Collection;
 public class LanguagesEntity {
     private int id;
     private String name;
-    private Collection<PokemonsSpeciesTranslationsEntity> pokemonsSpeciesTranslationsById;
+    //private Collection<PokemonsSpeciesTranslationsEntity> pokemonsSpeciesTranslationsById;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -57,7 +57,7 @@ public class LanguagesEntity {
 
         return true;
     }
-
+    /*
     @OneToMany(mappedBy = "languagesByLanguageId")
     public Collection<PokemonsSpeciesTranslationsEntity> getPokemonsSpeciesTranslationsById() {
         return pokemonsSpeciesTranslationsById;
@@ -66,5 +66,5 @@ public class LanguagesEntity {
     public void setPokemonsSpeciesTranslationsById(Collection<PokemonsSpeciesTranslationsEntity>
                                                            pokemonsSpeciesTranslationsById) {
         this.pokemonsSpeciesTranslationsById = pokemonsSpeciesTranslationsById;
-    }
+    }*/
 }

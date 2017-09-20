@@ -7,8 +7,9 @@ import java.util.Collection;
 @Table(name = "pokemons_species", schema = "public", catalog = "pokemondb")
 public class PokemonsSpeciesEntity {
     private int id;
-    private Collection<PokemonsEntity> pokemonsById;
+    /*private Collection<PokemonsEntity> pokemonsById;
     private Collection<PokemonsSpeciesTranslationsEntity> pokemonsSpeciesTranslationsById;
+    */
 
     @Id
     @Column(name = "id", nullable = false)
@@ -43,7 +44,7 @@ public class PokemonsSpeciesEntity {
         return true;
     }
 
-    @OneToMany(mappedBy = "pokemonsSpeciesBySpeciesId")
+    /*@OneToMany(mappedBy = "pokemonsSpeciesBySpeciesId")
     public Collection<PokemonsEntity> getPokemonsById() {
         return pokemonsById;
     }
@@ -60,5 +61,5 @@ public class PokemonsSpeciesEntity {
     public void setPokemonsSpeciesTranslationsById(Collection<PokemonsSpeciesTranslationsEntity>
                                                            pokemonsSpeciesTranslationsById) {
         this.pokemonsSpeciesTranslationsById = pokemonsSpeciesTranslationsById;
-    }
+    }*/
 }
