@@ -8688,7 +8688,7 @@ button.close {
 }
 /* line 5, ../sass/main.scss */
 body {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* line 8, ../sass/main.scss */
@@ -8818,4 +8818,26 @@ a {
 /* line 104, ../sass/main.scss */
 .carousel-item img {
   width: 100%;
+}
+
+/* line 112, ../sass/main.scss */
+.vertical-tabs li {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* line 117, ../sass/main.scss */
+.vertical-tabs a {
+  color: #1D3B73;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* line 123, ../sass/main.scss */
+.vertical-tabs li.active {
+  background: #1D3B73;
+}
+/* line 125, ../sass/main.scss */
+.vertical-tabs li.active a {
+  color: #fff;
 }
