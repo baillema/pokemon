@@ -1,14 +1,14 @@
 <div *ngIf="cart">
   <div class="container">
     <div class="row">
-      <div id="cartTotal" class="col-md-12">
+      <div name="cartTotal" class="col-md-12">
         <div class="row">
-          <div id="numberArticles" class="col-md-9 text-primary">
+          <div name="numberArticles" class="col-md-9 text-primary">
             <h2>TOTAL
               {{cart.articles.length}}
               item(s):
               <img class="pokedollar" src="../../../assets/img/pokedollar.png" height="35em" width="35em"/>
-              <strong id="total" class="text-danger">{{cart.total}}</strong></h2>
+              <strong name="total" class="text-danger">{{cart.total}}</strong></h2>
           </div>
           <div class="col-md-3 text-center fixed">
             <h2>
@@ -22,7 +22,7 @@
     <ul class="list-group">
       <li *ngFor="let article of cart.articles" class="list-group-item">
         <div class="row">
-          <div id="articleCaracPreview" class="col-md-2 text-center img-thumbnail list-group-item-warning">
+          <div name="articleCaracPreview" class="col-md-2 text-center img-thumbnail list-group-item-warning">
             <div class="row">
               <a class="col-md-12" href="#">
                 <div class="text-md-center">
@@ -39,7 +39,7 @@
               </div>
             </div>
           </div>
-          <div id="articlePreview" class="col-md-5 text-left">
+          <div name="articlePreview" class="col-md-5 text-left">
             <a href="#">
               <h4>
                 <strong>{{article.name}}</strong>
@@ -50,13 +50,13 @@
               <Strong>Supplier mark </Strong>{{article.user}}
             </p>
           </div>
-          <div class="col-md-2" id="articlePrice">
+          <div class="col-md-2" name="articlePrice">
             <h3 class="col text-danger">
               <img class="pokedolar" src="../../../assets/img/pokedollar.png" height="30em" width="30em"/>
               {{article.price}}
             </h3>
           </div>
-          <div class="col-md-3 text-right" id="Removearticle">
+          <div class="col-md-3 text-right" name="Removearticle">
             <button (click)="deleteArticle(article, cart)">
               <i style="font-size:30px;" class="fa fa-trash-o"></i>
             </button>
