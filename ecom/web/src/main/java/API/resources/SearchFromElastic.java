@@ -15,9 +15,9 @@ public class SearchFromElastic extends javax.ws.rs.core.Application {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/matchall/{indices}")
-    public String getMatchAll(@PathParam("indices") String indices) {
-        return elasticSearch.matchAll(indices);
+    //@Path("/matchall/{indices}")
+    public String getMatchAll() {
+        return elasticSearch.matchAll("pokemons");
     }
 
     @GET
