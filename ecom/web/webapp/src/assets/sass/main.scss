@@ -36,7 +36,7 @@ a{
 
 .footer{
 	width: 100%;
-	background: #000;
+	background: $dark;
   margin-top: 40px;
 	padding: 10px 0;
 	color : #fff;
@@ -94,8 +94,8 @@ a{
   position: relative;
   .cart-count{
     position: absolute;
-    top: 40%;
-    left: 6%;
+    top: 3%;
+    left: 54%;
   }
 }
 

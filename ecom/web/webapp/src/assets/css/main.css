@@ -6390,11 +6390,11 @@ a.label:hover, a.label:focus {
 
 /* line 56, ../sass/bootstrap/_labels.scss */
 .label-info {
-  background-color: #5bc0de;
+  background-color: #1D3B73;
 }
 /* line 7, ../sass/bootstrap/mixins/_labels.scss */
 .label-info[href]:hover, .label-info[href]:focus {
-  background-color: #31b0d5;
+  background-color: #13264a;
 }
 
 /* line 60, ../sass/bootstrap/_labels.scss */
@@ -8793,7 +8793,7 @@ a {
 
 /* line 82, ../sass/main.scss */
 .form-group.error label, .form-group.error .error-message, .form-group.error input {
-  color: red;
+  color: #e23425;
 }
 /* line 85, ../sass/main.scss */
 .form-group.error .error-message {
@@ -8801,7 +8801,7 @@ a {
 }
 /* line 88, ../sass/main.scss */
 .form-group.error input {
-  border-color: red;
+  border-color: #e23425;
 }
 
 /* line 93, ../sass/main.scss */
@@ -8811,8 +8811,8 @@ a {
 /* line 95, ../sass/main.scss */
 .cart-btn .cart-count {
   position: absolute;
-  top: 40%;
-  left: 6%;
+  top: 3%;
+  left: 54%;
 }
 
 /* line 104, ../sass/main.scss */
