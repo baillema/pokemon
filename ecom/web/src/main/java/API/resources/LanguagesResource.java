@@ -26,11 +26,22 @@ public class LanguagesResource extends Application {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{id}")
-    public Response getLanguageById(@PathParam("id") String id) {
+    @Path("/id/{id}")
+    public Response getLanguageById(@PathParam("id") int id) {
         return Response.status(Response.Status.OK)
                        .entity(em.createQuery("SELECT l FROM LanguagesEntity l WHERE l.id = :language_id")
                                  .setParameter("language_id", id)
+                                 .getSingleResult())
+                       .build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/name/{name}")
+    public Response getLanguageByName(@PathParam("name") String name) {
+        return Response.status(Response.Status.OK)
+                       .entity(em.createQuery("SELECT l FROM LanguagesEntity l WHERE l.name = :name")
+                                 .setParameter("name", name)
                                  .getResultList())
                        .build();
     }
