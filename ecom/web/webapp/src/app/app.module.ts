@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ItemsComponent } from './component/items/items.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +13,7 @@ import { AjoutComponent } from './component/ajout/ajout.component';
 import { EchangeComponent } from './component/echange/echange.component';
 import { CartComponent } from './component/cart/cart.component';
 import { CartService } from './service/cart/cart.service';
+import { AddPokemonFormComponent } from './component/add-pokemon-form/add-pokemon-form.component';
 
 @NgModule({
   declarations: [
@@ -23,11 +25,13 @@ import { CartService } from './service/cart/cart.service';
     ProfilsComponent,
     AjoutComponent,
     EchangeComponent,
-    CartComponent
+    CartComponent,
+    AddPokemonFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     NgbModule.forRoot()
   ],
   providers: [

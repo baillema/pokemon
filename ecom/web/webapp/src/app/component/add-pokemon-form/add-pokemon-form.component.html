@@ -1,0 +1,78 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" #addPokemonForm="ngForm">
+
+    <div class="form-group">
+
+      <label for="species">Species</label>
+      <select class="form-control" id="species" required [(ngModel)]="pokemon.species" name="species" #speciesNg="ngModel">
+        <option *ngFor="let spec of species" [value]="spec">{{spec}}</option>
+      </select>
+
+      <div [hidden]="speciesNg.valid || speciesNg.pristine" class="alert alert-danger">
+        Species is required
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="level">Level</label>
+      <input type="number" class="form-control" id="level"
+             required min ="1" max="100"
+             [(ngModel)]="pokemon.level" name="level" #level="ngModel" (keypress)="_keyPress($event)">
+
+      <div *ngIf="level.invalid && (level.dirty || level.touched)" class="alert alert-danger">
+        <div *ngIf="level.errors.required">
+          level is required.
+        </div>
+      </div>
+
+      <div *ngIf="pokemon.level < 1 || pokemon.level > 100" class="alert alert-danger">
+        Level must be between 1 and 100.
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="nickname">Nickname (max {{maxNicknameLength}} characters)</label>
+      <input type="text" class="form-control" id="nickname" required [attr.maxLength]="maxNicknameLength" [(ngModel)]="pokemon.nickname"
+        name="nickname" #nickname="ngModel">
+      <small class="form-text text-muted" *ngIf="nickname?.value?.length > 0">
+        {{nickname?.value?.length}} / {{maxNicknameLength}} characters
+      </small>
+
+
+      <div *ngIf="nickname.invalid && (nickname.dirty || nickname.touched)" class="alert alert-danger">
+        <div *ngIf="nickname.errors.required">
+          Nickname is required.
+        </div>
+
+        <div *ngIf="nickname.errors.maxlength">
+          Nickname must be less than 4 characters long.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <label for ="description">Description (max {{MaxDescriptionLength}} characters)</label>
+      <textarea name="description" class="form-control" id="description" rows="3"
+                [attr.maxLength]="MaxDescriptionLength" [(ngModel)]="pokemon.description"
+                #description="ngModel"></textarea>
+
+      <small class="form-text text-muted" *ngIf="description?.value?.length > 0">
+        {{description?.value?.length}} / {{MaxDescriptionLength}} characters
+      </small>
+
+    </div>
+
+    <div class="form-group">
+      <label for="shininess">Shiny</label>
+      <input type="checkbox" name="shininess" id="shininess">
+    </div>
+    <button type="button" class="btn btn-default" (click)="newPokemon(); heroForm.reset()">Reset</button>
+    <button type="submit" [disabled]="!addPokemonForm.form.valid" class="btn btn-success">Submit</button>
+  </form>
+</div>

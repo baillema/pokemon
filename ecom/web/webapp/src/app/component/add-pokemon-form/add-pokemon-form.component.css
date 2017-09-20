@@ -1,0 +1,3 @@
+textarea[name=description] {
+  resize: vertical; /* user can resize vertically, but width is fixed */
+}
