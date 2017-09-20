@@ -1,10 +1,11 @@
 package database.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "pokemons_species_translations", schema = "public", catalog = "pokemondb")
-public class PokemonsSpeciesTranslationsEntity {
+public class PokemonsSpeciesTranslationsEntity implements Serializable {
     private int pokemonSpecieId;
     private int languageId;
     private String translation;
