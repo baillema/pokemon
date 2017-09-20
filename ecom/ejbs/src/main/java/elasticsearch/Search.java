@@ -7,6 +7,10 @@ public class Search {
 
     ElasticSearch es = new ElasticSearch("pokelastic");
 
+    /**
+     * Functions with different types of search
+     */
+
     public String matchAll(String indices){return es.matchAll(indices);}
     public String simpleSearch(String indices, String name, String wordsearched){return es.simpleSearch(indices,name,wordsearched);}
     public String multiSearch(String indices, String name, String wordsearched, int typeRequest, String facetName[], String facetValue[], int nbFacets){return es.multiSearch(indices,name,wordsearched,typeRequest,facetName,facetValue,nbFacets);}
@@ -15,4 +19,9 @@ public class Search {
     public String fuzzySearch(String indices, String name, String wordsearched){return es.fuzzySearch(indices,name,wordsearched);}
     public String autocomplete(String indices, String name, String wordsearched){return es.autocomplete(indices,name,wordsearched);}
 
+    /**
+     * Functions to do pretreatment
+     */
+    public String stopword(String wordsearched, String language){return es.stopword(wordsearched,language);}
+    public String lemmatisation(String wordsearched, String language){return es.lemmatisation(wordsearched,language);}
 }
