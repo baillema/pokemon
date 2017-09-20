@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "pokemons_species_translations", schema = "public", catalog = "pokemondb")
-@IdClass(PokemonsSpeciesTranslationsEntityPK.class)
 public class PokemonsSpeciesTranslationsEntity {
     private int pokemonSpecieId;
     private int languageId;
