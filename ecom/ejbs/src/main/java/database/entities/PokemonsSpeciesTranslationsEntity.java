@@ -9,9 +9,9 @@ public class PokemonsSpeciesTranslationsEntity {
     private int pokemonSpecieId;
     private int languageId;
     private String translation;
-    /*private PokemonsSpeciesEntity pokemonsSpeciesByPokemonSpecieId;
+    //private PokemonsSpeciesEntity pokemonsSpeciesByPokemonSpecieId;
     private LanguagesEntity languagesByLanguageId;
-*/
+
     @Id
     @Column(name = "pokemon_specie_id", nullable = false)
     public int getPokemonSpecieId() {
@@ -73,8 +73,8 @@ public class PokemonsSpeciesTranslationsEntity {
 
         return true;
     }
-
-/*    @ManyToOne
+    /*
+    @ManyToOne
     @JoinColumn(name = "pokemon_specie_id", referencedColumnName = "id", nullable = false)
     public PokemonsSpeciesEntity getPokemonsSpeciesByPokemonSpecieId() {
         return pokemonsSpeciesByPokemonSpecieId;
@@ -83,7 +83,7 @@ public class PokemonsSpeciesTranslationsEntity {
     public void setPokemonsSpeciesByPokemonSpecieId(PokemonsSpeciesEntity pokemonsSpeciesByPokemonSpecieId) {
         this.pokemonsSpeciesByPokemonSpecieId = pokemonsSpeciesByPokemonSpecieId;
     }
-
+    */
     @ManyToOne
     @JoinColumn(name = "language_id", referencedColumnName = "id", nullable = false)
     public LanguagesEntity getLanguagesByLanguageId() {
@@ -92,5 +92,5 @@ public class PokemonsSpeciesTranslationsEntity {
 
     public void setLanguagesByLanguageId(LanguagesEntity languagesByLanguageId) {
         this.languagesByLanguageId = languagesByLanguageId;
-    }*/
+    }
 }
