@@ -1,5 +1,7 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CartService} from '../../service/cart/cart.service';
+import {TimerObservable} from "rxjs/observable/TimerObservable";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-cart',
@@ -9,16 +11,13 @@ import {CartService} from '../../service/cart/cart.service';
 
 export class CartComponent implements OnInit {
   cart: Cart;
+  private subscription: Subscription;
 
   constructor(private cartService: CartService) {
   }
 
   ngOnInit() {
     this.getCart(1);
-  }
-
-  ngOnChanges(): Cart {
-    return this.cart;
   }
 
   getCart(userId: number): void {
@@ -28,6 +27,8 @@ export class CartComponent implements OnInit {
   }
 
   deleteArticle(article: Article, cart: Cart): Cart {
+    this.resetLifeCycleCart();
+
     this.cartService
       .deleteArticleFromCart(article, cart)
       .then(basket => this.cart = basket);
@@ -35,6 +36,7 @@ export class CartComponent implements OnInit {
   }
 
   addArticle(article: Article, cart: Cart): Cart {
+    this.initLifeCycle();
     this.cartService
       .addArticleFromCart(article, cart)
       .then(basket => this.cart = basket);
@@ -48,8 +50,27 @@ export class CartComponent implements OnInit {
     return this.cart;
   }
 
-  updatingCartLifeCycle(): void {
+  /*Life Cycle Cart*/
+  resetCart(cart: Cart): void {
     this.cartService
-      .updatingCartLifeCycle();
+      .deleteArticlesFromCart(cart);
+  }
+
+  resetLifeCycleCart() {
+    this.subscription.unsubscribe();
+    this.initLifeCycle();
+  }
+
+  /*Must to call it when a user session start*/
+  initLifeCycle() {
+    let timer = TimerObservable.create(300000, 1);
+    this.subscription = timer.subscribe(t => {
+      this.resetCart(this.cart);
+    });
+  }
+
+  /*Must to call it when a user logout*/
+  stopLifeCycle() {
+    this.subscription.unsubscribe();
   }
 }
