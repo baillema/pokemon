@@ -10,7 +10,7 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/languages")
+@Path("languages")
 public class LanguagesResource extends Application {
     @PersistenceContext
     private EntityManager em;
@@ -27,10 +27,10 @@ public class LanguagesResource extends Application {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response getLanguageById(@PathParam("id") int id) {
+    public Response getLanguageById(@PathParam("id") String id) {
         return Response.status(Response.Status.OK)
-                       .entity(em.createQuery("SELECT l FROM LanguagesEntity l WHERE l.id = :id")
-                                 .setParameter("id", 0)
+                       .entity(em.createQuery("SELECT l FROM LanguagesEntity l WHERE l.id = :language_id")
+                                 .setParameter("language_id", id)
                                  .getResultList())
                        .build();
     }
