@@ -1,5 +1,6 @@
 package API;
 
+import API.resources.LanguagesResource;
 import API.resources.PokemonSpeciesResource;
 
 import javax.ws.rs.ApplicationPath;
@@ -13,6 +14,7 @@ public class Api extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
         classes.add(PokemonSpeciesResource.class);
+        classes.add(LanguagesResource.class);
         return classes;
     }
 }
