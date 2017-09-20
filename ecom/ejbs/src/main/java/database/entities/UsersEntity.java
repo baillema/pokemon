@@ -1,29 +1,43 @@
 package database.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.Collection;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "users", schema = "public", catalog = "pokemondb")
-public class UsersEntity {
+public class UsersEntity implements Serializable {
     private int id;
     private String firstname;
-    private Date birthday;
+    private LocalDate birthday;
     private String gender;
     private String email;
-    private Serializable password;
+    private String password;
     private String lastname;
-    private Collection<FeedbackEntity> feedbacksWritten;
-    private Collection<FeedbackEntity> feedbacks;
-    private Collection<ItemsArticlesEntity> itemsArticlesById;
-    private Collection<PokemonsArticlesEntity> pokemonsArticlesById;
-    private Collection<TradesEntity> tradesSuggest;
-    private Collection<TradesEntity> tradesOffer;
-    private Collection<UsersRolesEntity> usersRolesById;
+    private String handle;
+    private Set<RolesEntity> roles;
+    private Set<CartsEntity> carts;
+    private Set<PokemonsArticlesEntity> pokemons;
+    private Set<FeedbackEntity> feedbacks;
+
+    public UsersEntity() {
+    }
+
+    public UsersEntity(String handle, String firstname, String gender, String email, String lastname, String password) {
+        this.firstname = firstname;
+        this.birthday = null;
+        this.gender = gender;
+        this.email = email;
+        this.password = password;
+        this.lastname = lastname;
+        this.handle = handle;
+    }
 
     @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -44,12 +58,22 @@ public class UsersEntity {
     }
 
     @Basic
+    @Column(name = "handle", nullable = true, length = 30)
+    public String getHandle() {
+        return handle;
+    }
+
+    public void setHandle(String handle) {
+        this.handle = handle;
+    }
+
+    @Basic
     @Column(name = "birthday", nullable = true)
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
@@ -75,11 +99,11 @@ public class UsersEntity {
 
     @Basic
     @Column(name = "password", nullable = true)
-    public Serializable getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(Serializable password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -91,6 +115,62 @@ public class UsersEntity {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+    )
+    @JsonManagedReference
+    public Set<RolesEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RolesEntity> roles) {
+        this.roles = roles;
+    }
+
+
+    @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    public Set<CartsEntity> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Set<CartsEntity> carts) {
+        this.carts = carts;
+    }
+
+
+    @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    public Set<PokemonsArticlesEntity> getPokemons() {
+        return pokemons;
+    }
+
+    public void setPokemons(Set<PokemonsArticlesEntity> pokemons) {
+        this.pokemons = pokemons;
+    }
+
+
+    @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    public Set<FeedbackEntity> getFeedbacks() {
+        return feedbacks;
+    }
+
+    public void setFeedbacks(Set<FeedbackEntity> feedbacks) {
+        this.feedbacks = feedbacks;
     }
 
     @Override
@@ -107,8 +187,11 @@ public class UsersEntity {
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
-
-        return true;
+        if (handle != null ? !handle.equals(that.handle) : that.handle != null) return false;
+        if (roles != null ? !roles.equals(that.roles) : that.roles != null) return false;
+        if (carts != null ? !carts.equals(that.carts) : that.carts != null) return false;
+        if (pokemons != null ? !pokemons.equals(that.pokemons) : that.pokemons != null) return false;
+        return feedbacks != null ? feedbacks.equals(that.feedbacks) : that.feedbacks == null;
     }
 
     @Override
@@ -120,69 +203,11 @@ public class UsersEntity {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+        result = 31 * result + (handle != null ? handle.hashCode() : 0);
+        result = 31 * result + (roles != null ? roles.hashCode() : 0);
+        result = 31 * result + (carts != null ? carts.hashCode() : 0);
+        result = 31 * result + (pokemons != null ? pokemons.hashCode() : 0);
+        result = 31 * result + (feedbacks != null ? feedbacks.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "usersByAuthorId")
-    public Collection<FeedbackEntity> getFeedbacksWritten() {
-        return feedbacksWritten;
-    }
-
-    public void setFeedbacksWritten(Collection<FeedbackEntity> feedbacksById) {
-        this.feedbacksWritten = feedbacksById;
-    }
-
-    @OneToMany(mappedBy = "usersByUserId")
-    public Collection<FeedbackEntity> getFeedbacks() {
-        return feedbacks;
-    }
-
-    public void setFeedbacks(Collection<FeedbackEntity> feedbacksById_0) {
-        this.feedbacks = feedbacksById_0;
-    }
-
-    @OneToMany(mappedBy = "usersByUserId")
-    public Collection<ItemsArticlesEntity> getItemsArticlesById() {
-        return itemsArticlesById;
-    }
-
-    public void setItemsArticlesById(Collection<ItemsArticlesEntity> itemsArticlesById) {
-        this.itemsArticlesById = itemsArticlesById;
-    }
-
-    @OneToMany(mappedBy = "usersByUserId")
-    public Collection<PokemonsArticlesEntity> getPokemonsArticlesById() {
-        return pokemonsArticlesById;
-    }
-
-    public void setPokemonsArticlesById(Collection<PokemonsArticlesEntity> pokemonsArticlesById) {
-        this.pokemonsArticlesById = pokemonsArticlesById;
-    }
-
-    @OneToMany(mappedBy = "usersByFirstUserId")
-    public Collection<TradesEntity> getTradesSuggest() {
-        return tradesSuggest;
-    }
-
-    public void setTradesSuggest(Collection<TradesEntity> tradesById) {
-        this.tradesSuggest = tradesById;
-    }
-
-    @OneToMany(mappedBy = "usersBySecondUserId")
-    public Collection<TradesEntity> getTradesOffer() {
-        return tradesOffer;
-    }
-
-    public void setTradesOffer(Collection<TradesEntity> tradesById_0) {
-        this.tradesOffer = tradesById_0;
-    }
-
-    @OneToMany(mappedBy = "usersByUserId")
-    public Collection<UsersRolesEntity> getUsersRolesById() {
-        return usersRolesById;
-    }
-
-    public void setUsersRolesById(Collection<UsersRolesEntity> usersRolesById) {
-        this.usersRolesById = usersRolesById;
     }
 }

@@ -1,17 +1,16 @@
 package database.entities;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "roles", schema = "public", catalog = "pokemondb")
-public class RolesEntity {
+public class RolesEntity implements Serializable {
     private int id;
     private String name;
-    private Collection<RolesTranslationsEntity> rolesTranslationsById;
-    private Collection<UsersRolesEntity> usersRolesById;
 
     @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -49,23 +48,5 @@ public class RolesEntity {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "rolesByRoleId")
-    public Collection<RolesTranslationsEntity> getRolesTranslationsById() {
-        return rolesTranslationsById;
-    }
-
-    public void setRolesTranslationsById(Collection<RolesTranslationsEntity> rolesTranslationsById) {
-        this.rolesTranslationsById = rolesTranslationsById;
-    }
-
-    @OneToMany(mappedBy = "rolesByRoleId")
-    public Collection<UsersRolesEntity> getUsersRolesById() {
-        return usersRolesById;
-    }
-
-    public void setUsersRolesById(Collection<UsersRolesEntity> usersRolesById) {
-        this.usersRolesById = usersRolesById;
     }
 }

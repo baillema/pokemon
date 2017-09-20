@@ -14,6 +14,7 @@ WILDFLY_CONFIG=standalone.xml
 pgrep -d " " -f "wildfly" | xargs kill;
 
 # Clone the project if needed
+rm -R pokemon
 if [ ! -d $PROJECT_HOME ]; then
   git clone $PROJECT_URL $PROJECT_HOME
 fi
@@ -23,7 +24,7 @@ cd $PROJECT_HOME
 git pull
 
 # Uncomment and update the next line if you want to build a specific branch
-# git checkout backend
+git checkout add-cart-resources
 
 mvn install
 cd

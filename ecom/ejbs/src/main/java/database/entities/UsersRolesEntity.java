@@ -1,15 +1,22 @@
 package database.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "users_roles", schema = "public", catalog = "pokemondb")
-@IdClass(UsersRolesEntityPK.class)
-public class UsersRolesEntity {
+public class UsersRolesEntity implements Serializable {
     private int userId;
     private int roleId;
-    private UsersEntity usersByUserId;
-    private RolesEntity rolesByRoleId;
+
+
+    public UsersRolesEntity() {
+    }
+
+    public UsersRolesEntity(int userId, int roleId) {
+        this.userId = userId;
+        this.roleId = roleId;
+    }
 
     @Id
     @Column(name = "user_id", nullable = false)
@@ -49,25 +56,5 @@ public class UsersRolesEntity {
         int result = userId;
         result = 31 * result + roleId;
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    public UsersEntity getUsersByUserId() {
-        return usersByUserId;
-    }
-
-    public void setUsersByUserId(UsersEntity usersByUserId) {
-        this.usersByUserId = usersByUserId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
-    public RolesEntity getRolesByRoleId() {
-        return rolesByRoleId;
-    }
-
-    public void setRolesByRoleId(RolesEntity rolesByRoleId) {
-        this.rolesByRoleId = rolesByRoleId;
     }
 }
