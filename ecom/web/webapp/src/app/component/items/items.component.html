@@ -29,28 +29,39 @@
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingTwo">
             <h4 class="panel-title">
-              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
-                aria-controls="collapseTwo">
-               Type
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+                 aria-expanded="false"
+                 aria-controls="collapseTwo">
+                Type
               </a>
             </h4>
           </div>
           <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
-             <div class="form-checkbox">
-               <input type="checkbox" id="type1"><label for="type1"><img src="../assets/img/spheres/feu.png" with="32" height="32" alt=""></label>
-               <br>
-               <input type="checkbox" id="type2"><label for="type2"><img src="../assets/img/spheres/fee.png" with="32" height="32" alt=""></label>
-             </div>
+              <div class="form-checkbox">
+                <div class="facette-type">
+                  <input type="checkbox" id="type1">
+                  <label for="type1">
+                    <img src="../assets/img/spheres/feu.png" class="facette-item" (click)="checkSelected('type1')">
+                  </label>
+                </div>
+                <div class="facette-type">
+                  <input type="checkbox" id="type2">
+                  <label for="type2">
+                    <img src="../assets/img/spheres/fee.png" class="facette-item" (click)="checkSelected('type2')">
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingThree">
             <h4 class="panel-title">
-              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
-                aria-controls="collapseThree">
-               Price
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"
+                 aria-expanded="false"
+                 aria-controls="collapseThree">
+                Price
               </a>
             </h4>
           </div>
