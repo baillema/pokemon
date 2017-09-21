@@ -77,7 +77,12 @@
     <!--  PRODUCTS CONTENT START -->
     <div class="col-md-8">
       <h2>Catch 'Em All!</h2>
-      <div class="row">
+      <div class="action-bar">
+        <div class="pull-right">
+          <button (click)="toggleItemsGrid()"><i class="fa fa-align-justify"></i></button>
+        </div>
+      </div>
+      <div class="row grid" id="itemGrid">
         <!--  ITEM START -->
         <div class="col-md-4">
           <div class="thumbnail">

@@ -8874,3 +8874,10 @@ a {
   border: 3px solid #1D3B73;
   border-radius: 32px;
 }
+
+/* line 168, ../sass/main.scss */
+.action-bar {
+  width: 100%;
+  display: block;
+  height: 30px;
+}
