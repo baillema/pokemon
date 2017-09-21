@@ -13,7 +13,9 @@ import { AjoutComponent } from './component/ajout/ajout.component';
 import { EchangeComponent } from './component/echange/echange.component';
 import { CartComponent } from './component/cart/cart.component';
 import { CartService } from './service/cart/cart.service';
+import { PokemonSpeciesService } from './service/pokemon-species/pokemon-species.service';
 import { AddPokemonFormComponent } from './component/add-pokemon-form/add-pokemon-form.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -32,10 +34,12 @@ import { AddPokemonFormComponent } from './component/add-pokemon-form/add-pokemo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpModule,
     NgbModule.forRoot()
   ],
   providers: [
-    CartService
+    CartService,
+    PokemonSpeciesService
   ],
   bootstrap: [AppComponent]
 })

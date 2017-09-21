@@ -5,7 +5,7 @@
 
       <label for="species">Species</label>
       <select class="form-control" id="species" required [(ngModel)]="pokemon.species" name="species" #speciesNg="ngModel">
-        <option *ngFor="let spec of species" [value]="spec">{{spec}}</option>
+        <option *ngFor="let spec of species" [value]="spec">{{spec.translation}}</option>
       </select>
 
       <div [hidden]="speciesNg.valid || speciesNg.pristine" class="alert alert-danger">

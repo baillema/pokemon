@@ -1,3 +1,5 @@
+import { PokemonSpecies } from '../../model/pokemon-species';
+import { PokemonSpeciesService } from '../../service/pokemon-species/pokemon-species.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 
 import { Pokemon } from './../../model/pokemon';
@@ -12,16 +14,17 @@ export class AddPokemonFormComponent implements OnInit {
   private MaxDescriptionLength = 500;
 
   private pokemon: Pokemon;
-  private species: string[];
-  constructor() {}
+  private species: PokemonSpecies[];
+  err: any;
+
+  constructor(private pokemonSpeciesService: PokemonSpeciesService) {}
 
   ngOnInit() {
     this.newPokemon();
-    this.species = [
-      'Pikachu',
-      'Mew',
-      'MewTwo'
-    ];
+    this.pokemonSpeciesService.all().subscribe(res => {
+      this.species = res.species;
+      this.err = res.err;
+    });
   }
 
   newPokemon(): void {
@@ -37,6 +40,7 @@ export class AddPokemonFormComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log(this.species[0].translation);
     console.log(this.pokemon);
   }
 }
