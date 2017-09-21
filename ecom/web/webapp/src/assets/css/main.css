@@ -8881,3 +8881,9 @@ a {
   display: block;
   height: 30px;
 }
+
+/* line 175, ../sass/main.scss */
+.pokerDollar {
+  width: 16px;
+  height: 16px;
+}
