@@ -52,7 +52,7 @@ a.label {
 .label-success {
   @include label-variant($label-success-bg);
 }
-
+$label-info-bg : $blue;
 .label-info {
   @include label-variant($label-info-bg);
 }

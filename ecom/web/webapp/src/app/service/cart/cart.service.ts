@@ -54,7 +54,6 @@ export class CartService {
     cart.articles.push(article);
 
     this.updatingCartLifeCycle();
-
     return Promise.resolve(cart);
   }
 

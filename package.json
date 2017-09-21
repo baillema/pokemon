@@ -1,0 +1,26 @@
+{
+  "name": "pokemon",
+  "version": "1.0.0",
+  "description": "Projet E-commerce M2 PGI ========================",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scra3/pokemon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Scra3/pokemon/issues"
+  },
+  "homepage": "https://github.com/Scra3/pokemon#readme",
+  "devDependencies": {
+    "@angular/cli": "^1.4.2"
+  },
+  "dependencies": {}
+}

@@ -141,7 +141,7 @@ CREATE TABLE pokemons
   habitat_id INT  REFERENCES pokemons_habitats (id),
   color_id INT  REFERENCES pokemons_colors (id),
   shape_id INT  REFERENCES pokemons_shapes (id),
-  description INT  REFERENCES pokemons_descriptions (id)
+  description_id INT  REFERENCES pokemons_descriptions (id)
 );
 
 CREATE TABLE pokemons_accepted_genders
@@ -314,3 +314,9 @@ CREATE TABLE trades
   CONSTRAINT valid_article_exchange CHECK (first_article_id != second_article_id),
   PRIMARY KEY (first_user_id, first_article_id, second_user_id, second_article_id)
 );
+
+-- Grant Roles
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO elasticuser;
+GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO elasticuser;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO pokemonuser;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO pokemonuser;
