@@ -176,3 +176,31 @@ a {
   width: 16px;
   height: 16px;
 }
+
+
+.sticky{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+
+  display: block;
+  background: $white;
+  border-bottom : 1px solid $blue;
+  h1{
+    height:45px !important;
+    img{
+      height: 40px !important;
+    }
+  }
+
+}
+.header-wrapper{
+  width: 100%;
+  height: 80px;
+  z-index: 9;
+  .header{
+    z-index: 99;
+  }
+}
