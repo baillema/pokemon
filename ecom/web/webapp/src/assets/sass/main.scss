@@ -164,43 +164,49 @@ a {
   }
 }
 
-
-.action-bar{
+.action-bar {
   width: 100%;
   display: block;
   height: 30px;
 }
 
-
-.pokerDollar{
+.pokerDollar {
   width: 16px;
   height: 16px;
 }
 
-
-.sticky{
+.sticky {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 80px !important;
 
   display: block;
   background: $white;
-  border-bottom : 1px solid $blue;
-  h1{
-    height:45px !important;
-    img{
+  border-bottom: 1px solid $blue;
+  .container {
+    padding-bottom: 0;
+  }
+  .header {
+    height: 70px !important;
+  }
+
+  h1 {
+    height: 45px !important;
+    img {
       height: 40px !important;
     }
   }
 
 }
-.header-wrapper{
+
+.header-wrapper {
   width: 100%;
-  height: 80px;
+  height: 100px;
   z-index: 9;
-  .header{
+  display: block;
+  .header {
     z-index: 99;
   }
 }

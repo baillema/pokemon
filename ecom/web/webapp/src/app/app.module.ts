@@ -37,4 +37,5 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome/angular-font-awesom
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }
