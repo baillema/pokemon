@@ -21,8 +21,10 @@ public class PokemonSpeciesTranslationsDao {
                  .getResultList();
     }
 
-    public PokemonsSpeciesTranslationsEntity read(int speciesId) {
-        return em.find(PokemonsSpeciesTranslationsEntity.class, speciesId);
+    public Collection<PokemonsSpeciesTranslationsEntity> read(int speciesId) {
+        return em.createQuery("SELECT p FROM PokemonsSpeciesTranslationsEntity p WHERE p.pokemonSpecieId = :speciesId")
+          .setParameter("speciesId", speciesId)
+          .getResultList();
     }
 
     public void update(PokemonsSpeciesTranslationsEntity pokemonsSpeciesTranslations) {
@@ -34,7 +36,7 @@ public class PokemonSpeciesTranslationsDao {
     }
 
     public void delete(int speciesId) {
-        em.createQuery("DELETE FROM PokemonsSpeciesTranslationsEntity WHERE  pokemonSpecieId = :speciesId")
+        em.createQuery("DELETE FROM PokemonsSpeciesTranslationsEntity WHERE pokemonSpecieId = :speciesId")
           .setParameter("speciesId", speciesId)
           .executeUpdate();
     }

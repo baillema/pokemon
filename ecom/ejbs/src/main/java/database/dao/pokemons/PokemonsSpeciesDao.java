@@ -3,10 +3,12 @@ package database.dao.pokemons;
 import database.entities.pokemons.PokemonsSpeciesEntity;
 import database.entities.pokemons.PokemonsSpeciesTranslationsEntity;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
 
+@Stateless
 public class PokemonsSpeciesDao {
     @PersistenceContext
     private EntityManager em;
@@ -16,7 +18,7 @@ public class PokemonsSpeciesDao {
     }
 
     public Collection<PokemonsSpeciesEntity> readAll() {
-        return em.createQuery("SELECT p FROM PokemonsSpeciesTranslationsEntity p")
+        return em.createQuery("SELECT p FROM PokemonsSpeciesEntity p")
                  .getResultList();
     }
 
