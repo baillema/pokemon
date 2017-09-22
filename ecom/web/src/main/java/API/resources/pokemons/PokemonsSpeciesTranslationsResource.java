@@ -8,7 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/pokemon-species-translations")
+@Path("/pokemons-species-translations")
 public class PokemonsSpeciesTranslationsResource {
     @EJB
     private PokemonSpeciesTranslationsDao pokemonSpeciesTranslationsDao;

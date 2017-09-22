@@ -9,7 +9,7 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/pokemon-species")
+@Path("/pokemons-species")
 public class PokemonsSpeciesResource extends Application {
     @EJB
     private PokemonsSpeciesDao pokemonsSpeciesDao;
