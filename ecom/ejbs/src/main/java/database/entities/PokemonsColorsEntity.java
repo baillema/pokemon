@@ -1,14 +1,17 @@
 package database.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.codehaus.jackson.annotate.JacksonAnnotation;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "pokemons_colors", schema = "public", catalog = "pokemondb")
 public class PokemonsColorsEntity {
     private int id;
+    private Collection<PokemonsColorsTranslationsEntity> pokemonsColorsTranslationsById;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -41,5 +44,16 @@ public class PokemonsColorsEntity {
         }
 
         return true;
+    }
+
+    @OneToMany(mappedBy = "pokemonsColorsByPokemonColorId", fetch = FetchType.EAGER)
+    @JsonBackReference
+    public Collection<PokemonsColorsTranslationsEntity> getPokemonsColorsTranslationsById() {
+        return pokemonsColorsTranslationsById;
+    }
+
+    public void setPokemonsColorsTranslationsById(Collection<PokemonsColorsTranslationsEntity>
+                                                          pokemonsColorsTranslationsById) {
+        this.pokemonsColorsTranslationsById = pokemonsColorsTranslationsById;
     }
 }

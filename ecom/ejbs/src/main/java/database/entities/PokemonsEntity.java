@@ -22,7 +22,7 @@ public class PokemonsEntity {
         this.id = id;
     }
 
-    @Basic
+    /*@Basic
     @Column(name = "species_id", nullable = true)
     public Integer getSpeciesId() {
         return speciesId;
@@ -71,7 +71,7 @@ public class PokemonsEntity {
     public void setDescriptionId(Integer descriptionId) {
         this.descriptionId = descriptionId;
     }
-
+*/
     @Override
     public int hashCode() {
         int result = id;

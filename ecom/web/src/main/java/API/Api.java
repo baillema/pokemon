@@ -1,5 +1,6 @@
 package API;
 
+import API.resources.ColorsResource;
 import API.resources.LanguagesResource;
 import API.resources.PokemonSpeciesResource;
 import API.resources.SearchFromElastic;
@@ -14,6 +15,7 @@ public class Api extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
         classes.add(PokemonSpeciesResource.class);
+        classes.add(ColorsResource.class);
         classes.add(LanguagesResource.class);
         classes.add(SearchFromElastic.class);
         return classes;

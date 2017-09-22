@@ -10,6 +10,25 @@ public class PokemonsSpeciesEntity {
     /*private Collection<PokemonsEntity> pokemonsById;
     private Collection<PokemonsSpeciesTranslationsEntity> pokemonsSpeciesTranslationsById;
     */
+    /*@OneToMany(mappedBy = "pokemonsSpeciesBySpeciesId")
+    public Collection<PokemonsEntity> getPokemonsById() {
+        return pokemonsById;
+    }
+
+    public void setPokemonsById(Collection<PokemonsEntity> pokemonsById) {
+        this.pokemonsById = pokemonsById;
+    }
+
+    @OneToMany(mappedBy = "pokemonsSpeciesByPokemonSpecieId")
+    public Collection<PokemonsSpeciesTranslationsEntity> getPokemonsSpeciesTranslationsById() {
+        return pokemonsSpeciesTranslationsById;
+    }
+
+    public void setPokemonsSpeciesTranslationsById(Collection<PokemonsSpeciesTranslationsEntity>
+                                                           pokemonsSpeciesTranslationsById) {
+        this.pokemonsSpeciesTranslationsById = pokemonsSpeciesTranslationsById;
+    }*/
+    //private Collection<PokemonsSpeciesTranslationsEntity> pokemonsSpeciesTranslationsById;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -44,16 +63,7 @@ public class PokemonsSpeciesEntity {
         return true;
     }
 
-    /*@OneToMany(mappedBy = "pokemonsSpeciesBySpeciesId")
-    public Collection<PokemonsEntity> getPokemonsById() {
-        return pokemonsById;
-    }
-
-    public void setPokemonsById(Collection<PokemonsEntity> pokemonsById) {
-        this.pokemonsById = pokemonsById;
-    }
-
-    @OneToMany(mappedBy = "pokemonsSpeciesByPokemonSpecieId")
+    /*@OneToMany(mappedBy = "pokemonsSpeciesByPokemonSpecieId")
     public Collection<PokemonsSpeciesTranslationsEntity> getPokemonsSpeciesTranslationsById() {
         return pokemonsSpeciesTranslationsById;
     }
