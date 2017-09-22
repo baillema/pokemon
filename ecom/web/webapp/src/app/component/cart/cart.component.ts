@@ -66,8 +66,8 @@ export class CartComponent implements OnInit {
 
   /*Life Cycle Cart*/
   resetCart(cart: Cart): void {
-    this.cartService
-      .deleteArticlesFromCart(cart);
+    // this.cartService
+      // .deleteArticlesFromCart(cart);
   }
 
   resetLifeCycleCart() {
@@ -89,7 +89,7 @@ export class CartComponent implements OnInit {
   }
 
   updatingCartLifeCycle(): void {
-    //this.cartService.updatingCartLifeCycle();
+    // this.cartService.updatingCartLifeCycle();
 
   }
 }
