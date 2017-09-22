@@ -2,6 +2,7 @@ package API;
 
 import API.resources.LanguagesResource;
 import API.resources.SearchFromElastic;
+import API.resources.pokemons.PokemonsSpeciesResource;
 import database.entities.LanguagesEntity;
 
 import javax.ws.rs.ApplicationPath;
@@ -15,6 +16,7 @@ public class Api extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
         classes.add(LanguagesResource.class);
+        classes.add(PokemonsSpeciesResource.class);
         classes.add(SearchFromElastic.class);
         return classes;
     }
