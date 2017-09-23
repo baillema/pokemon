@@ -4,8 +4,10 @@
     <div class="form-group">
 
       <label for="species">Species</label>
-      <select class="form-control" id="species" required [(ngModel)]="pokemon.species" name="species" #speciesNg="ngModel">
-        <option *ngFor="let spec of species" [value]="spec">{{spec.translation}}</option>
+      <select class="form-control" id="species" name="species"
+              required
+              [(ngModel)]="pokemon.speciesId" #speciesNg="ngModel">
+        <option *ngFor="let spec of species" [value]="spec.pokemonSpecieId">{{spec.translation}} ({{spec.pokemonSpecieId}})</option>
       </select>
 
       <div [hidden]="speciesNg.valid || speciesNg.pristine" class="alert alert-danger">
@@ -69,10 +71,29 @@
     </div>
 
     <div class="form-group">
+
+      <label for="price">Price</label>
+      <input type="number" class="form-control" id="price"
+             required min ="1" max="9999"
+             [(ngModel)]="pokemon.price" name="price" #price="ngModel" (keypress)="_keyPress($event)">
+
+      <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+        <div *ngIf="price.errors.required">
+          Price is required.
+        </div>
+      </div>
+
+      <div *ngIf="pokemon.price < 1 || pokemon.price >   9999" class="alert alert-danger">
+        Price must be between 1 and 9999.
+      </div>
+
+    </div>
+
+    <div class="form-group">
       <label for="shininess">Shiny</label>
       <input type="checkbox" name="shininess" id="shininess">
     </div>
-    <button type="button" class="btn btn-default" (click)="newPokemon(); heroForm.reset()">Reset</button>
+    <button type="button" class="btn btn-default" (click)="newPokemon(); addPokemonForm.reset()">Reset</button>
     <button type="submit" [disabled]="!addPokemonForm.form.valid" class="btn btn-success">Submit</button>
   </form>
 </div>

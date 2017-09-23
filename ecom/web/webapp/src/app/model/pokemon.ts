@@ -1,5 +1,8 @@
+import { PokemonSpecies } from './pokemon-species';
+
 export class Pokemon {
-  species: string;
+  id: number;
+  speciesId: number;
   nickname: string;
   description: string;
   level: number;

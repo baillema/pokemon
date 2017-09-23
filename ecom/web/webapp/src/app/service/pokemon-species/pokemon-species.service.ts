@@ -11,7 +11,7 @@ export class PokemonSpeciesService {
   constructor(private http: Http) { }
 
   public all(): Observable<MultiplePokemonSpeciesResponse> {
-    return this.http.get(`${env.serverUrl}/pokemon-species/french`)
+    return this.http.get(`${env.serverUrl}/pokemons-species-translations/french`)
       .map(res => {
         const body = res.json();
         return { err: null, species: body };

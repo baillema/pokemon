@@ -1,4 +1,4 @@
 export class PokemonSpecies {
-  id: number;
+  pokemonSpecieId: number;
   translation: string;
 }
