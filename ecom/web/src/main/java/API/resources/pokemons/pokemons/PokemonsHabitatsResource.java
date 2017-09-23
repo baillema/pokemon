@@ -5,11 +5,12 @@ import database.entities.pokemons.PokemonsHabitatsEntity;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/pokemons-habitats")
-public class PokemonsHabitatsResource {
+public class PokemonsHabitatsResource extends Application {
     @EJB
     private PokemonsHabitatsDao PokemonsHabitatsDao;
 

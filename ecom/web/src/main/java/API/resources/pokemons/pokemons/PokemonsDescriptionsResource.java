@@ -5,11 +5,12 @@ import database.entities.pokemons.PokemonsDescriptionsEntity;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/pokemons-descriptions")
-public class PokemonsDescriptionsResource {
+public class PokemonsDescriptionsResource extends Application {
     @EJB
     private PokemonsDescriptionsDao pokemonsDescriptionsDao;
 
