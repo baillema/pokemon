@@ -1,16 +1,23 @@
-package database.entities.pokemons;
+package database.entities.pokemons.base;
 
+import database.consts.Requests;
 import database.entities.pokemons.translations.PokemonsColorsTranslationsEntity;
 
 import javax.persistence.*;
-import javax.persistence.criteria.Fetch;
-import javax.transaction.Transactional;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "pokemons_colors", schema = "public", catalog = "pokemondb")
+@NamedQueries({
+        @NamedQuery(name = Requests.POK_COL_ALL,
+                    query = "SELECT x " +
+                            "FROM PokemonsColorsEntity x"),
+        @NamedQuery(name = Requests.POK_COL_FROM_ID,
+                    query = "SELECT x " +
+                            "FROM PokemonsColorsEntity x " +
+                            "WHERE x.id = :id")
+})
 public class PokemonsColorsEntity {
     private int id;
     private Set<PokemonsColorsTranslationsEntity> translations = new HashSet<>();

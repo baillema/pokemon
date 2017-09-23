@@ -1,13 +1,28 @@
 package database.entities;
 
-import database.entities.pokemons.PokemonsSpeciesTranslationsEntity;
+import database.consts.Requests;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "languages", schema = "public", catalog = "pokemondb")
+@NamedQueries({
+    @NamedQuery(name = Requests.LANGUAGES_ALL,
+                query = "SELECT l " +
+                        "FROM LanguagesEntity l"),
+
+    @NamedQuery(name = Requests.LANGUAGES_FROM_ID,
+                query = "SELECT l " +
+                        "FROM LanguagesEntity l " +
+                        "WHERE l.id = :id"),
+
+    @NamedQuery(name = Requests.LANGUAGES_FROM_LANG,
+                query = "SELECT l " +
+                        "FROM LanguagesEntity l " +
+                        "WHERE l.name = :str")
+})
 public class LanguagesEntity {
+    public static String TEST = "ee";
     private int id;
     private String name;
 

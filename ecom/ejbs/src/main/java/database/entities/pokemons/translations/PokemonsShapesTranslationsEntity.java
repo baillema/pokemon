@@ -1,12 +1,38 @@
 package database.entities.pokemons.translations;
 
-import database.entities.pokemons.PokemonsShapesEntity;
+import database.consts.Requests;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "pokemons_shapes_translations", schema = "public", catalog = "pokemondb")
+@NamedQueries({
+        @NamedQuery(name = Requests.POK_SHAP_TRANS_ALL,
+                query = "SELECT t " +
+                        "FROM PokemonsShapesTranslationsEntity t"),
+        @NamedQuery(name = Requests.POK_SHAP_TRANS_FR,
+                query = "SELECT t " +
+                        "FROM PokemonsShapesTranslationsEntity t " +
+                        "WHERE t.languageId = 4"),
+        @NamedQuery(name = Requests.POK_SHAP_TRANS_EN,
+                query = "SELECT t " +
+                        "FROM PokemonsShapesTranslationsEntity t " +
+                        "WHERE t.languageId = 8"),
+        @NamedQuery(name = Requests.POK_SHAP_TRANS_FROM_ID,
+                query = "SELECT t " +
+                        "FROM PokemonsShapesTranslationsEntity t " +
+                        "WHERE t.pokemonShapeId = :id"),
+        @NamedQuery(name = Requests.POK_SHAP_TRANS_FROM_LANG,
+                query = "SELECT t " +
+                        "FROM PokemonsShapesTranslationsEntity t " +
+                        "WHERE t.languageId = :id"),
+        @NamedQuery(name = Requests.POK_SHAP_TRANS_FROM_ID_LANG,
+                query = "SELECT t " +
+                        "FROM PokemonsShapesTranslationsEntity t " +
+                        "WHERE t.pokemonShapeId = :id " +
+                        "AND t.languageId = :lang")
+})
 public class PokemonsShapesTranslationsEntity implements Serializable {
     private int pokemonShapeId;
     private int languageId;

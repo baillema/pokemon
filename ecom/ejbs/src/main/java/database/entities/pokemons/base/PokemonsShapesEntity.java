@@ -1,15 +1,23 @@
-package database.entities.pokemons;
+package database.entities.pokemons.base;
 
+import database.consts.Requests;
 import database.entities.pokemons.translations.PokemonsShapesTranslationsEntity;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "pokemons_shapes", schema = "public", catalog = "pokemondb")
+@NamedQueries({
+        @NamedQuery(name = Requests.POK_SHAP_ALL,
+                query = "SELECT x " +
+                        "FROM PokemonsShapesEntity x"),
+        @NamedQuery(name = Requests.POK_SHAP_FROM_ID,
+                query = "SELECT x " +
+                        "FROM PokemonsShapesEntity x " +
+                        "WHERE x.id = :id")
+})
 public class PokemonsShapesEntity {
     private int id;
     private Set<PokemonsShapesTranslationsEntity> translations = new HashSet<>();
