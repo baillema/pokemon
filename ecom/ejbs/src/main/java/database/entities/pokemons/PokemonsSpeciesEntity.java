@@ -1,14 +1,18 @@
 package database.entities.pokemons;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import database.entities.pokemons.translations.PokemonsSpeciesTranslationsEntity;
+
+import javax.persistence.*;
+import javax.transaction.Transactional;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "pokemons_species", schema = "public", catalog = "pokemondb")
 public class PokemonsSpeciesEntity {
     private int id;
+    private Set<PokemonsSpeciesTranslationsEntity> translations = new HashSet<>();
 
     @Id
     @Column(name = "id", nullable = false)
@@ -18,6 +22,16 @@ public class PokemonsSpeciesEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "pokemon_specie_id")
+    public Set<PokemonsSpeciesTranslationsEntity> getTranslations() {
+        return this.translations;
+    }
+
+    public void setTranslations(Set<PokemonsSpeciesTranslationsEntity> translations) {
+        this.translations = translations;
     }
 
     @Override

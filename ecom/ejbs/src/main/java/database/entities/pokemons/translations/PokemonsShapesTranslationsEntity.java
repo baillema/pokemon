@@ -1,25 +1,25 @@
-package database.entities.pokemons;
+package database.entities.pokemons.translations;
+
+import database.entities.pokemons.PokemonsShapesEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "pokemons_species_translations", schema = "public", catalog = "pokemondb")
-//@IdClass(PokemonsSpeciesTranslationsEntityPK.class)
-public class PokemonsSpeciesTranslationsEntity implements Serializable {
-    private int pokemonSpecieId;
+@Table(name = "pokemons_shapes_translations", schema = "public", catalog = "pokemondb")
+public class PokemonsShapesTranslationsEntity implements Serializable {
+    private int pokemonShapeId;
     private int languageId;
     private String translation;
-    private PokemonsSpeciesEntity pokemonsSpeciesByPokemonSpecieId;
 
     @Id
-    @Column(name = "pokemon_specie_id", nullable = false)
-    public int getPokemonSpecieId() {
-        return pokemonSpecieId;
+    @Column(name = "pokemon_shape_id", nullable = false)
+    public int getPokemonShapeId() {
+        return pokemonShapeId;
     }
 
-    public void setPokemonSpecieId(int pokemonSpecieId) {
-        this.pokemonSpecieId = pokemonSpecieId;
+    public void setPokemonShapeId(int pokemonShapeId) {
+        this.pokemonShapeId = pokemonShapeId;
     }
 
     @Id
@@ -44,7 +44,7 @@ public class PokemonsSpeciesTranslationsEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = pokemonSpecieId;
+        int result = pokemonShapeId;
         result = 31 * result + languageId;
         result = 31 * result + (translation != null ? translation.hashCode() : 0);
         return result;
@@ -59,9 +59,9 @@ public class PokemonsSpeciesTranslationsEntity implements Serializable {
             return false;
         }
 
-        PokemonsSpeciesTranslationsEntity entity = (PokemonsSpeciesTranslationsEntity) o;
+        PokemonsShapesTranslationsEntity entity = (PokemonsShapesTranslationsEntity) o;
 
-        if (pokemonSpecieId != entity.pokemonSpecieId) {
+        if (pokemonShapeId != entity.pokemonShapeId) {
             return false;
         }
         if (languageId != entity.languageId) {
@@ -73,14 +73,4 @@ public class PokemonsSpeciesTranslationsEntity implements Serializable {
 
         return true;
     }
-/*
-    @ManyToOne
-    @JoinColumn(name = "pokemon_specie_id", referencedColumnName = "id", nullable = false)
-    public PokemonsSpeciesEntity getPokemonsSpeciesByPokemonSpecieId() {
-        return pokemonsSpeciesByPokemonSpecieId;
-    }
-
-    public void setPokemonsSpeciesByPokemonSpecieId(PokemonsSpeciesEntity pokemonsSpeciesByPokemonSpecieId) {
-        this.pokemonsSpeciesByPokemonSpecieId = pokemonsSpeciesByPokemonSpecieId;
-    }*/
 }
