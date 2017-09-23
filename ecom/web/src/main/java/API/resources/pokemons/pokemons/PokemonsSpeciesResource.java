@@ -1,4 +1,4 @@
-package API.resources.pokemons;
+package API.resources.pokemons.pokemons;
 
 import database.dao.pokemons.PokemonsSpeciesDao;
 import database.entities.pokemons.PokemonsSpeciesEntity;
