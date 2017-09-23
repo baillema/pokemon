@@ -19,6 +19,7 @@ public class Api extends Application {
         classes.add(PokemonsDescriptionsResource.class);
         classes.add(PokemonsGendersResource.class);
         classes.add(PokemonsHabitatsResource.class);
+        classes.add(PokemonsShapesResource.class);
         classes.add(PokemonsSpeciesResource.class);
         classes.add(PokemonsSpeciesTranslationsResource.class);
         classes.add(SearchFromElastic.class);
