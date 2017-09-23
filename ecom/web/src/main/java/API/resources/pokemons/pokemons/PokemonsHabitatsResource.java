@@ -8,6 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@Path("/pokemons-habitats")
 public class PokemonsHabitatsResource {
     @EJB
     private PokemonsHabitatsDao PokemonsHabitatsDao;

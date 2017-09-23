@@ -8,6 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@Path("/pokemons-shapes")
 public class PokemonsShapesResource {
     @EJB
     private PokemonsShapesDao pokemonsShapesDao;
