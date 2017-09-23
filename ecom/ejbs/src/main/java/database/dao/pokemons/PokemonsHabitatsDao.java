@@ -2,10 +2,12 @@ package database.dao.pokemons;
 
 import database.entities.pokemons.PokemonsHabitatsEntity;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
 
+@Stateless
 public class PokemonsHabitatsDao {
     @PersistenceContext
     private EntityManager em;
