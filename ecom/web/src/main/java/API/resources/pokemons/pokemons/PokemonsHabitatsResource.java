@@ -12,12 +12,12 @@ import javax.ws.rs.core.Response;
 @Path("/pokemons-habitats")
 public class PokemonsHabitatsResource extends Application {
     @EJB
-    private PokemonsHabitatsDao PokemonsHabitatsDao;
+    private PokemonsHabitatsDao pokemonsHabitatsDao;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
-        return Response.ok(PokemonsHabitatsDao.readAll())
+        return Response.ok(pokemonsHabitatsDao.readAll())
                        .build();
     }
 
@@ -26,7 +26,7 @@ public class PokemonsHabitatsResource extends Application {
     @Produces(MediaType.APPLICATION_JSON)
     public Response get(@PathParam("id") int id) {
         return Response.status(Response.Status.OK)
-                       .entity(PokemonsHabitatsDao.read(id))
+                       .entity(pokemonsHabitatsDao.read(id))
                        .build();
     }
 
@@ -34,7 +34,7 @@ public class PokemonsHabitatsResource extends Application {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response post(PokemonsHabitatsEntity habitat) {
-        PokemonsHabitatsDao.create(habitat);
+        pokemonsHabitatsDao.create(habitat);
 
         return Response.status(Response.Status.CREATED)
                        .entity(habitat)
@@ -54,7 +54,7 @@ public class PokemonsHabitatsResource extends Application {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response put(@PathParam("id") int id, PokemonsHabitatsEntity habitat) {
         habitat.setId(id);
-        PokemonsHabitatsDao.update(habitat);
+        pokemonsHabitatsDao.update(habitat);
 
         return Response.ok(habitat)
                        .build();
@@ -69,7 +69,7 @@ public class PokemonsHabitatsResource extends Application {
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam("id") int id) {
-        PokemonsHabitatsDao.delete(id);
+        pokemonsHabitatsDao.delete(id);
 
         return Response.noContent()
                        .build();
