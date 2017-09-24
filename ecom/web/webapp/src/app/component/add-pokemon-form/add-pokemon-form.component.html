@@ -91,7 +91,7 @@
 
     <div class="form-group">
       <label for="shininess">Shiny</label>
-      <input type="checkbox" name="shininess" id="shininess">
+      <input type="checkbox" name="shininess" id="shininess" [(ngModel)]="pokemon.shininess" #shininess>
     </div>
     <button type="button" class="btn btn-default" (click)="newPokemon(); addPokemonForm.reset()">Reset</button>
     <button type="submit" [disabled]="!addPokemonForm.form.valid" class="btn btn-success">Submit</button>
