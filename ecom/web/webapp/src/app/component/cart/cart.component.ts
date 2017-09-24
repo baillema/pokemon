@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CartService} from '../../service/cart/cart.service';
-import {TimerObservable} from "rxjs/observable/TimerObservable";
-import {Subscription} from "rxjs";
+import {TimerObservable} from 'rxjs/observable/TimerObservable';
+import {Subscription} from 'rxjs';
+
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,9 @@ import {Subscription} from "rxjs";
 
 export class CartComponent implements OnInit {
   cart: Cart;
+
   private subscription: Subscription;
+
 
   constructor(private cartService: CartService) {
   }
@@ -20,6 +23,12 @@ export class CartComponent implements OnInit {
     this.getCart(1);
   }
 
+
+  OnChanges(): Cart {
+    return this.cart;
+  }
+
+
   getCart(userId: number): void {
     this.cartService
       .findCurrentCartForUser(userId)
@@ -27,7 +36,9 @@ export class CartComponent implements OnInit {
   }
 
   deleteArticle(article: Article, cart: Cart): Cart {
+
     this.resetLifeCycleCart();
+
 
     this.cartService
       .deleteArticleFromCart(article, cart)
@@ -36,7 +47,9 @@ export class CartComponent implements OnInit {
   }
 
   addArticle(article: Article, cart: Cart): Cart {
+
     this.initLifeCycle();
+
     this.cartService
       .addArticleFromCart(article, cart)
       .then(basket => this.cart = basket);
@@ -50,10 +63,11 @@ export class CartComponent implements OnInit {
     return this.cart;
   }
 
+
   /*Life Cycle Cart*/
   resetCart(cart: Cart): void {
-    this.cartService
-      .deleteArticlesFromCart(cart);
+    // this.cartService
+      // .deleteArticlesFromCart(cart);
   }
 
   resetLifeCycleCart() {
@@ -63,7 +77,7 @@ export class CartComponent implements OnInit {
 
   /*Must to call it when a user session start*/
   initLifeCycle() {
-    let timer = TimerObservable.create(300000, 1);
+    const timer = TimerObservable.create(300000, 1);
     this.subscription = timer.subscribe(t => {
       this.resetCart(this.cart);
     });
@@ -72,5 +86,10 @@ export class CartComponent implements OnInit {
   /*Must to call it when a user logout*/
   stopLifeCycle() {
     this.subscription.unsubscribe();
+  }
+
+  updatingCartLifeCycle(): void {
+    // this.cartService.updatingCartLifeCycle();
+
   }
 }

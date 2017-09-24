@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-declare var jquery:any;
-declare var $ :any;
+declare var jquery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -11,8 +11,11 @@ export class HomeComponent {
 
   constructor() { }
 
-  toggleBlock(){
-    alert('click');
-    $('.toggle-block').remove();
+  toggleBlock() {
+    const toggleBlock = document.getElementsByClassName('toggle-block');
+    for (let i = 0; i < toggleBlock.length; i++) {
+      toggleBlock[i].classList.toggle('closed');
+    }
+
   }
 }

@@ -6390,11 +6390,11 @@ a.label:hover, a.label:focus {
 
 /* line 56, ../sass/bootstrap/_labels.scss */
 .label-info {
-  background-color: #5bc0de;
+  background-color: #1D3B73;
 }
 /* line 7, ../sass/bootstrap/mixins/_labels.scss */
 .label-info[href]:hover, .label-info[href]:focus {
-  background-color: #31b0d5;
+  background-color: #13264a;
 }
 
 /* line 60, ../sass/bootstrap/_labels.scss */
@@ -8688,94 +8688,242 @@ button.close {
 }
 /* line 5, ../sass/main.scss */
 body {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* line 8, ../sass/main.scss */
+/* line 9, ../sass/main.scss */
+a {
+  cursor: pointer;
+}
+
+/* line 13, ../sass/main.scss */
 .container {
   background: #fff;
+  padding-bottom: 25px;
 }
 
-/* line 11, ../sass/main.scss */
+/* line 18, ../sass/main.scss */
 .center {
   width: 100%;
   text-align: center;
 }
 
-/* line 15, ../sass/main.scss */
+/* line 23, ../sass/main.scss */
 .button {
   cursor: pointer;
 }
 
-/* line 18, ../sass/main.scss */
+/* line 27, ../sass/main.scss */
 .pt25 {
   padding-top: 25px;
 }
 
-/* line 21, ../sass/main.scss */
+/* line 31, ../sass/main.scss */
 .unstyled {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* line 26, ../sass/main.scss */
+/* line 37, ../sass/main.scss */
 .w100 {
   width: 100%;
 }
 
-/* line 29, ../sass/main.scss */
+/* line 41, ../sass/main.scss */
 a {
   color: #1D3B73;
 }
 
-/* line 33, ../sass/main.scss */
+/* line 45, ../sass/main.scss */
 .footer {
   width: 100%;
   background: #000;
-  padding-bottom: 50px;
+  margin-top: 40px;
+  padding: 10px 0;
   color: #fff;
 }
-/* line 38, ../sass/main.scss */
+/* line 51, ../sass/main.scss */
 .footer a {
   color: #fff;
 }
-/* line 41, ../sass/main.scss */
+/* line 54, ../sass/main.scss */
 .footer .container {
   background: transparent;
 }
 
-/* line 47, ../sass/main.scss */
+/* line 60, ../sass/main.scss */
 .carousel {
   padding: 50px 0;
 }
-/* line 49, ../sass/main.scss */
+/* line 62, ../sass/main.scss */
 .carousel .row {
   margin-bottom: 25px;
 }
 
-/* line 54, ../sass/main.scss */
+/* line 67, ../sass/main.scss */
 .slogan {
   font-family: Arial;
 }
 
-/* line 57, ../sass/main.scss */
+/* line 71, ../sass/main.scss */
 .full-type {
   margin-bottom: 35px;
 }
-/* line 59, ../sass/main.scss */
+/* line 73, ../sass/main.scss */
 .full-type .items {
   margin-bottom: 25px;
 }
 
-/* line 63, ../sass/main.scss */
+/* line 78, ../sass/main.scss */
 .toggle-block {
+  margin-top: 35px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: height 2s;
+  /* Safari */
+  transition: height 2s;
+}
+/* line 85, ../sass/main.scss */
+.toggle-block.closed {
+  height: 0;
+  display: none;
+}
+
+/* line 92, ../sass/main.scss */
+.form-group.error label, .form-group.error .error-message, .form-group.error input {
+  color: #e23425;
+}
+/* line 95, ../sass/main.scss */
+.form-group.error .error-message {
+  font-style: italic;
+}
+/* line 98, ../sass/main.scss */
+.form-group.error input {
+  border-color: #e23425;
+}
+
+/* line 103, ../sass/main.scss */
+.cart-btn {
+  position: relative;
+}
+/* line 105, ../sass/main.scss */
+.cart-btn .cart-count {
+  position: absolute;
+  top: 3%;
+  left: 54%;
+}
+
+/* line 113, ../sass/main.scss */
+.carousel-item img {
+  width: 100%;
+}
+
+/* line 119, ../sass/main.scss */
+.vertical-tabs li {
   display: block;
   width: 100%;
   height: 100%;
 }
-/* line 67, ../sass/main.scss */
-.toggle-block.closed {
-  height: 0;
-  display: none;
+/* line 124, ../sass/main.scss */
+.vertical-tabs a {
+  color: #1D3B73;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* line 130, ../sass/main.scss */
+.vertical-tabs li.active {
+  background: #1D3B73;
+}
+/* line 132, ../sass/main.scss */
+.vertical-tabs li.active a {
+  color: #fff;
+}
+
+/* line 138, ../sass/main.scss */
+.facette-type {
+  position: relative;
+  width: 33px;
+  height: 33px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+/* line 145, ../sass/main.scss */
+.facette-type input {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+}
+/* line 151, ../sass/main.scss */
+.facette-type label {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* line 158, ../sass/main.scss */
+.facette-item {
+  width: 32px;
+  height: 32px;
+}
+/* line 161, ../sass/main.scss */
+.facette-item.selected {
+  border: 3px solid #1D3B73;
+  border-radius: 32px;
+}
+
+/* line 167, ../sass/main.scss */
+.action-bar {
+  width: 100%;
+  display: block;
+  height: 30px;
+}
+
+/* line 173, ../sass/main.scss */
+.pokerDollar {
+  width: 16px;
+  height: 16px;
+}
+
+/* line 178, ../sass/main.scss */
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px !important;
+  display: block;
+  background: #fff;
+  border-bottom: 1px solid #1D3B73;
+}
+/* line 188, ../sass/main.scss */
+.sticky .container {
+  padding-bottom: 0;
+}
+/* line 191, ../sass/main.scss */
+.sticky .header {
+  height: 70px !important;
+}
+/* line 195, ../sass/main.scss */
+.sticky h1 {
+  height: 45px !important;
+}
+/* line 197, ../sass/main.scss */
+.sticky h1 img {
+  height: 40px !important;
+}
+
+/* line 204, ../sass/main.scss */
+.header-wrapper {
+  width: 100%;
+  height: 100px;
+  z-index: 9;
+  display: block;
+}
+/* line 209, ../sass/main.scss */
+.header-wrapper .header {
+  z-index: 99;
 }

@@ -1,62 +1,74 @@
-
 <!-- HEADER START -->
-<div class="container">
-  <header class="header">
-    <div class="row">
-      <div class="col-md-3">
-        <h1><a href="#">
-          <img src="../assets/img/logo.png" alt="">
-        </a></h1>
-      </div>
-      <div class="col-md-6">
-        <div class="input-group center pt25">
-          <input type="text" class="form-control" placeholder="Recherche rapide" aria-describedby="basic-addon2" tabindex="1">
-          <span class="input-group-addon button" id="basic-addon2">
+<div class="header-wrapper" id="header">
+  <div class="container">
+    <header class="header ">
+      <div class="row">
+        <div class="col-md-3">
+          <h1><a routerLink="/home">
+            <img src="../assets/img/logo.png" alt="">
+          </a></h1>
+        </div>
+        <div class="col-md-6">
+          <div class="input-group center pt25">
+            <input type="text" class="form-control" placeholder="Quick search" aria-describedby="basic-addon2" tabindex="1">
+            <span class="input-group-addon button" id="basic-addon2">
                     <i class="glyphicon glyphicon-search"></i>
-                    Rechercher
+                    Search
                   </span>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="pt25">
+            <a routerLink="/login" class="btn btn-primary">Register</a>
+            <a routerLink="/login" class="btn btn-warning">Sign in</a>
+            <a routerLink="/cart" class="btn btn-outline-primary cart-btn">
+              <span class="label label-info cart-count" >0</span>
+              <i class="fa fa-shopping-cart fa-2x"></i>
+            </a>
+          </div>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="pt25">
-          <a routerLink="/connexion" class="btn btn-primary">Se connecter</a>
-          <a href="#" class="btn btn-success">S'inscrire</a>
-          <a class="nav-link"  routerLink="/cart">Cart</a>
-        </div>
-      </div>
-    </div>
-  </header>
+    </header>
 
+  </div>
 </div>
 <!-- NAV START -->
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" routerLink="/accueil">Accueil</a>
+      <a class="nav-link active" routerLink="/home"> <i class="fa fa-home"></i> Home</a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link"  routerLink="/items">Pokemons</a>
+      <a class="nav-link" routerLink="/items">Pokémons</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/item">Pokemon</a>
+      <a class="nav-link" routerLink="/item">Pokémon</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/connexion">Connexion / inscription</a>
+      <a class="nav-link" routerLink="/login">Register/Sign in</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/profil">Mon profil</a>
+      <a class="nav-link" routerLink="/profil">My profile</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/ajout">Ajouter</a>
+      <a class="nav-link" routerLink="/add">Add a Pokémon</a>
     </li>
-    <li class="nav-item">
-      <a routerLink="/echange" class="nav-link">Echange</a>
-    </li>
-
-
+   <!-- <li class="nav-item">
+      <a routerLink="/change" class="nav-link">Exchange</a>
+    </li>-->
   </ul>
 </div>
 <!--  NAV END -->
 
 <router-outlet></router-outlet>
+
+<!-- FOOTER START -->
+<footer class="footer">
+  <div class="container">
+    <div class="center">
+      ECOM - IM2AG - 2017
+    </div>
+  </div>
+</footer>
+<!-- FOOTER END -->
