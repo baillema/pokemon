@@ -1,5 +1,6 @@
 package database.entities;
 
+import database.entities.articles.PokemonsArticlesEntity;
 import database.enums.CartsStatesEnum;
 
 import javax.persistence.*;

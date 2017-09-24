@@ -1,6 +1,6 @@
 package Services;
 
-import database.entities.PokemonsArticlesEntity;
+import database.entities.articles.PokemonsArticlesEntity;
 
 public class PokemonService {
 
