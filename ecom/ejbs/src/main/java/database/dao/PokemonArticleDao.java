@@ -1,6 +1,6 @@
 package database.dao;
 
-import database.entities.PokemonsArticlesEntity;
+import database.entities.articles.PokemonsArticlesEntity;
 
 import javax.ejb.Stateless;
 

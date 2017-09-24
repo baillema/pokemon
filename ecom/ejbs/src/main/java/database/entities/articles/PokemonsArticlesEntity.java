@@ -1,5 +1,6 @@
-package database.entities;
+package database.entities.articles;
 
+import database.consts.Requests;
 import database.enums.ArticlesStatesEnum;
 
 import javax.persistence.*;
@@ -7,6 +8,15 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "pokemons_articles", schema = "public", catalog = "pokemondb")
+@NamedQueries({
+        @NamedQuery(name = Requests.POK_ART_ALL,
+                    query = "SELECT p " +
+                            "FROM PokemonsArticlesEntity p"),
+        @NamedQuery(name = Requests.POK_ART_FROM_ID,
+                    query = "SELECT p " +
+                            "FROM PokemonsArticlesEntity p " +
+                            "WHERE p.id = :id")
+})
 public class PokemonsArticlesEntity implements Serializable {
     private int id;
     private float price;

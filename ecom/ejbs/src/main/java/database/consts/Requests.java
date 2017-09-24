@@ -5,6 +5,9 @@ public class Requests {
     public static final String LANGUAGES_FROM_ID = "languages.findFromId";
     public static final String LANGUAGES_FROM_LANG = "languages.findFromLang";
 
+    public static final String POK_ART_ALL = "pokemons_articles.findAll";
+    public static final String POK_ART_FROM_ID = "pokemons_articles.findFromId";
+
     public static final String POK_ALL = "pokemons.findAll";
     public static final String POK_FROM_ID = "pokemons.findFromId";
 

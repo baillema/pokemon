@@ -2,7 +2,7 @@ package API.resources;
 
 import Services.PokemonService;
 import database.dao.PokemonArticleDao;
-import database.entities.PokemonsArticlesEntity;
+import database.entities.articles.PokemonsArticlesEntity;
 
 import javax.ejb.EJB;
 import javax.ws.rs.PUT;

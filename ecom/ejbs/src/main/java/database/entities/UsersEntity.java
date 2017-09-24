@@ -1,6 +1,7 @@
 package database.entities;
 
 
+import database.entities.articles.PokemonsArticlesEntity;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;

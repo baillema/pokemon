@@ -2,12 +2,15 @@ package API;
 
 import API.resources.LanguagesResource;
 import API.resources.SearchFromElastic;
+import API.resources.articles.PokemonsArticlesResource;
 import API.resources.pokemons.PokemonsResource;
 import API.resources.pokemons.base.*;
 import API.resources.pokemons.translations.*;
 import API.resources.CartResource;
 import API.resources.PokemonResource;
 import API.resources.UserResource;
+import database.entities.articles.PokemonsArticlesEntity;
+
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
@@ -19,6 +22,7 @@ public class Api extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
         classes.add(LanguagesResource.class);
+        classes.add(PokemonsArticlesResource.class);
         classes.add(PokemonsResource.class);
         classes.add(PokemonsColorsResource.class);
         classes.add(PokemonsDescriptionsResource.class);
