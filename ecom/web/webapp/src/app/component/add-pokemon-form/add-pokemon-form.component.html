@@ -6,7 +6,7 @@
       <label for="species">Species</label>
       <select class="form-control" id="species" name="species"
               required
-              [(ngModel)]="pokemon.speciesId" #speciesNg="ngModel">
+              [(ngModel)]="article.speciesId" #speciesNg="ngModel">
         <option *ngFor="let spec of species" [value]="spec.pokemonSpecieId">{{spec.translation}} ({{spec.pokemonSpecieId}})</option>
       </select>
 
@@ -21,7 +21,7 @@
       <label for="level">Level</label>
       <input type="number" class="form-control" id="level"
              required min ="1" max="100"
-             [(ngModel)]="pokemon.level" name="level" #level="ngModel" (keypress)="_keyPress($event)">
+             [(ngModel)]="article.level" name="level" #level="ngModel" (keypress)="_keyPress($event)">
 
       <div *ngIf="level.invalid && (level.dirty || level.touched)" class="alert alert-danger">
         <div *ngIf="level.errors.required">
@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <div *ngIf="pokemon.level < 1 || pokemon.level > 100" class="alert alert-danger">
+      <div *ngIf="article.level < 1 || article.level > 100" class="alert alert-danger">
         Level must be between 1 and 100.
       </div>
 
@@ -38,7 +38,7 @@
     <div class="form-group">
 
       <label for="name">Name (max {{maxNameLength}} characters)</label>
-      <input type="text" class="form-control" id="name" required [attr.maxLength]="maxNameLength" [(ngModel)]="pokemon.name"
+      <input type="text" class="form-control" id="name" required [attr.maxLength]="maxNameLength" [(ngModel)]="article.name"
         name="name" #name="ngModel">
       <small class="form-text text-muted" *ngIf="name?.value?.length > 0">
         {{name?.value?.length}} / {{maxNameLength}} characters
@@ -61,7 +61,7 @@
 
       <label for ="description">Description (max {{MaxDescriptionLength}} characters)</label>
       <textarea name="description" class="form-control" id="description" rows="3"
-                [attr.maxLength]="MaxDescriptionLength" [(ngModel)]="pokemon.description"
+                [attr.maxLength]="MaxDescriptionLength" [(ngModel)]="article.description"
                 #description="ngModel"></textarea>
 
       <small class="form-text text-muted" *ngIf="description?.value?.length > 0">
@@ -75,7 +75,7 @@
       <label for="price">Price</label>
       <input type="number" class="form-control" id="price"
              required min ="1" max="9999"
-             [(ngModel)]="pokemon.price" name="price" #price="ngModel" (keypress)="_keyPress($event)">
+             [(ngModel)]="article.price" name="price" #price="ngModel" (keypress)="_keyPress($event)">
 
       <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
         <div *ngIf="price.errors.required">
@@ -83,7 +83,7 @@
         </div>
       </div>
 
-      <div *ngIf="pokemon.price < 1 || pokemon.price >   9999" class="alert alert-danger">
+      <div *ngIf="article.price < 1 || article.price >   9999" class="alert alert-danger">
         Price must be between 1 and 9999.
       </div>
 
@@ -91,7 +91,7 @@
 
     <div class="form-group">
       <label for="shininess">Shiny</label>
-      <input type="checkbox" name="shininess" id="shininess" [(ngModel)]="pokemon.shininess" #shininess>
+      <input type="checkbox" name="shininess" id="shininess" [(ngModel)]="article.shininess" #shininess>
     </div>
     <button type="button" class="btn btn-default" (click)="newPokemon(); addPokemonForm.reset()">Reset</button>
     <button type="submit" [disabled]="!addPokemonForm.form.valid" class="btn btn-success">Submit</button>
