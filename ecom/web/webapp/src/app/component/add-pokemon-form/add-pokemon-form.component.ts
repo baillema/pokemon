@@ -1,5 +1,6 @@
 import { PokemonSpeciesTranslation } from '../../model/pokemons/translations/pokemon-species-translation';
-import { PokemonSpeciesService } from '../../service/pokemon-species/pokemon-species.service';
+import { PokemonArticle } from '../../model/articles/pokemon-article';
+import { PokemonsSpeciesTranslationsService } from '../../service/pokemons/translations/pokemons-species-translations.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 
 import { Pokemon } from './../../model/pokemon';
@@ -10,7 +11,7 @@ import { Pokemon } from './../../model/pokemon';
   styleUrls: ['./add-pokemon-form.component.css']
 })
 export class AddPokemonFormComponent implements OnInit {
-  private maxNicknameLength = 10;
+  private maxNameLength = 20;
   private MaxDescriptionLength = 500;
 
   private pokemon: PokemonArticle;
@@ -21,7 +22,7 @@ export class AddPokemonFormComponent implements OnInit {
 
   ngOnInit() {
     this.pokemon = {} as PokemonArticle;
-
+    this.pokemon.shininess  = false;
     this.pokemonSpeciesService.allEnglish().subscribe(res => {
       this.species = res.speciesTranslations;
       this.err = res.err;

@@ -37,21 +37,21 @@
 
     <div class="form-group">
 
-      <label for="nickname">Nickname (max {{maxNicknameLength}} characters)</label>
-      <input type="text" class="form-control" id="nickname" required [attr.maxLength]="maxNicknameLength" [(ngModel)]="pokemon.nickname"
-        name="nickname" #nickname="ngModel">
-      <small class="form-text text-muted" *ngIf="nickname?.value?.length > 0">
-        {{nickname?.value?.length}} / {{maxNicknameLength}} characters
+      <label for="name">Name (max {{maxNameLength}} characters)</label>
+      <input type="text" class="form-control" id="name" required [attr.maxLength]="maxNameLength" [(ngModel)]="pokemon.name"
+        name="name" #name="ngModel">
+      <small class="form-text text-muted" *ngIf="name?.value?.length > 0">
+        {{name?.value?.length}} / {{maxNameLength}} characters
       </small>
 
 
-      <div *ngIf="nickname.invalid && (nickname.dirty || nickname.touched)" class="alert alert-danger">
-        <div *ngIf="nickname.errors.required">
-          Nickname is required.
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+        <div *ngIf="name.errors.required">
+          Name is required.
         </div>
 
-        <div *ngIf="nickname.errors.maxlength">
-          Nickname must be less than 4 characters long.
+        <div *ngIf="name.errors.maxlength">
+          Name must be less than 4 characters long.
         </div>
       </div>
 
