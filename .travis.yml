@@ -29,11 +29,7 @@ sudo:
 
 script:
   - sonar-scanner
-
-cache:
-  directories:
-    - '$HOME/.sonar/cache'
-
+  
 # Tests both JDK.
 before_script:
   - jdk_switcher use $JDK
