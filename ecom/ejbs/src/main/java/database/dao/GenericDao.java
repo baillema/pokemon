@@ -21,7 +21,8 @@ public class GenericDao<T> implements IGenericDao<T> {
 
     @Override
     public T create(T t) {
-        return null;
+        this.em.persist(t);
+        return t;
     }
 
     @Override
