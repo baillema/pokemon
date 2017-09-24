@@ -66,7 +66,7 @@ CREATE TABLE pokemons_genders_translations
   gender_id INT  REFERENCES pokemons_genders (id),
   language_id INT  REFERENCES languages (id),
   translation VARCHAR(50),
-  PRIMARY KEY (gender_id, language_id, translation)
+  PRIMARY KEY (gender_id, language_id)
 );
 
 CREATE TABLE pokemons_species
@@ -214,9 +214,10 @@ CREATE TABLE users
   firstname VARCHAR(20),
   birthday date,
   gender VARCHAR(6) CHECK (gender = 'Male' OR gender = 'Female'),
-  email VARCHAR(20),
+  email VARCHAR(50),
   password chkpass,
-  lastname VARCHAR(30)
+  lastname VARCHAR(30),
+  handle VARCHAR (30)
 );
 
 CREATE TABLE users_roles
@@ -232,14 +233,9 @@ CREATE TABLE users_roles
 
 CREATE TABLE carts
 (
-  id SERIAL PRIMARY KEY
-);
-
--- Enum
-CREATE TABLE articles_states
-(
   id SERIAL PRIMARY KEY,
-  name VARCHAR(12) CHECK (name = 'Saleable' OR name = 'Exchangeable' OR name = 'Blank')
+  id_user INT NOT NULL REFERENCES users (id),
+  state VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE pokemons_articles
@@ -251,7 +247,7 @@ CREATE TABLE pokemons_articles
   shininess BOOLEAN,
   level INT CHECK (level <= 100 AND level >= 1),
   pokemon_id INT NOT NULL REFERENCES pokemons (id),
-  state INT NOT NULL REFERENCES articles_states (id),
+  state VARCHAR(20),
   user_id INT NOT NULL REFERENCES users (id),
   cart_id INT REFERENCES carts (id)
 );
@@ -278,7 +274,7 @@ CREATE TABLE items_articles_carts
   id_cart INT NOT NULL REFERENCES carts (id)
 );
 
-CREATE TABLE feedback
+CREATE TABLE feedbacks
 (
   id SERIAL PRIMARY KEY,
   text TEXT,
