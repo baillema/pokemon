@@ -46,7 +46,7 @@ public class PokemonsHabitatsTranslationsResource extends Application {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getFromId(@PathParam("id") int id) {
         return Response.status(Response.Status.OK)
-                       .entity(dao.findWithNamedQuery(Requests.POK_GEND_TRANS_FROM_ID, id))
+                       .entity(dao.findWithNamedQuery(Requests.POK_HAB_TRANS_FROM_ID, id))
                        .build();
     }
 
@@ -55,7 +55,7 @@ public class PokemonsHabitatsTranslationsResource extends Application {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getFromLang(@PathParam("id") int id) {
         return Response.status(Response.Status.OK)
-                       .entity(dao.findWithNamedQuery(Requests.POK_GEND_TRANS_FROM_LANG, id))
+                       .entity(dao.findWithNamedQuery(Requests.POK_HAB_TRANS_FROM_LANG, id))
                        .build();
     }
 
