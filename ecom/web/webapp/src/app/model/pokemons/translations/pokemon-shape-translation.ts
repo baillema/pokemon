@@ -1,2 +1,5 @@
-export class PokemonShapeTranslation {
+export interface PokemonShapeTranslation {
+  pokemonShapeId: number;
+  languageId: number;
+  translation: string;
 }
