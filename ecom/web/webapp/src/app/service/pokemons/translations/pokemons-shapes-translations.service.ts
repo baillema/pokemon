@@ -22,15 +22,15 @@ export class PokemonsShapesTranslationsService {
   }
 
   public getFromId(id: number): Observable<PokemonShapeTranslationsResponse> {
-    return this.getFrom(`/id/${id}`);
+    return this.getFrom(`id/${id}`);
   }
 
   public getFromLang(id: number): Observable<PokemonShapesTranslationsResponse> {
-    return this.allOf(`/lang/${id}`);
+    return this.allOf(`lang/${id}`);
   }
 
   public getFromIdLang(shapeId: number, langId): Observable<PokemonShapeTranslationsResponse> {
-    return this.getFrom(`/idLang/${shapeId}/${langId}`);
+    return this.getFrom(`idLang/${shapeId}/${langId}`);
   }
 
   private getFrom(path: string): Observable<PokemonShapeTranslationsResponse> {

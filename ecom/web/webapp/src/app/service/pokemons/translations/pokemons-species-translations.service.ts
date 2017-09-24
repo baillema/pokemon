@@ -22,15 +22,15 @@ export class PokemonsSpeciesTranslationsService {
   }
 
   public getFromId(id: number): Observable<PokemonSpeciesTranslationsResponse> {
-    return this.getFrom(`/id/${id}`);
+    return this.getFrom(`id/${id}`);
   }
 
   public getFromLang(id: number): Observable<MultiplePokemonSpeciesTranslationsResponse> {
-    return this.allOf(`/lang/${id}`);
+    return this.allOf(`lang/${id}`);
   }
 
   public getFromIdLang(specieId: number, langId): Observable<PokemonSpeciesTranslationsResponse> {
-    return this.getFrom(`/idLang/${specieId}/${langId}`);
+    return this.getFrom(`idLang/${specieId}/${langId}`);
   }
 
   private getFrom(path: string): Observable<PokemonSpeciesTranslationsResponse> {
