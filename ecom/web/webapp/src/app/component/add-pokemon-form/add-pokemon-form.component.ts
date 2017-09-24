@@ -41,9 +41,11 @@ export class AddPokemonFormComponent implements OnInit {
 
   onSubmit(): void {
     this.article.userId = 1;
+    this.article.state = 'Saleable';
     console.log(this.article);
     this.pokemonsArticlesService.save(this.article).subscribe(res => {
-        this.article = res.article;
+      this.article = res.article;
+      this.err = res.err;
     });
   }
 }

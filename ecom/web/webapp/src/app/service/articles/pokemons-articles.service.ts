@@ -44,11 +44,11 @@ export class PokemonsArticlesService {
 
     return obs.map(res => {
       const body: any = res.json();
-      return { err: null, article: body };
+      return { err: null, article: article };
     })
       .catch(err => {
         console.log('Server error: ' + JSON.stringify(err, null, 2));
-        return Observable.of({ err: err, article: null });
+        return Observable.of({ err: err, article: article });
       });
   }
 }

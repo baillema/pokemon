@@ -6,7 +6,7 @@
       <label for="species">Species</label>
       <select class="form-control" id="species" name="species"
               required
-              [(ngModel)]="article.speciesId" #speciesNg="ngModel">
+              [(ngModel)]="article.pokemonId" #speciesNg="ngModel">
         <option *ngFor="let spec of species" [value]="spec.pokemonSpecieId">{{spec.translation}} ({{spec.pokemonSpecieId}})</option>
       </select>
 
