@@ -60,10 +60,10 @@ export class PokemonsSpeciesTranslationsService {
 
 export interface MultiplePokemonSpeciesTranslationsResponse {
   err: any;
-  speciesTranslations: PokemonSpecieTranslation[];
+  speciesTranslations: PokemonSpeciesTranslation[];
 }
 
 export interface PokemonSpeciesTranslationsResponse {
   err: any;
-  specieTranslations: PokemonSpecieTranslation;
+  specieTranslations: PokemonSpeciesTranslation;
 }
