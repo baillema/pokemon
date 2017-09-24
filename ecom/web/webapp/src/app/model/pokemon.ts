@@ -1,5 +1,3 @@
-import { PokemonSpecies } from './pokemon-species';
-
 export class Pokemon {
   id: number;
   speciesId: number;

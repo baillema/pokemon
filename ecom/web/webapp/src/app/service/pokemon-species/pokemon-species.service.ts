@@ -1,4 +1,4 @@
-import { PokemonSpecies } from '../../model/pokemon-species';
+import { PokemonSpeciesTranslation } from '../../model/pokemons/translations/pokemon-species-translation';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
@@ -25,10 +25,10 @@ export class PokemonSpeciesService {
 
 export interface MultiplePokemonSpeciesResponse {
   err: any;
-  species: PokemonSpecies[];
+  species: PokemonSpeciesTranslation[];
 }
 
 export interface PokemonSpeciesResponse {
   err: any;
-  species: PokemonSpecies;
+  species: PokemonSpeciesTranslation;
 }

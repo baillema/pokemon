@@ -1,4 +1,4 @@
-import { PokemonSpecies } from '../../model/pokemon-species';
+import { PokemonSpeciesTranslation } from '../../model/pokemons/translations/pokemon-species-translation';
 import { PokemonSpeciesService } from '../../service/pokemon-species/pokemon-species.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 
@@ -14,7 +14,7 @@ export class AddPokemonFormComponent implements OnInit {
   private MaxDescriptionLength = 500;
 
   private pokemon: Pokemon;
-  private species: PokemonSpecies[];
+  private species: PokemonSpeciesTranslation[];
   err: any;
 
   constructor(private pokemonSpeciesService: PokemonSpeciesService) {}
