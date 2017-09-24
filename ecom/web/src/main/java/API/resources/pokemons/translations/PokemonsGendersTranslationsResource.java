@@ -60,7 +60,7 @@ public class PokemonsGendersTranslationsResource extends Application {
     }
 
     @GET
-    @Path("/{species-id}/{lang-id}")
+    @Path("/idLang/{species-id}/{lang-id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getLang(@PathParam("species-id") int id, @PathParam("lang-id") int lang) {
         return Response.status(Response.Status.OK)
