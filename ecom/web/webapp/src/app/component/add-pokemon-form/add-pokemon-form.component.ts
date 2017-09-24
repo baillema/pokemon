@@ -1,6 +1,7 @@
 import { PokemonSpeciesTranslation } from '../../model/pokemons/translations/pokemon-species-translation';
 import { PokemonArticle } from '../../model/articles/pokemon-article';
 import { PokemonsSpeciesTranslationsService } from '../../service/pokemons/translations/pokemons-species-translations.service';
+import { PokemonsArticlesService } from '../../service/articles/pokemons-articles.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 
 import { Pokemon } from './../../model/pokemon';
@@ -18,7 +19,8 @@ export class AddPokemonFormComponent implements OnInit {
   private species: PokemonSpeciesTranslation[];
   err: any;
 
-  constructor(private pokemonSpeciesService: PokemonsSpeciesTranslationsService) {}
+  constructor(private pokemonsSpeciesService: PokemonsSpeciesTranslationsService,
+              private pokemonsArticlesService: PokemonsArticlesService) {}
 
   ngOnInit() {
     this.article = {} as PokemonArticle;
@@ -38,9 +40,10 @@ export class AddPokemonFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.pokemon.userId = 1;
-    console.log(this.pokemon);
     this.article.userId = 1;
     console.log(this.article);
+    this.pokemonsArticlesService.save(this.article).subscribe(res => {
+        this.article = res.article;
+    });
   }
 }
