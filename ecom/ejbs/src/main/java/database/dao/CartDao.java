@@ -1,13 +1,12 @@
 package database.dao;
 
 import database.entities.CartsEntity;
-import database.services.GenericDaoJpaImpl;
 
 import javax.ejb.Stateless;
 import java.util.List;
 
 @Stateless
-public class CartDao extends GenericDaoJpaImpl<CartsEntity> {
+public class CartDao extends GenericDao<CartsEntity> {
 
     public List findAllByBoughtCart(int userId) {
         return em.createQuery("FROM CartsEntity C WHERE C.state ='Bought' AND C.userId = :userId")

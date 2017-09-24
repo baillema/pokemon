@@ -35,6 +35,11 @@ public class GenericDao<T> implements IGenericDao<T> {
     }
 
     @Override
+    public T find(final int id) {
+        return this.em.find(type, id);
+    }
+
+    @Override
     public Collection<T> findWithNamedQuery(String queryName) {
         return (Collection<T>) this.em.createNamedQuery(queryName).getResultList();
     }

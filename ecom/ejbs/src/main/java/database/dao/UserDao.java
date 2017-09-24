@@ -1,13 +1,12 @@
 package database.dao;
 
 import database.entities.UsersEntity;
-import database.services.GenericDaoJpaImpl;
 
 import javax.ejb.Stateless;
 import java.util.List;
 
 @Stateless
-public class UserDao extends GenericDaoJpaImpl<UsersEntity> {
+public class UserDao extends GenericDao<UsersEntity> {
 
     public UserDao() {
         super(UsersEntity.class);

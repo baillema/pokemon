@@ -9,6 +9,8 @@ public interface IGenericDao<T> {
 
     T update(T t);
 
+    T find(int id);
+
     Collection findWithNamedQuery(String queryName);
 
     Collection findWithNamedQuery(String queryName, int id);
