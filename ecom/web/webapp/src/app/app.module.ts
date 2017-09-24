@@ -13,7 +13,8 @@ import { AjoutComponent } from './component/ajout/ajout.component';
 import { EchangeComponent } from './component/echange/echange.component';
 import { CartComponent } from './component/cart/cart.component';
 import { CartService } from './service/cart/cart.service';
-import { PokemonSpeciesService } from './service/pokemon-species/pokemon-species.service';
+import { PokemonsArticlesService } from './service/articles/pokemons-articles.service';
+import { PokemonsSpeciesTranslationsService } from './service/pokemons/translations/pokemons-species-translations.service';
 import { AddPokemonFormComponent } from './component/add-pokemon-form/add-pokemon-form.component';
 import { HttpModule } from '@angular/http';
 import {AngularFontAwesomeModule} from 'angular-font-awesome/angular-font-awesome';
@@ -40,7 +41,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome/angular-font-awesom
   ],
   providers: [
     CartService,
-    PokemonSpeciesService
+    PokemonsSpeciesTranslationsService,
+    PokemonsArticlesService
   ],
   bootstrap: [AppComponent]
 })

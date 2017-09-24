@@ -13,22 +13,19 @@ export class AddPokemonFormComponent implements OnInit {
   private maxNicknameLength = 10;
   private MaxDescriptionLength = 500;
 
-  private pokemon: Pokemon;
+  private pokemon: PokemonArticle;
   private species: PokemonSpeciesTranslation[];
   err: any;
 
-  constructor(private pokemonSpeciesService: PokemonSpeciesService) {}
+  constructor(private pokemonSpeciesService: PokemonsSpeciesTranslationsService) {}
 
   ngOnInit() {
-    this.newPokemon();
-    this.pokemonSpeciesService.all().subscribe(res => {
-      this.species = res.species;
+    this.pokemon = {} as PokemonArticle;
+
+    this.pokemonSpeciesService.allEnglish().subscribe(res => {
+      this.species = res.speciesTranslations;
       this.err = res.err;
     });
-  }
-
-  newPokemon(): void {
-    this.pokemon = new Pokemon();
   }
 
   _keyPress(event: KeyboardEvent) {
@@ -40,7 +37,7 @@ export class AddPokemonFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.species[0].translation);
+    this.pokemon.userId = 1;
     console.log(this.pokemon);
   }
 }
