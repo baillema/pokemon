@@ -1,3 +1,4 @@
+///<reference path="../../../../node_modules/@angular/core/src/metadata/lifecycle_hooks.d.ts"/>
 import {Component, OnInit} from '@angular/core';
 import {Pokemons} from "../../model/pokemons";
 import {ItemsService, PokemonsResponse} from '../../service/items/items.service';

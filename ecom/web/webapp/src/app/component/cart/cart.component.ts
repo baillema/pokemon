@@ -2,6 +2,8 @@ import {Component, OnInit, OnChanges} from '@angular/core';
 import {CartService} from '../../service/cart/cart.service';
 import {TimerObservable} from 'rxjs/observable/TimerObservable';
 import {Subscription} from 'rxjs';
+import {Article} from '../../model/article';
+import {Cart} from '../../model/cart';
 
 @Component({
   selector: 'app-cart',
