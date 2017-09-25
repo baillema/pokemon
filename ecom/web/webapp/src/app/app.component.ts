@@ -1,9 +1,6 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-
-declare var jquery: any;
-declare var $: any;
-
+import { Component } from '@angular/core';
+import { Router} from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -26,10 +23,7 @@ export class AppComponent {
       }
     }
   }
-
-  title = 'PokeShop';
-
-
+  title   = 'PokeShop';
 }
 
 /*
