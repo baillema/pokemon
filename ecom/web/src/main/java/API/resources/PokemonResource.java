@@ -10,12 +10,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Application;
 
-@Path("pokemon")
+@Path("cart")
 public class PokemonResource extends Application {
     @EJB
     private PokemonArticleDao pokemonArticleDao;
 
-    @Path("cart/add/{id}")
+    @Path("add/{id}")
     @PUT
     public void addPokemonFromCart(@PathParam("id") int pokemonArticleId) {
         PokemonsArticlesEntity pokemon = pokemonArticleDao.find(pokemonArticleId);
@@ -25,7 +25,7 @@ public class PokemonResource extends Application {
         }
     }
 
-    @Path("cart/remove/{id}")
+    @Path("remove/{id}")
     @PUT
     public void removePokemonFromCart(@PathParam("id") int pokemonArticleId) {
         PokemonsArticlesEntity pokemon = pokemonArticleDao.find(pokemonArticleId);
