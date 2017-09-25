@@ -140,11 +140,11 @@ public class PokemonsArticlesEntity implements Serializable {
         if (id != that.id) return false;
         if (Float.compare(that.price, price) != 0) return false;
         if (userId != that.userId) return false;
-        if (cartId != that.cartId) return false;
         if (pokemonId != that.pokemonId) return false;
         if (level != that.level) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        if (cartId != null ? !cartId.equals(that.cartId) : that.cartId != null) return false;
         if (shininess != null ? !shininess.equals(that.shininess) : that.shininess != null) return false;
         return state == that.state;
     }
@@ -156,7 +156,7 @@ public class PokemonsArticlesEntity implements Serializable {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + userId;
-        result = 31 * result + cartId;
+        result = 31 * result + (cartId != null ? cartId.hashCode() : 0);
         result = 31 * result + pokemonId;
         result = 31 * result + level;
         result = 31 * result + (shininess != null ? shininess.hashCode() : 0);

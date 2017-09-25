@@ -8,15 +8,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 import java.util.Set;
 
-@Path("shopping")
+@Path("cart")
 public class CartResource extends Application {
 
     @EJB
     private CartDao cartDao;
 
-    @Path("cart")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public CartsEntity getCurrentCart() {
@@ -26,7 +26,7 @@ public class CartResource extends Application {
     @Path("history")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Set<CartsEntity> getShoppingHistory() {
-        return (Set<CartsEntity>) cartDao.findAllByBoughtCart(1);
+    public List getShoppingHistory() {
+        return cartDao.findAllByBoughtCart(1);
     }
 }

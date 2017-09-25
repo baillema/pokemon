@@ -69,7 +69,7 @@ public class UserResource extends Application {
     }
 
 
-    @Path("account/{handle}")
+    @Path("{handle}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public UsersEntity displayUserAccount(@PathParam("handle") String handle) {
