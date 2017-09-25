@@ -1,0 +1,60 @@
+<h1>Administration</h1>
+<div class="row">
+  <div class="col-md-2 vertical-tabs">
+    <ul class="list-group">
+      <li class="list-group-item active" id="myPokemonsItem">
+        <a class="list-group-link" (click)="showPane('usersList')">Users List</a>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <div class="col-md-10">
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane fade in  active" id="usersList">
+
+          <div class="well">
+            <h3>Ajouter un utilisateur</h3>
+            <form  (ngSubmit)="onSubmit()">
+              <input type="text">
+
+              <button type="submit"  class="btn btn-success">Submit</button>
+            </form>
+          </div>
+
+
+
+
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Birthday</th>
+              <th>Email</th>
+              <th>Gender</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr *ngFor="let user of users">
+              <td>{{user.id}}</td>
+              <td>{{user.firstname}} {{user.lastname}}</td>
+              <td>{{user.birthday | date : 'dd/MM/yyyy'}}</td>
+              <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+              <td>{{user.gender}}</td>
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+</div>

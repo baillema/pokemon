@@ -7,7 +7,8 @@ import {AjoutComponent} from './component/ajout/ajout.component';
 import {ItemComponent} from './component/item/item.component';
 import {ProfilsComponent} from './component/profils/profils.component';
 import {EchangeComponent} from './component/echange/echange.component';
-import {CartComponent} from './component/cart/cart.component';
+import {CartComponent} from './component/cart/cart.component'
+import {DashboardComponent} from './component/dashboard/dashboard.component';
 
 // Routes
 const appRoutes: Routes = [
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
   {path: 'login', component: UsersComponent},
   {path: 'add', component: AjoutComponent},
   {path: 'cart', component: CartComponent},
+  {path: 'dashboard', component: DashboardComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 
 ];

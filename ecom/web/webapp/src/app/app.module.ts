@@ -13,6 +13,9 @@ import {EchangeComponent} from './component/echange/echange.component';
 import {CartComponent} from './component/cart/cart.component';
 import {CartService} from './service/cart/cart.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome/angular-font-awesome';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import {UserService} from './service/user/user.service';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome/angular-font-awesom
     ProfilsComponent,
     AjoutComponent,
     EchangeComponent,
-    CartComponent
+    CartComponent,
+    DashboardComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome/angular-font-awesom
     AngularFontAwesomeModule
   ],
   providers: [
-    CartService
+    CartService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

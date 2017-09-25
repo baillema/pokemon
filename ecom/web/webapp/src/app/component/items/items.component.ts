@@ -1,3 +1,4 @@
+///<reference path="../../../../node_modules/@angular/core/src/metadata/lifecycle_hooks.d.ts"/>
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 

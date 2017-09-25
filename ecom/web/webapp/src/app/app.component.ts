@@ -1,20 +1,17 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-
-declare var jquery: any;
-declare var $: any;
-
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 
+export class AppComponent implements  OnInit{
 
-export class AppComponent {
 
-  constructor(private router: Router) {
-    //window.onscroll = toggleStickyHeader();
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
     window.addEventListener('scroll', toggleStickyHeader);
     function toggleStickyHeader(): void {
       const header = document.getElementById('header');
@@ -28,17 +25,5 @@ export class AppComponent {
   }
 
   title = 'PokeShop';
-
-
 }
 
-/*
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  title = 'app';
-}
-*/

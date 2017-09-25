@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/Rx';
+import {Article} from '../../model/article';
+import {Cart} from '../../model/cart';
 
 @Injectable()
 export class CartService {
