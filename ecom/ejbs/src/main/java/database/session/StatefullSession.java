@@ -1,5 +1,6 @@
 package database.session;
 
+<<<<<<< HEAD
 import database.entities.CartsEntity;
 import database.entities.FeedbackEntity;
 import database.entities.RolesEntity;
@@ -12,11 +13,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.String;
 import java.util.Set;
+=======
+import database.session.StatefullSessionInterface;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.lang.String;
+>>>>>>> af37c76d6a2809ae232d36ad076b52a4e958dfe4
 import javax.ejb.Stateful;
 
 @Stateful
 public class StatefullSession implements StatefullSessionInterface {
 
+<<<<<<< HEAD
     UsersEntity user;
 
 
@@ -128,4 +137,19 @@ public class StatefullSession implements StatefullSessionInterface {
         user.setFeedbacks(n);
     }
 
+=======
+    String user;
+
+    public StatefullSession(){
+        user = new String();
+    }
+
+    public void addUser(String u) {
+        user=u;
+    }
+
+    public String getUser() {
+        return user;
+    }
+>>>>>>> af37c76d6a2809ae232d36ad076b52a4e958dfe4
 }

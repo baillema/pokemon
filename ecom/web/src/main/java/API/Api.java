@@ -41,6 +41,7 @@ public class Api extends Application {
         classes.add(UserResource.class);
         classes.add(CartResource.class);
         classes.add(PokemonResource.class);
+
         return classes;
     }
 }
