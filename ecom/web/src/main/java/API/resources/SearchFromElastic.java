@@ -72,7 +72,7 @@ public class SearchFromElastic extends javax.ws.rs.core.Application {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/auto/{wordsearched}/{language}")
+    @Path("/lemma/{wordsearched}/{language}")
     public String getLemmatisation(@PathParam("wordsearched") String wordsearched, @PathParam("language") String language) {
         return elasticSearch.lemmatisation(wordsearched, language);
     }

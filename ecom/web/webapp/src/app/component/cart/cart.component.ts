@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnChanges} from '@angular/core';
 import {CartService} from '../../service/cart/cart.service';
 import {TimerObservable} from 'rxjs/observable/TimerObservable';
 import {Subscription} from 'rxjs';
-
 
 @Component({
   selector: 'app-cart',
@@ -22,7 +21,6 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.getCart(1);
   }
-
 
   OnChanges(): Cart {
     return this.cart;
@@ -89,7 +87,11 @@ export class CartComponent implements OnInit {
   }
 
   updatingCartLifeCycle(): void {
+<<<<<<< 45b1f8cbf5b719254f190dc3e055e25cfb6baff2
     // this.cartService.updatingCartLifeCycle();
+=======
+    //this.cartService.updatingCartLifeCycle();
+>>>>>>> Fix style
 
   }
 }

@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-
-declare var jquery: any;
-declare var $: any;
+import { Router } from "@angular/router";
+import {Pokemons} from "../../model/pokemons";
+import {ItemsService, PokemonsResponse} from '../../service/items/items.service';
 
 @Component({
   selector: 'app-items',
@@ -12,35 +11,49 @@ declare var $: any;
 
 export class ItemsComponent implements OnInit {
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) { }
+  private pkmTab : Pokemons[];
+  err: any;
+
+  constructor(private itemsService: ItemsService) {}
 
   ngOnInit() {
+    this.newPokemonTab();
   }
 
-  checkSelected(id: string) {
-    const checkbox = $('#' + id);
-    const label = $(`label[for="` + id + `"]`);
-    if (checkbox.is(':checked') === false) {
-      label.find('img').addClass('selected');
-    } else {
-      label.find('img').removeClass('selected');
+  private newPokemonTab() {
+    this.pkmTab = [];
+  }
+
+
+  private mapping(res: PokemonsResponse) {
+    for(var i = 0; i < res.resultPkm["total"]; i++)
+    {
+      var pkm : Pokemons;
+      pkm = new Pokemons;
+
+      pkm.translation = res.resultPkm["hits"][i]["_source"]["translation"];
+      pkm.timestamp = res.resultPkm["hits"][i]["_source"]["@timestamp"];
+      pkm.language_id = res.resultPkm["hits"][i]["_source"]["language_id"];
+      pkm.pokemon_specie_id = res.resultPkm["hits"][i]["_source"]["pokemon_specie_id"];
+      this.err = res.err;
+
+      this.pkmTab[i] = pkm;
     }
   }
 
-  toggleItemsGrid() {
-    const grid = $('#itemGrid');
-    if (grid.hasClass('grid')) {
-      grid.removeClass('grid').addClass('line');
-      grid.find('.col-md-4').each(function(){
-        $(this).removeClass('col-md-4').addClass('col-md-12');
-      });
-    } else if (grid.hasClass('line')) {
-        grid.removeClass('line').addClass('grid');
-        grid.find('.col-md-12').each(function(){
-          $(this).removeClass('col-md-12').addClass('col-md-4');
-        });
-    }
+  public search(name : string, request: string, fuzzy : boolean) {
+    //Exact search
+    if(request.startsWith("\"") && request.endsWith("\"")) this.itemsService.exact(name, request).subscribe(res => { this.mapping(res)});
+    //Wildcard search
+    else if(request.indexOf("*") != -1 || request.indexOf("?") != -1) this.itemsService.wildcard(name, request).subscribe(res => { this.mapping(res)});
+    //Fuzzy query
+    else if(fuzzy) this.itemsService.fuzzy(name, request).subscribe(res => { this.mapping(res)});
+    //Simple search
+    else this.itemsService.simple(name, request).subscribe(res => { this.mapping(res)});
   }
 
+  private matchall() {
+    this.itemsService.matchall().subscribe(res => {this.mapping(res)});
+  }
 }
