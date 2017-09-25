@@ -7,11 +7,11 @@ import {Pokemons} from "../../model/pokemons";
 
 @Injectable()
 export class ItemsService {
-  private url = "http://152.77.78.29:8080";
+  private urlEjbElastic = "http://152.77.78.29:8080";
   constructor(private http:Http) {}
 
   public matchall(): Observable<PokemonsResponse> {
-    return this.http.get(this.url+`/web/api/pokelastic/matchall/pokemons_species_translations/`)
+    return this.http.get(this.urlEjbElastic+`/web/api/pokelastic/matchall/pokemons_species_translations/`)
       .map(res => {
         const body = res.json().hits;
         return { err: null, resultPkm: body };
@@ -23,7 +23,7 @@ export class ItemsService {
   }
 
   public simple(name, request): Observable<PokemonsResponse> {
-    return this.http.get(this.url+`:8080/web/api/pokelastic/simple/pokemons_species_translations/`+name+"/"+request)
+    return this.http.get(this.urlEjbElastic+`/web/api/pokelastic/simple/pokemons_species_translations/`+name+"/"+request)
       .map(res => {
         const body = res.json().hits;
         return { err: null, resultPkm: body };
@@ -35,7 +35,7 @@ export class ItemsService {
   }
 
   public exact(name, request): Observable<PokemonsResponse> {
-    return this.http.get(this.url+`/web/api/pokelastic/exact/pokemons_species_translations/`+name+"/"+request)
+    return this.http.get(this.urlEjbElastic+`/web/api/pokelastic/exact/pokemons_species_translations/`+name+"/"+request)
       .map(res => {
         const body = res.json().hits;
         return { err: null, resultPkm: body };
@@ -47,7 +47,7 @@ export class ItemsService {
   }
 
   public wildcard(name, request): Observable<PokemonsResponse> {
-    return this.http.get(this.url+`/web/api/pokelastic/wildcard/pokemons_species_translations/`+name+"/"+request)
+    return this.http.get(this.urlEjbElastic+`/web/api/pokelastic/wildcard/pokemons_species_translations/`+name+"/"+request)
       .map(res => {
         const body = res.json().hits;
         return { err: null, resultPkm: body };
@@ -59,7 +59,7 @@ export class ItemsService {
   }
 
   public fuzzy(name, request): Observable<PokemonsResponse> {
-    return this.http.get(this.url+`:8080/web/api/pokelastic/fuzzy/pokemons_species_translations/`+name+"/"+request)
+    return this.http.get(this.urlEjbElastic+`/web/api/pokelastic/fuzzy/pokemons_species_translations/`+name+"/"+request)
       .map(res => {
         const body = res.json().hits;
         return { err: null, resultPkm: body };

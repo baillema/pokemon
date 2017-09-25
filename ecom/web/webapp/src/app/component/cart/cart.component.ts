@@ -87,11 +87,6 @@ export class CartComponent implements OnInit {
   }
 
   updatingCartLifeCycle(): void {
-<<<<<<< 45b1f8cbf5b719254f190dc3e055e25cfb6baff2
     // this.cartService.updatingCartLifeCycle();
-=======
-    //this.cartService.updatingCartLifeCycle();
->>>>>>> Fix style
-
   }
 }

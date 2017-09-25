@@ -17,6 +17,7 @@ import { PokemonSpeciesService } from './service/pokemon-species/pokemon-species
 import { AddPokemonFormComponent } from './component/add-pokemon-form/add-pokemon-form.component';
 import { HttpModule } from '@angular/http';
 import {AngularFontAwesomeModule} from 'angular-font-awesome/angular-font-awesome';
+import {ItemsService} from './service/items/items.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome/angular-font-awesom
   ],
   providers: [
     CartService,
-    PokemonSpeciesService
+    PokemonSpeciesService,
+    ItemsService
   ],
   bootstrap: [AppComponent]
 })
