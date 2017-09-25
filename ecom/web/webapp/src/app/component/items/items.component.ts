@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import { Router } from "@angular/router";
 import {Pokemons} from "../../model/pokemons";
 import {ItemsService, PokemonsResponse} from '../../service/items/items.service';
 
@@ -10,8 +9,6 @@ import {ItemsService, PokemonsResponse} from '../../service/items/items.service'
 })
 
 export class ItemsComponent implements OnInit {
-
-  constructor(private router: Router) { }
   private pkmTab : Pokemons[];
   err: any;
 
