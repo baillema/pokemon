@@ -11,6 +11,7 @@ import API.resources.PokemonResource;
 import API.resources.UserResource;
 import database.entities.articles.PokemonsArticlesEntity;
 
+
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
