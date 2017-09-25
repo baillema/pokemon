@@ -1,6 +1,8 @@
 package API;
 
 import API.resources.SearchFromElastic;
+import API.resources.Session;
+import database.session.StatefullSession;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -13,6 +15,7 @@ public class Api extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
         classes.add(SearchFromElastic.class);
+        classes.add(Session.class);
         return classes;
     }
 }
