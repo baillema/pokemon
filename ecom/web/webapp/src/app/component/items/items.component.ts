@@ -40,6 +40,7 @@ export class ItemsComponent implements OnInit {
   }
 
   public search(name : string, request: string, fuzzy : boolean) {
+    this.newPokemonTab();
     //Exact search
     if(request.startsWith("\"") && request.endsWith("\"")) this.itemsService.exact(name, request).subscribe(res => { this.mapping(res)});
     //Wildcard search

@@ -21,8 +21,15 @@
       <div class="input-group w100 autocomplete">
         <input type="text" class="form-control" #wordsearched placeholder="Species...">
         <div>
-          <input type="text" class="form-control" #fieldsearched placeholder="Field name...">
-          <button (click)="search(fieldsearched.value,wordsearched.value,fuzzyness.checked)">Submit</button>
+          <!-- <input type="text" class="form-control" #fieldsearched placeholder="Field name...">-->
+          <select name="selectedfield" size="1">
+            <option #selectedfield selected>translation</option>
+
+          </select>
+
+          <button (click)="search(selectedfield.value,wordsearched.value,fuzzyness.checked)">Submit</button>
+
+
           <label for="checkBoxFuzzy">Fuzzy</label>
           <input id="checkBoxFuzzy" type="checkbox" #fuzzyness placeholder="Fuzzy">
         </div>
@@ -83,12 +90,10 @@
                 </div>
               </div>
             </div>
-
-            <!-- ITEM START -->
             <div  *ngFor="let iteratorPkm of pkmTab" #elseBlock r class="thumbnail">
-              <img src="../../../assets/img/pokemons/{{iteratorPkm.pokemon_specie_id}}.png" alt="img">
+              <img src="../../../assets/img/pokemons/{{iteratorPkm?.pokemon_specie_id}}.png" alt="img">
               <div class="caption">
-                <h3>{{iteratorPkm.translation}}</h3>
+                <h3>{{iteratorPkm?.translation}}</h3>
                 <p>Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing ... </p>
                 <p>
                   <a href="#" class="btn btn-primary" role="button">
