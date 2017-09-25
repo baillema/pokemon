@@ -1,12 +1,10 @@
-
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-})
-
+});
 export class AppComponent implements  OnInit{
 
 
@@ -14,6 +12,7 @@ export class AppComponent implements  OnInit{
 
   ngOnInit(): void {
     window.addEventListener('scroll', toggleStickyHeader);
+
     function toggleStickyHeader(): void {
       const header = document.getElementById('header');
       const stickyHeight = 80;
@@ -24,6 +23,7 @@ export class AppComponent implements  OnInit{
       }
     }
   }
+
 
   title   = 'PokeShop';
 

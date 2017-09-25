@@ -22,7 +22,9 @@ import {ItemsService} from './service/items/items.service';
 
 import {DashboardComponent} from './component/dashboard/dashboard.component';
 import {UserService} from './service/user/user.service';
+
 import {AdminComponent} from './admin/admin.component';
+
 
 
 @NgModule({
