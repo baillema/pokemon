@@ -17,15 +17,11 @@ import {PokemonSpeciesService} from './service/pokemon-species/pokemon-species.s
 import {AddPokemonFormComponent} from './component/add-pokemon-form/add-pokemon-form.component';
 import {HttpModule} from '@angular/http';
 import {AngularFontAwesomeModule} from 'angular-font-awesome/angular-font-awesome';
-
 import {ItemsService} from './service/items/items.service';
-
 import {DashboardComponent} from './component/dashboard/dashboard.component';
 import {UserService} from './service/user/user.service';
-
 import {AdminComponent} from './admin/admin.component';
-
-
+import { PokemonsListComponent } from './component/pokemons-list/pokemons-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +36,8 @@ import {AdminComponent} from './admin/admin.component';
     CartComponent,
     AddPokemonFormComponent,
     DashboardComponent,
-    AdminComponent
+    AdminComponent,
+    PokemonsListComponent
   ],
   imports: [
     BrowserModule,
