@@ -5,23 +5,28 @@ import database.entities.FeedbackEntity;
 import database.entities.RolesEntity;
 import database.entities.UsersEntity;
 import database.entities.articles.PokemonsArticlesEntity;
-import database.session.StatefullSessionInterface;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.lang.String;
-import java.util.Set;
 import javax.ejb.Stateful;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Stateful
 public class StatefullSession implements StatefullSessionInterface {
     UsersEntity user;
 
-
-    private LocalDate birthday;
-
-    public StatefullSession(){
+    public StatefullSession(UsersEntity u){
+        this.setFirstname(u.getFirstname());
+        this.setGender(u.getGender());
+        this.setHandle(u.getHandle());
+        this.setLastname(u.getLastname());
+        user.setId(u.getId());
+        this.setMail(u.getEmail());
+        this.setPassword(u.getPassword());
+        this.setBirthday(u.getBirthday());
+        this.setCarts(u.getCarts());
+        this.setPokemons(u.getPokemons());
+        this.setRoles(u.getRoles());
+        this.setFeedbacks(u.getFeedbacks());
     }
 
     public int getId(){
@@ -83,7 +88,7 @@ public class StatefullSession implements StatefullSessionInterface {
     }
 
     //birthday
-    public void setHandle(LocalDate n) {
+    public void setBirthday(LocalDate n) {
         user.setBirthday(n);
     }
 

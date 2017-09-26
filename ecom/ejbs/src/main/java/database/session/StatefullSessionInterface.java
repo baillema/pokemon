@@ -3,6 +3,7 @@ package database.session;
 import database.entities.CartsEntity;
 import database.entities.FeedbackEntity;
 import database.entities.RolesEntity;
+import database.entities.UsersEntity;
 import database.entities.articles.PokemonsArticlesEntity;
 
 import java.time.LocalDate;
@@ -26,7 +27,7 @@ public interface StatefullSessionInterface {
     String getLastname();
     void setHandle(String n);
     String getHandle();
-    void setHandle(LocalDate n);
+    void setBirthday(LocalDate n);
     LocalDate getBirthday();
     Set<RolesEntity> getRoles();
     void setRoles(Set<RolesEntity> n);
