@@ -42,7 +42,8 @@
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingTwo">
             <h4 class="panel-title">
-              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+                 aria-expanded="false"
                  aria-controls="collapseTwo">
                 Type
               </a>
@@ -51,9 +52,11 @@
           <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
               <div class="form-checkbox">
-                <input type="checkbox" id="type1"><label for="type1"><img src="../assets/img/spheres/feu.png" with="32" height="32" alt=""></label>
+                <input type="checkbox" id="type1"><label for="type1"><img src="../assets/img/spheres/feu.png" with="32"
+                                                                          height="32" alt=""></label>
                 <br>
-                <input type="checkbox" id="type2"><label for="type2"><img src="../assets/img/spheres/fee.png" with="32" height="32" alt=""></label>
+                <input type="checkbox" id="type2"><label for="type2"><img src="../assets/img/spheres/fee.png" with="32"
+                                                                          height="32" alt=""></label>
               </div>
             </div>
           </div>
@@ -61,7 +64,8 @@
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingThree">
             <h4 class="panel-title">
-              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"
+                 aria-expanded="false"
                  aria-controls="collapseThree">
                 Price
               </a>
@@ -79,38 +83,43 @@
     <!--  PRODUCTS CONTENT START -->
     <div class="col-md-8">
       <h2>Catch 'Em All!</h2>
-      <div class="row">
-        <div class="row grid" id="itemGrid">
-          <!--  ITEM START -->
+
+      <div *ngIf="pkmTab.length==0; else elseBlock">
+        <div class="thumbnail">
+          <div class="caption">
+            <h3>No item found !</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row grid" id="itemGrid">
+        <!--  ITEM START -->
+
+
+        <div *ngFor="let iteratorPkm of pkmTab" #elseBlock r>
           <div class="col-md-4">
-            <div *ngIf="pkmTab.length==0; else elseBlock">
-              <div class="thumbnail">
-                <div class="caption">
-                  <h3>No item found !</h3>
-                </div>
-              </div>
-            </div>
-            <div  *ngFor="let iteratorPkm of pkmTab" #elseBlock r class="thumbnail">
+            <div class="thumbnail">
               <img src="../../../assets/img/pokemons/{{iteratorPkm?.pokemon_specie_id}}.png" alt="img">
               <div class="caption">
                 <h3>{{iteratorPkm?.translation}}</h3>
                 <p>Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing ... </p>
                 <p>
-                  <a href="#" class="btn btn-primary" role="button">
+                  <a href="#" class="btn btn-primary" role="button" routerLink="/cart">
                     <i class="glyphicon glyphicon-shopping-cart"></i>
                     Buy
                   </a>
-                  <a href="#" class="btn btn-warning" role="button">
+                  <a href="#" class="btn btn-warning" role="button" routerLink="/item">
                     <i class="glyphicon glyphicon-search"></i>
                     See
                   </a>
                 </p>
               </div>
             </div>
-
-            <!-- ITEM END -->
           </div>
+
         </div>
+
+        <!-- ITEM END -->
+
         <!-- PRODUCTS CONTENT END  -->
       </div>
     </div>
