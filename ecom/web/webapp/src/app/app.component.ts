@@ -16,7 +16,7 @@ export class AppComponent implements  OnInit{
 
     function toggleStickyHeader(): void {
       const header = document.getElementById('header');
-      const stickyHeight = 80;
+      const stickyHeight =110;
       if (scrollY > stickyHeight) {
         header.classList.add('sticky');
       } else {
