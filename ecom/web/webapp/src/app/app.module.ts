@@ -22,6 +22,7 @@ import {UserService} from './service/user/user.service';
 import {AdminComponent} from './admin/admin.component';
 
 import {ItemsService} from './service/items/items.service';
+import { PokemonsListComponent } from './component/pokemons-list/pokemons-list.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {ItemsService} from './service/items/items.service';
     CartComponent,
     AddPokemonFormComponent,
     DashboardComponent,
-    AdminComponent
+    AdminComponent,
+    PokemonsListComponent
   ],
   imports: [
     BrowserModule,

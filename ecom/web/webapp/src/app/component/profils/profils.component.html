@@ -29,139 +29,7 @@
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane fade in  active" id="myPokemons">
           <h2>My pokemons</h2>
-          <div class="action-bar">
-            <div class="pull-right">
-              <button (click)="toggleItemsGrid()"><i class="fa fa-align-justify"></i></button>
-            </div>
-          </div>
-          <div class="row grid" id="itemGrid">
-            <!--  ITEM START -->
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img src="../../assets/img/pokemons/802.png" alt="img">
-                <div class="caption">
-                  <h3>Pokéname</h3>
-                  <p>Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing ... </p>
-                  <p>
-                    <a href="#" class="btn btn-primary" role="button">
-                      <i class="glyphicon glyphicon-shopping-cart"></i>
-                      Buy
-                    </a>
-                    <a href="#" class="btn btn-warning" role="button">
-                      <i class="glyphicon glyphicon-search"></i>
-                      See
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- ITEM END -->
-            <!--  ITEM START -->
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img src="../../assets/img/pokemons/802.png" alt="img">
-                <div class="caption">
-                  <h3>Pokéname</h3>
-                  <p>Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing ... </p>
-                  <p>
-                    <a href="#" class="btn btn-primary" role="button">
-                      <i class="glyphicon glyphicon-shopping-cart"></i>
-                      Buy
-                    </a>
-                    <a href="#" class="btn btn-warning" role="button">
-                      <i class="glyphicon glyphicon-search"></i>
-                      See
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- ITEM END -->
-            <!--  ITEM START -->
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img src="../../assets/img/pokemons/802.png" alt="img">
-                <div class="caption">
-                  <h3>Pokéname</h3>
-                  <p>Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing ... </p>
-                  <p>
-                    <a href="#" class="btn btn-primary" role="button">
-                      <i class="glyphicon glyphicon-shopping-cart"></i>
-                      Buy
-                    </a>
-                    <a href="#" class="btn btn-warning" role="button">
-                      <i class="glyphicon glyphicon-search"></i>
-                      See
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- ITEM END -->
-            <!--  ITEM START -->
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img src="../../assets/img/pokemons/802.png" alt="img">
-                <div class="caption">
-                  <h3>Pokéname</h3>
-                  <p>Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing ... </p>
-                  <p>
-                    <a href="#" class="btn btn-primary" role="button">
-                      <i class="glyphicon glyphicon-shopping-cart"></i>
-                      Buy
-                    </a>
-                    <a href="#" class="btn btn-warning" role="button">
-                      <i class="glyphicon glyphicon-search"></i>
-                      See
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- ITEM END -->
-            <!--  ITEM START -->
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img src="../../assets/img/pokemons/802.png" alt="img">
-                <div class="caption">
-                  <h3>Pokéname</h3>
-                  <p>Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing ... </p>
-                  <p>
-                    <a href="#" class="btn btn-primary" role="button">
-                      <i class="glyphicon glyphicon-shopping-cart"></i>
-                      Buy
-                    </a>
-                    <a href="#" class="btn btn-warning" role="button">
-                      <i class="glyphicon glyphicon-search"></i>
-                      See
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- ITEM END -->
-            <!--  ITEM START -->
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img src="../../assets/img/pokemons/802.png" alt="img">
-                <div class="caption">
-                  <h3>Pokéname</h3>
-                  <p>Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing ... </p>
-                  <p>
-                    <a href="#" class="btn btn-primary" role="button">
-                      <i class="glyphicon glyphicon-shopping-cart"></i>
-                      Buy
-                    </a>
-                    <a href="#" class="btn btn-warning" role="button">
-                      <i class="glyphicon glyphicon-search"></i>
-                      See
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- ITEM END -->
-          </div>
+          <app-pokemons-list></app-pokemons-list>
         </div>
         <div role="tabpanel" class="tab-pane fade in " id="changePassword">
           <h2>Change your password</h2>
@@ -206,9 +74,28 @@
         </div>
         <div role="tabpanel" class="tab-pane fade in " id="stock">
           <h2>My Stock</h2>
+          <app-pokemons-list></app-pokemons-list>
         </div>
         <div role="tabpanel" class="tab-pane fade in " id="sellHistory">
           <h2>My sells history</h2>
+          <table class="table table-stripped">
+            <thead>
+            <tr>
+              <th>Date</th>
+              <th>Name</th>
+              <th>Buyer Name</th>
+              <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>21/09/2017</td>
+              <td>Barbatruc</td>
+              <td>User</td>
+              <td><img class="pokedollar" src="../../../assets/img/pokedollar.png" class="pokerDollar"/> 100</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
