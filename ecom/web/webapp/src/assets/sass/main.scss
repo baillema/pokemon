@@ -220,3 +220,32 @@ a {
     width: 100%;
   }
 }
+
+
+.type-search{
+  width: 40px;
+  height: 40px;
+  position: relative;
+  float: left;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  input{
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    z-index: 1;
+  }
+  .type-search-image{
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    top: 0;
+    left: 4px;
+    cursor: pointer;
+    z-index: 2;
+    &.active{
+      border : 3px solid $blue;
+      border-radius: 32px;
+    }
+  }
+}
