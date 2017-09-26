@@ -8941,3 +8941,35 @@ a {
 .carousel-item img {
   width: 100%;
 }
+
+/* line 225, ../sass/main.scss */
+.type-search {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  float: left;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+/* line 232, ../sass/main.scss */
+.type-search input {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  z-index: 1;
+}
+/* line 238, ../sass/main.scss */
+.type-search .type-search-image {
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  top: 0;
+  left: 4px;
+  cursor: pointer;
+  z-index: 2;
+}
+/* line 246, ../sass/main.scss */
+.type-search .type-search-image.active {
+  border: 3px solid #1D3B73;
+  border-radius: 32px;
+}

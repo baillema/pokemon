@@ -11,6 +11,12 @@ import {ItemsService, PokemonsResponse} from '../../service/items/items.service'
 
 export class ItemsComponent implements OnInit {
   public pkmTab : Pokemons[];
+
+  public types = [
+      'acier','combat','dragon','eau','electrique','fee','feu','glace','insecte','normal','plante','poison','psy','roche','sol','spectre','tenebres','vol'
+  ];
+
+
   err: any;
 
   constructor(private itemsService: ItemsService) {}
@@ -55,4 +61,15 @@ export class ItemsComponent implements OnInit {
   private matchall() {
     this.itemsService.matchall().subscribe(res => {this.mapping(res)});
   }
+
+  public typeCheck(type: string): void {
+      const elem = document.getElementById('img'+type);
+
+      if(elem.classList.contains('active')){
+        elem.classList.remove('active');
+      }else{
+        elem.classList.add('active');
+      }
+  }
+
 }

@@ -1,15 +1,8 @@
 <!-- CAROUSEL START -->
 <div class="container">
-  <div id="carousel" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="carousel-item active" data-slide-to="2">
-        <div class="carousel-caption d-none d-md-block">
-          <h3>Pokémon 1</h3>
-        </div>
-        <img src="../assets/img/banniere-pokemon.png" alt="First slide">
-      </div>
-    </div>
-  </div>
+
+  <img src="../assets/img/banniere-pokemon.png" alt="First slide">
+
 </div>
 <!-- CAROUSEL END -->
 <!-- MAIN CONTENT START -->
@@ -19,23 +12,35 @@
     <div class="col-md-4">
       <h2>Search</h2>
       <div class="input-group w100 autocomplete">
-        <input type="text" class="form-control" #wordsearched placeholder="Species...">
-        <div>
-          <!-- <input type="text" class="form-control" #fieldsearched placeholder="Field name...">-->
-          <select name="selectedfield" size="1">
-            <option #selectedfield selected>translation</option>
-
-          </select>
-
-          <button (click)="search(selectedfield.value,wordsearched.value,fuzzyness.checked)">Submit</button>
-
-
-          <label for="checkBoxFuzzy">Fuzzy</label>
-          <input id="checkBoxFuzzy" type="checkbox" #fuzzyness placeholder="Fuzzy">
+        <div class="form-group">
+          <input type="text" class="form-control" #wordsearched placeholder="Species...">
         </div>
-        <div class="dropdown-menu active">
-          <a class="dropdown-item" href="#">Action</a>
+
+        <!-- <input type="text" class="form-control" #fieldsearched placeholder="Field name...">-->
+        <hr>
+
+        <div class="form-group">
+          <div class="col-md-6">
+            <select name="selectedfield" id="selectedfield" size="1" class="form-control">
+              <option #selectedfield selected>translation</option>
+            </select>
+          </div>
+
+
+          <label class="checkbox-inline">
+            <input type="checkbox" id="checkBoxFuzzy" type="checkbox" #fuzzyness value="option1"> Fuzzy
+          </label>
+
         </div>
+
+
+        <button (click)="search(selectedfield.value,wordsearched.value,fuzzyness.checked)"
+                class="btn-primary btn pull-right">
+          <i class="fa fa-search"></i>
+          Submit
+        </button>
+
+
       </div>
       <hr>
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -49,14 +54,15 @@
               </a>
             </h4>
           </div>
-          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div id="collapseTwo" class="panel-collapse " role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
-              <div class="form-checkbox">
-                <input type="checkbox" id="type1"><label for="type1"><img src="../assets/img/spheres/feu.png" with="32"
-                                                                          height="32" alt=""></label>
-                <br>
-                <input type="checkbox" id="type2"><label for="type2"><img src="../assets/img/spheres/fee.png" with="32"
-                                                                          height="32" alt=""></label>
+              <div *ngFor="let type of types" class="form-checkbox">
+                <div class="type-search">
+                  <input type="checkbox" id="{{type}}">
+                  <label for="{{type}}" (click)="typeCheck(type)" title="{{type}}">
+                    <img src="../assets/img/spheres/{{type}}.png" alt="" id="img{{type}}" class="type-search-image">
+                  </label>
+                </div>
               </div>
             </div>
           </div>
@@ -71,9 +77,20 @@
               </a>
             </h4>
           </div>
-          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div id="collapseThree" class="panel-collapse " role="tabpanel" aria-labelledby="headingThree">
             <div class="panel-body">
-              get a price selector
+              <div class="radio">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                  10 - 100 <img class="pokedollar" src="../../../assets/img/pokedollar.png" height="16px" width="16px"/>
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                  101 - 500 <img class="pokedollar" src="../../../assets/img/pokedollar.png" height="16px" width="16px"/>
+                </label>
+              </div>
             </div>
           </div>
         </div>
