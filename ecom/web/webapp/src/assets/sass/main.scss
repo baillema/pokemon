@@ -6,6 +6,9 @@ body {
   background: $whiteLigth;
 }
 
+#main-content{
+  min-height: 600px;
+}
 a {
   cursor: pointer;
 }

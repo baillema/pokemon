@@ -5,21 +5,11 @@ import {Router} from '@angular/router';
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-
-<<<<<<< HEAD
-export class AppComponent implements OnInit {
-
-
-  constructor(private router: Router) {
-  }
-
-=======
 export class AppComponent implements  OnInit{
 
 
   constructor(private router: Router) {}
 
->>>>>>> 455621431c2ea757562b5b4ad957f2da6593a5c0
   ngOnInit(): void {
     window.addEventListener('scroll', toggleStickyHeader);
 
@@ -35,9 +25,6 @@ export class AppComponent implements  OnInit{
   }
 
   title = 'PokeShop';
-<<<<<<< HEAD
 
-=======
->>>>>>> 455621431c2ea757562b5b4ad957f2da6593a5c0
 }
 
