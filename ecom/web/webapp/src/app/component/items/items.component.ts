@@ -10,7 +10,7 @@ import {ItemsService, PokemonsResponse} from '../../service/items/items.service'
 })
 
 export class ItemsComponent implements OnInit {
-  private pkmTab : Pokemons[];
+  public pkmTab : Pokemons[];
   err: any;
 
   constructor(private itemsService: ItemsService) {}
